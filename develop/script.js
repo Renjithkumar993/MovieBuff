@@ -5,4 +5,3 @@ function redirectToPage(url){
 }
 redirectToPage(redirectURL);
 */
-
