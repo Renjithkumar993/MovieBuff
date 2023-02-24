@@ -14,27 +14,53 @@ async function TMDb_(searchQuery) {
     }
 }
 
-// call the function that takes in the search, using prompt for now, will change to search box
-const searchQueryInput = prompt("enter a movie title to search for:");
-
-TMDb_(searchQueryInput)
+$('#searchForm').on('submit', function(e) {
+    e.preventDefault();
+    var searchQueryInput = e.currentTarget[0].value;
+    TMDb_(searchQueryInput)
     .then((movies) => {
+        // creating the wrapper for the movies
+        const wrapper = document.getElementById('movieCardWrapper');
+        // initializing movie card element as a empty string
+        var movieElmt = '';
         console.log(movies);
+        // looping through the movie results
         for (let i = 0; i < movies.length; i++) {
-            var posterPath = `https://image.tmdb.org/t/p/original${movies[i].poster_path}`;
-            var backdropPath = `https://image.tmdb.org/t/p/original${movies[i].backdrop_path}`;
-            var movieTitle = movies[i].title;
-            var movieReleaseDate = movies[i].release_date;
-            var overview = movies[i].overview;
-
-            $('#moviePoster').attr('src', posterPath);
-
-            $('#movieTitle').html(movieTitle);
-            $('#releaseDate').html(movieReleaseDate);
-            $('#overview').html(overview);
+           movieElmt += movieCard(movies[i]);
         }
-
-})
+        // setting the content inside the wrapper to display all the movies from the array with the templated string
+        wrapper.innerHTML = movieElmt;
+    })
     .catch((error) => {
         console.error(error);
+    });
 });
+
+function movieCard(movie) {
+     // variables for the poster pather, movie titles, movie release dates, and overview of the movies
+     var posterPath = `https://image.tmdb.org/t/p/original${movie.poster_path}`;
+     var movieTitle = movie.title;
+     var movieReleaseDate = movie.release_date;
+     var overview = movie.overview;
+     // templated string to display all the movies from the array
+     return /*html*/`<div class="column is-one-quarter">
+     <div class="card">
+       <div class="card-image">
+         <figure class="image is-4by3">
+           <img src="${posterPath}" alt="Movie poster">
+         </figure>
+       </div>
+       <div class="card-content">
+         <div class="media">
+           <div class="media-content">
+             <p class="title is-4">${movieTitle}</p>
+             <p class="subtitle is-6">${movieReleaseDate}</p>
+           </div>
+         </div>
+         <div class="content">
+           ${overview}
+         </div>
+       </div>
+     </div>
+   </div>`;
+}

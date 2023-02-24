@@ -30,13 +30,13 @@
     <!-- search colum and the button to search -->
 
     <div class="container mt-6">
-      <form>
+      <form id="searchForm">
         <div class="field is-grouped">
           <p class="control is-expanded">
-            <input class="input" type="text" placeholder="Search by movie title...">
+            <input class="input" type="text" id="searchField" placeholder="Search by movie title...">
           </p>
           <p class="control">
-            <button class="button is-primary">
+            <button class="button is-primary" id="searchBtn">
               Search
             </button>
           </p>
@@ -49,7 +49,7 @@
       </div>
       
       <!-- colums for movies search result added couple of them to see how it shows .we can remove them after we dynamically add it  -->
-      <div class="columns is-multiline mt-3">
+      <div class="columns is-multiline mt-3"  id="movieCardWrapper">
         <div class="column is-one-quarter">
           <div class="card">
             <div class="card-image">
