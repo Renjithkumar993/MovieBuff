@@ -1,4 +1,5 @@
-function watchMode() { 
+// Function that fetches the Watchmode API data
+function watchMode(searchQuery) { 
 
 //Watchmode API key
 const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
