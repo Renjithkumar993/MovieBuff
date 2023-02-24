@@ -3,13 +3,18 @@ const movieInputEl = document.getElementById("movieName");
 const submitButtonEl = document.getElementById("searchBtn")
 
 // Initializing search parameters
-var searchQuery = movieInputEl.value;
+var searchQuery = '';
 
-// Adding Event Listener to 
-movieInputEl.addEventListener('click', watchMode());
+// Adding Event Listener to button
+submitButtonEl.addEventListener('click', function(){
+  searchQuery = movieInputEl.value
+
+  watchMode();
+  saveSearchHistory();
+});
 
 // Function that fetches the Watchmode API data
-function watchMode(searchQuery) { 
+function watchMode() { 
 
 //Watchmode API key
 const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
@@ -32,4 +37,9 @@ fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_fi
     // Extract the streaming services from the streaming information
         console.log(data);
     });
+}
+
+//Save Search history to local storage
+function saveSearchHistory(){
+  localStorage.setItem('Movie Title: ', searchQuery);
 }
