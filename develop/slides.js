@@ -5,7 +5,7 @@ const IMBDKey = '60284bb58aafe269068499987d0a2596';
 
 let nowPlayingUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${IMBDKey}&language=en-US`
 var onAirUrl = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${IMBDKey}&language=en-US`;
-var videoURL = `GET https://api.themoviedb.org/3/movie/upcoming?api_key=${IMBDKey}`
+var trendingURL = `https://api.themoviedb.org/3/trending/movie/day?api_key=${IMBDKey}`
 
 
 
@@ -15,7 +15,7 @@ $(".slidesImagesvideo").hide();
 
 var posterImage = "";
 
-fetch(nowPlayingUrl)
+fetch(trendingURL)
     .then(function (response) {
         return response.json();
     })
