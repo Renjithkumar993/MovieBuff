@@ -2,17 +2,6 @@
 const movieInputEl = document.getElementById("movieName");
 const submitButtonEl = document.getElementById("searchBtn")
 
-// Initializing search parameters
-var searchQuery = '';
-
-// Adding Event Listener to button
-submitButtonEl.addEventListener('click', function(){
-  searchQuery = movieInputEl.value
-
-  watchMode();
-  saveSearchHistory();
-});
-
 // Function that fetches the Watchmode API data
 function watchMode() { 
 
