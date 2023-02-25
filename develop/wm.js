@@ -16,19 +16,37 @@ fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_fi
   .then(function (data) {
     // Extract the Watchmode ID for the first search result
     watchmodeId = data.title_results[0].id;
+    //runtimeEl = data.title_results[0].runtime_minutes;
+    //genreEl = data.title_results[0].genre_name;
+    //userRatingEl = data.title_results[0].user_rating;
+    //criticScoreEl = data.title_results[0].critic_score;
+    //usRatingEl = data.title_results[0].us_rating;
+    //posterEl = data.title_results[0].poster;
+    //similarTitlesEl = data.title_results[0].similar_titles;
+    //trailerEl = data.title_results[0].trailer
     // Retrieve the streaming information for the movie using the Watchmode ID
-    return fetch(`https://api.watchmode.com/v1/title/${watchmodeId}/sources/?apiKey=${WMKey}`);
-    })
-    .then(function(response) {
-      return response.json()
-    })
-    .then(function(data) {
+    return fetch(`https://api.watchmode.com/v1/title/${watchmodeId}/sources/?apiKey=${WMKey}`)
+  .then(function(response) {
+    return response.json()
+  })
+  .then(function(data) {
     // Extract the streaming services from the streaming information
-        console.log(data);
-    });
-}
+    console.log(data);
+    
+    function removeDuplicates(data) {
+      let newArray = [];
+      data.forEach(element => {
+        if (!newArray.includes(element)) {
+          newArray.push(element);
+        }
+      });
+      return newArray;
+    }
+    
+    console.log(removeDuplicates(data));
+  });
 
 //Save Search history to local storage
-function saveSearchHistory(){
-  localStorage.setItem('Movie Title: ', searchQuery);
-}
+//function saveSearchHistory(){
+  //localStorage.setItem('Movie Title: ', searchQuery);
+//}

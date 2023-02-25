@@ -75,13 +75,16 @@ document.getElementById('movieCardWrapper').addEventListener('click', function(e
     console.log("You clicked a movie card!");
     const card = event.target.closest('.card');
     const title = card.querySelector('.title');
-    //console.log(title.textContent);
-    createModal(title);
+    console.log(title.textContent);
+    let cardMovieTitle = title.textContent;
+    //createModal(title);
+    runFetch(cardMovieTitle);
   } else {
     console.log("nope, try again")
   }
 });
 
+/*
 function createModal(title) {
   const modal = document.getElementById('modal');
   watchMode(title);
@@ -89,23 +92,30 @@ function createModal(title) {
 
   modal.style.display = 'block';
 }
+*/
 
 // Function that fetches the Watchmode API data
-function watchMode() { 
+function runFetch(cardMovieTitle) { 
 
   //Watchmode API key
   const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
   
   // Search for the movie using the Watchmode API's search functionality
-  fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(title)}`)
+  fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(cardMovieTitle)}`)
     .then(function(response) {
       return response.json()
     })
     .then(function (data) {
+// Check if any search results were returned
+      if (data.title_results && data.title_results[0]) {
       // Extract the Watchmode ID for the first search result
       watchmodeId = data.title_results[0].id;
       // Retrieve the streaming information for the movie using the Watchmode ID
       return fetch(`https://api.watchmode.com/v1/title/${watchmodeId}/sources/?apiKey=${WMKey}`);
+      } else {
+        // Handle the case where there are no search results
+        throw new Error("No search results found");
+      }
       })
       .then(function(response) {
         return response.json()
@@ -113,9 +123,13 @@ function watchMode() {
       .then(function(data) {
       // Extract the streaming services from the streaming information
           console.log(data);
+      })
+      .catch(function(error) {
+        // Handle any errors that occur in the fetch or processing of data
+        console.error(error);
       });
   }
-  
-  function generateModalContent(){
-    
-  }
+
+
+  //function generateModalContent(){
+  //}
