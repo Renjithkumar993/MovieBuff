@@ -163,9 +163,21 @@ closeModalBtn.addEventListener('click', function() {
 
 // Function to dynamically set the modal content.
 function modalContent(){
-
+  modalTitleEl.innerHTML='';
+ // .innerHTML='';
+ // .innerHTML='';
 }
 
+const modalTitleEl=document.getElementById('modalTitle');
+//const =document.getElementById('');
+//const =document.getElementById('');
+
+
+//Sample of what the accordion buttons should look like.
+//<button class="accordion">Section 1</button>
+//<div class="panel">
+  //<p>Lorem ipsum...</p>
+//</div>
 
 
 
