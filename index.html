@@ -39,6 +39,7 @@
             <button class="button is-primary" id="searchBtn">
               Search
             </button>
+            <a id="historyBtn" class="button is-primary">View Search History</a>
           </p>
         </div>
       </form>
@@ -294,19 +295,37 @@
 
     </div>
     
-    <div id="modal" style="display: none;">
-      <div class="modal-header">
-        <button id="tab1-btn">Movie Information</button>
-        <button id="tab2-btn">Streaming Services</button>
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p id="modalTitle" class="modal-card-title"><!--I want this text to be the title form the movie I clicked on --></p>
+        </header>
+        <section class="modal-card-body">
+          <!-- Content ... -->
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success">Add to 'watch later'</button>
+          <button id="closeModalBtn" class="button">Cancel</button>
+        </footer>
       </div>
-      <div class="modal-body">
-        <div id="tab1-info">
-          <!-- Content for tab 1 -->
+    </div>
+
+    <!-- Search History - Off Canvas -->
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closeSlideoutbtn" onclick="closeNav()">&times;</a>
+        <a href="#">Search History</a>
+        <div id="searchHistoryWrapper"></div>
+        <div class="field is-grouped">
+          <p class="control">
+            <a id="clearHistoryBtn"class="button is-danger is-small">
+              Clear Search History
+            </a>
+          </p>
         </div>
-        <div id="tab2-streamingServices">
-          <!-- Content for tab 2 -->
-        </div>
-      </div></div>
+
+      </div>
 
     <footer class="footer">
         <div class="content has-text-centered">
