@@ -6,24 +6,6 @@ function redirectToPage(url){
 redirectToPage(redirectURL);
 */
 
-/*
-// Saving searches to local storage.
-// Taking in form input.
-var searchInput = document.getElementById('searchField');
-
-let searchCounter = localStorage.getItem("searchCounter") || 1; // get current value of searchCounter from local storage, or initialize to 1 if not set
-
-document.querySelector('#searchForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  console.log(searchInput.value.trim());
-  let searchQuery = searchInput.value.trim();
-  let key = "movieSearch" + searchCounter; // use the counter variable to create a unique key
-  localStorage.setItem(key, searchQuery); // save search query to local storage with the unique key
-  searchCounter++; // increment counter variable for next search
-  localStorage.setItem("searchCounter", searchCounter); // update the value of searchCounter in local storage
-  createHistoryButtons(searchQuery);
-});
-*/
 const searchHistorySpace = document.getElementById('searchHistoryWrapper');
 var searchInput = document.getElementById('searchField');
 
@@ -39,8 +21,6 @@ document.querySelector('#searchForm').addEventListener('submit', function(e){
   localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
   createHistoryButtons(searchQuery);
 });
-
-
 
 
 // Off Canvas for search history buttons.
@@ -85,6 +65,48 @@ function clearSearchHistory(){
   searchHistory=[];
   searchHistorySpace.textContent='';
 }
+
+
+//Toggle Modal Tabs
+const modalInfoTabLink = document.getElementById('modalInfoTabLink');
+const modalStreamingTabLink = document.getElementById('modalStreamingTabLink');
+
+// Toggle Modal Content
+function showTabContent(tabID){
+  var tabContents = document.querySelectorAll('.modal-card-body > div');
+  // Hide all tab content divs
+  tabContents.forEach(function(tabContent) {
+    tabContent.style.display = 'none';
+  });
+   // Show the selected tab content div
+   var selectedTabContent = document.getElementById(tabID);
+   selectedTabContent.style.display = 'block';
+ }
+
+
+// Add event listeners to the tab links
+modalInfoTabLink.addEventListener('click', () => {
+  // Toggle the is-active class on the tab links
+  modalInfoTabLink.parentElement.classList.add('is-active');
+  modalStreamingTabLink.parentElement.classList.remove('is-active');
+});
+
+modalStreamingTabLink.addEventListener('click', () => {
+  // Toggle the is-active class on the tab links
+  modalStreamingTabLink.parentElement.classList.add('is-active');
+  modalInfoTabLink.parentElement.classList.remove('is-active');
+
+  // Switch the content of the modal to the music section
+  // ...
+});
+
+
+
+
+
+
+
+
 
 //Locic for accordion animation 
 var acc = document.getElementsByClassName("accordion");

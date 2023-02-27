@@ -163,14 +163,48 @@ closeModalBtn.addEventListener('click', function() {
 
 // Function to dynamically set the modal content.
 function modalContent(){
-  modalTitleEl.innerHTML='';
- // .innerHTML='';
- // .innerHTML='';
+  modalTitleEl.innerHTML = '';
+  modalInfoSection.innerHTML = '';
+  modalStreamingSection.innerHTML = '';
 }
 
-const modalTitleEl=document.getElementById('modalTitle');
-//const =document.getElementById('');
-//const =document.getElementById('');
+const modalTitleEl = document.getElementById('modalTitle');
+const modalInfoSection = document.getElementById('modalInfoTabContent');
+const modalStreamingSection = document.getElementById('modalStreamingTabContent');
+
+
+   
+    //watchmodeId = data.title_results[0].id;
+    //runtimeEl = data.title_results[0].runtime_minutes;
+    //genreEl = data.title_results[0].genre_name;
+    //userRatingEl = data.title_results[0].user_rating;
+    //criticScoreEl = data.title_results[0].critic_score;
+    //usRatingEl = data.title_results[0].us_rating;
+    //posterEl = data.title_results[0].poster;
+    //similarTitlesEl = data.title_results[0].similar_titles;
+    //trailerEl = data.title_results[0].trailer
+
+    //streamingserviceName = data.title_results[i].name;
+    //accessType = data.title_results[i].type;
+    //regionalAvailability = data.title_results[i].region;
+    //webURL = data.title_results[i].web_url;
+    //price = data.title_results[i].price;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //Sample of what the accordion buttons should look like.
@@ -178,10 +212,6 @@ const modalTitleEl=document.getElementById('modalTitle');
 //<div class="panel">
   //<p>Lorem ipsum...</p>
 //</div>
-
-
-
-
 
 
 
