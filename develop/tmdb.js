@@ -139,6 +139,7 @@ function runFetch(cardMovieTitle) {
         }, []);
         // Remove duplicate results.
         console.log(newArray);
+        console.log(newArray.length);
         // Resolve the promise with the data
         resolve(newArray);
         //Initialize streaming element as an empty string
@@ -148,10 +149,14 @@ function runFetch(cardMovieTitle) {
         modalStreamingSectionEl.innerHTML = '';
         // Loop through streaming services
         for (let i = 0; i < newArray.length; i++) {
+          console.log (streamingElmt);
+          console.log(newArray[i]);
           streamingElmt += printToModal(newArray[i]);
+          console.log(streamingElmt);
         }
         // setting the content inside the wrapper to display all the movies from the array with the templated string
         modalStreamingSectionEl.innerHTML = streamingElmt;
+        console.log(modalStreamingSectionEl.innerHTML);
       })
       .catch(function(error) {
         // Handle any errors that occur in the fetch or processing of data
@@ -182,11 +187,16 @@ closeModalBtn.addEventListener('click', function() {
     function printToModal(newArray) {
       console.log(newArray);
     // variables for the streaming service, service type, region, watch URL, and price
-    streamingServiceName = newArray.name;
-    accessType = newArray.type;
-    regionalAvailability = newArray.region;
-    webURL = newArray.web_url;
-    price = newArray.price;
+    var streamingServiceName = newArray.name;
+      console.log(streamingServiceName);
+    var accessType = newArray.type;
+      console.log(accessType);
+    var regionalAvailability = newArray.region;
+      console.log(regionalAvailability);
+    var webURL = newArray.web_url;
+      console.log(webURL);
+    var price = newArray.price;
+      console.log(price);
 
   // templated string to display all the movies from the array
   return /*html*/`<div>
