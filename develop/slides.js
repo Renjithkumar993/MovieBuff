@@ -164,61 +164,61 @@ fetch(trendingURL)
 
 
 
-   var UpcomingMovieUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${IMBDKey}`;
-   var VideoMovieURL = `https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=${IMBDKey}`;
+//    var UpcomingMovieUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${IMBDKey}`;   
+//    var VideoMovieURL = `https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=${IMBDKey}`;
 
-    fetch(UpcomingMovieUrl)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      var upcomingMovies = data.results;
+//     fetch(UpcomingMovieUrl)
+//     .then(function(response) {
+//       return response.json();
+//     })
+//     .then(function(data) {
+//       var upcomingMovies = data.results;
 
-      upcomingMovies.forEach(function(movie , index) {
-        var movieId = movie.id;
-        var videoUrl = VideoMovieURL.replace('{movie_id}', movieId);
-        fetch(videoUrl)
-          .then(function(response) {
-            return response.json();
-          })
-          .then(function(data) {
+//       upcomingMovies.forEach(function(movie , index) {
+//         var movieId = movie.id;
+//         var videoUrl = VideoMovieURL.replace('{movie_id}', movieId);
+//         fetch(videoUrl)
+//           .then(function(response) {
+//             return response.json();
+//           })
+//           .then(function(data) {
 
 
     
-            var keys = data.results[0].key;
-              var Urltogo = "https://www.youtube.com/embed/" + keys;
+//             var keys = data.results[0].key;
+//               var Urltogo = "https://www.youtube.com/embed/" + keys;
 
 
 
 
-              if (index === 0) {
-                var videoUrlrender = `<iframe class="responsive" width="1250" height="600" src="${Urltogo}" frameborder="0" allowfullscreen allow ="autoplay"; mute></iframe>`;
-              } else {
-                var videoUrlrender = `<iframe class="responsive" width="560" height="315" src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
-              }
+//               if (index === 0) {
+//                 var videoUrlrender = `<iframe class="responsive" width="1250" height="600" src="${Urltogo}" frameborder="0" allowfullscreen allow ="autoplay"; mute></iframe>`;
+//               } else {
+//                 var videoUrlrender = `<iframe class="responsive" width="560" height="315" src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
+//               }
 
            
     
-              var figure = $("<figure>").addClass("column ");
-              var iframe = $(videoUrlrender);    
-              figure.append(iframe);
-              $(".slidesImagesvideo").append(figure);
+//               var figure = $("<figure>").addClass("column ");
+//               var iframe = $(videoUrlrender);    
+//               figure.append(iframe);
+//               $(".slidesImagesvideo").append(figure);
             
 
   
               
-    console.log(videoUrlrender)
+    
              
-            }
+//             }
           
             
-            )
+//             )
        
             
-            })
+//             })
   
             
-          })
+//           })
           
       
 
