@@ -142,11 +142,14 @@ function runFetch(cardMovieTitle) {
         console.log(newArray.length);
         // Resolve the promise with the data
         resolve(newArray);
+        //Initialize wrapper as an empty string
+        const modalStreamingWrapper = document.getElementById("streamingServicesWrapper");
+        modalStreamingWrapper.innerHTML = '';
         //Initialize streaming element as an empty string
         var streamingElmt = '';
         // Initializing other Elements 
         modalTitleEl.innerHTML = '';
-        modalStreamingSectionEl.innerHTML = '';
+        
         // Loop through streaming services
         for (let i = 0; i < newArray.length; i++) {
           console.log (streamingElmt);
@@ -155,8 +158,15 @@ function runFetch(cardMovieTitle) {
           console.log(streamingElmt);
         }
         // setting the content inside the wrapper to display all the movies from the array with the templated string
-        modalStreamingSectionEl.innerHTML = streamingElmt;
-        console.log(modalStreamingSectionEl.innerHTML);
+        modalStreamingWrapper.innerHTML = streamingElmt;
+        console.log(modalStreamingWrapper.innerHTML);
+
+        if (streamingElmt.localeCompare(modalStreamingWrapper.innerHTML) === 0) {
+          console.log("Both strings are equivalent.");
+        } else {
+          console.log("The strings are not equivalent.");
+        }
+
       })
       .catch(function(error) {
         // Handle any errors that occur in the fetch or processing of data
