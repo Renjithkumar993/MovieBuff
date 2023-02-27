@@ -66,6 +66,10 @@ function movieCard(movie) {
    </div>`;
 }
 
+function setModalTitle(cardMovieTitle){
+  modalTitleEl.textContent = cardMovieTitle
+}
+
 // Add an event listener to the movie card wrapper
 document.getElementById('movieCardWrapper').addEventListener('click', function(event) {
   // Check if the clicked element is a movie card
@@ -81,7 +85,7 @@ document.getElementById('movieCardWrapper').addEventListener('click', function(e
       .then(function() {
         //modalContent();
         modalToggle();
-        return cardMovieTitle;
+        setModalTitle(cardMovieTitle);
       })
       .catch(function(error) {
         // Handle the error
@@ -92,9 +96,9 @@ document.getElementById('movieCardWrapper').addEventListener('click', function(e
   }
 });
 
-const modalTitleEl = document.getElementById('modalTitle');
+var modalTitleEl = document.getElementById('modalTitle');
 const modalInfoSectionEl = document.getElementById('modalInfoTabContent');
-const modalStreamingSectionEl = document.getElementById('modalStreamingTabContent');
+var modalStreamingSectionEl = document.getElementById('modalStreamingTabContent');
 
 // Function that fetches the Watchmode API data
 function runFetch(cardMovieTitle) {
@@ -137,13 +141,17 @@ function runFetch(cardMovieTitle) {
         console.log(newArray);
         // Resolve the promise with the data
         resolve(newArray);
-        // Initialize Elements 
+        //Initialize streaming element as an empty string
+        var streamingElmt = '';
+        // Initializing other Elements 
         modalTitleEl.innerHTML = '';
         modalStreamingSectionEl.innerHTML = '';
         // Loop through streaming services
         for (let i = 0; i < newArray.length; i++) {
-        modalStreamingSectionEl += printToModal(newArray[i]);
+          streamingElmt += printToModal(newArray[i]);
         }
+        // setting the content inside the wrapper to display all the movies from the array with the templated string
+        modalStreamingSectionEl.innerHTML = streamingElmt;
       })
       .catch(function(error) {
         // Handle any errors that occur in the fetch or processing of data
@@ -174,13 +182,11 @@ closeModalBtn.addEventListener('click', function() {
     function printToModal(newArray) {
       console.log(newArray);
     // variables for the streaming service, service type, region, watch URL, and price
-    streamingServiceName = newArray[i].name;
-    accessType = newArray[i].type;
-    regionalAvailability = newArray[i].region;
-    webURL = newArray[i].web_url;
-    price = newArray[i].price;
-
-    modalTitleEl.textContent = cardMovieTitle;
+    streamingServiceName = newArray.name;
+    accessType = newArray.type;
+    regionalAvailability = newArray.region;
+    webURL = newArray.web_url;
+    price = newArray.price;
 
   // templated string to display all the movies from the array
   return /*html*/`<div>
