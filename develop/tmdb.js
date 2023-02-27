@@ -154,19 +154,46 @@ function runFetch(cardMovieTitle) {
         for (let i = 0; i < newArray.length; i++) {
           console.log (streamingElmt);
           console.log(newArray[i]);
-          streamingElmt += printToModal(newArray[i]);
+          var streamingServiceName = newArray[i].name;
+          console.log(streamingServiceName);
+          var accessType = newArray[i].type;
+          console.log(accessType);
+          var regionalAvailability = newArray[i].region;
+         console.log(regionalAvailability);
+        var webURL = newArray[i].web_url;
+          console.log(webURL);
+          var price = newArray[i].price;
+          console.log(price);
+          streamingElmt += `<div>
+          <button class = "accordion">${streamingServiceName}</button>
+           <div class = "panel">
+            <div>
+              <ul>
+                <li>Accesible by ${accessType}</li>
+                <li>Available in ${regionalAvailability}</li>
+                <li><a> href = "${webURL}>Web URL</a></li>
+                <li>Service cost ${price}</li>
+              </ul>
+            </div>
+          </div>
+        </div>`
+          //printToModal(newArray[i]);
           console.log(streamingElmt);
+          //modalStreamingWrapper.appendChild(streamingElmt);
         }
-        // setting the content inside the wrapper to display all the movies from the array with the templated string
+        // setting the content inside the wrapper to display all the streaming services from the array with the templated string
+        $('#streamingServicesWrapper').html(streamingElmt);
+
+        console.log(streamingElmt)
         modalStreamingWrapper.innerHTML = streamingElmt;
         console.log(modalStreamingWrapper.innerHTML);
-
+        
         if (streamingElmt.localeCompare(modalStreamingWrapper.innerHTML) === 0) {
-          console.log("Both strings are equivalent.");
+        console.log("Both strings are equivalent.");
         } else {
-          console.log("The strings are not equivalent.");
+        console.log("The strings are not equivalent."); //Why aren't the equivalent??
         }
-
+        
       })
       .catch(function(error) {
         // Handle any errors that occur in the fetch or processing of data
@@ -207,22 +234,26 @@ closeModalBtn.addEventListener('click', function() {
       console.log(webURL);
     var price = newArray.price;
       console.log(price);
+    }
+      
 
   // templated string to display all the movies from the array
-  return /*html*/`<div>
+  /*
+  return `<div>
   <button class = "accordion">${streamingServiceName}</button>
    <div class = "panel">
     <div>
       <ul>
         <li>Accesible by ${accessType}</li>
         <li>Available in ${regionalAvailability}</li>
-        <a href = "${webURL}>Web URL</a>
+        <li><a> href = "${webURL}>Web URL</a></li>
         <li>Service cost ${price}</li>
       </ul>
     </div>
   </div>
 </div>`;
 }
+*/
 
     //watchmodeId = data.title_results[0].id;
     //runtimeEl = data.title_results[0].runtime_minutes;
