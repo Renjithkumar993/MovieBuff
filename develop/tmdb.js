@@ -79,9 +79,9 @@ document.getElementById('movieCardWrapper').addEventListener('click', function(e
     let cardMovieTitle = title.textContent;
     runFetch(cardMovieTitle)
       .then(function() {
-        modalContent();
+        //modalContent();
         modalToggle();
-        
+        return cardMovieTitle;
       })
       .catch(function(error) {
         // Handle the error
@@ -92,6 +92,9 @@ document.getElementById('movieCardWrapper').addEventListener('click', function(e
   }
 });
 
+const modalTitleEl = document.getElementById('modalTitle');
+const modalInfoSectionEl = document.getElementById('modalInfoTabContent');
+const modalStreamingSectionEl = document.getElementById('modalStreamingTabContent');
 
 // Function that fetches the Watchmode API data
 function runFetch(cardMovieTitle) {
@@ -134,6 +137,13 @@ function runFetch(cardMovieTitle) {
         console.log(newArray);
         // Resolve the promise with the data
         resolve(newArray);
+        // Initialize Elements 
+        modalTitleEl.innerHTML = '';
+        modalStreamingSectionEl.innerHTML = '';
+        // Loop through streaming services
+        for (let i = 0; i < newArray.length; i++) {
+        modalStreamingSectionEl += printToModal(newArray[i]);
+        }
       })
       .catch(function(error) {
         // Handle any errors that occur in the fetch or processing of data
@@ -143,7 +153,6 @@ function runFetch(cardMovieTitle) {
       });
   });
 }
-
 
 //Modal Section 
 // Function to open and close modal.
@@ -161,19 +170,34 @@ closeModalBtn.addEventListener('click', function() {
   modalToggle();
 });
 
-// Function to dynamically set the modal content.
-function modalContent(){
-  modalTitleEl.innerHTML = '';
-  modalInfoSection.innerHTML = '';
-  modalStreamingSection.innerHTML = '';
+// Function to dynamically set the modal content
+    function printToModal(newArray) {
+      console.log(newArray);
+    // variables for the streaming service, service type, region, watch URL, and price
+    streamingServiceName = newArray[i].name;
+    accessType = newArray[i].type;
+    regionalAvailability = newArray[i].region;
+    webURL = newArray[i].web_url;
+    price = newArray[i].price;
+
+    modalTitleEl.textContent = cardMovieTitle;
+
+  // templated string to display all the movies from the array
+  return /*html*/`<div>
+  <button class = "accordion">${streamingServiceName}</button>
+   <div class = "panel">
+    <div>
+      <ul>
+        <li>Accesible by ${accessType}</li>
+        <li>Available in ${regionalAvailability}</li>
+        <a href = "${webURL}>Web URL</a>
+        <li>Service cost ${price}</li>
+      </ul>
+    </div>
+  </div>
+</div>`;
 }
 
-const modalTitleEl = document.getElementById('modalTitle');
-const modalInfoSection = document.getElementById('modalInfoTabContent');
-const modalStreamingSection = document.getElementById('modalStreamingTabContent');
-
-
-   
     //watchmodeId = data.title_results[0].id;
     //runtimeEl = data.title_results[0].runtime_minutes;
     //genreEl = data.title_results[0].genre_name;
@@ -189,25 +213,6 @@ const modalStreamingSection = document.getElementById('modalStreamingTabContent'
     //regionalAvailability = data.title_results[i].region;
     //webURL = data.title_results[i].web_url;
     //price = data.title_results[i].price;
-
-
-
-//Sample of what the accordion buttons should look like.
-//<button class="accordion">Section 1</button>
-//<div class="panel">
-  //<p>Lorem ipsum...</p>
-//</div>
-
-
-
-
-
-
-
-
-
-
-
 
 /*Ask about getting this set up in class
 function runFetch(cardMovieTitle) { 
