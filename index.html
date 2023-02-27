@@ -38,7 +38,8 @@
             <div class="container">
               <ul>
                 <li>
-                  <a class="Upcoming">Upcoming Movie videos</a>
+                 
+                  <button class="js-modal-trigger Upcoming button is-success" data-target="modal-js-example">upcoming videos</button>
                 </li>
               </ul>
             
@@ -64,9 +65,6 @@
 
 
 
-<div class="slidesImagesvideo  columns is-multiline  mt-5">
-</div>
-
 
 
 
@@ -83,6 +81,28 @@
 
 
 </div>
+<div id="modal-js-example" class="modal ">
+  <div class="modal-background"></div>
+  <div class="modal-card container" style="width: 100%;">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Videos for upcoming movies</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body ">
+      <div class="slidesImagesvideo  columns is-multiline mt-5">
+      </div>
+
+    </section>
+    <footer class="modal-card-foot">
+
+      <button class="button">Go back</button>
+    </footer>
+  </div>
+</div>
+
+  <button class="modal-close is-large" aria-label="close"></button>
+</div>
+
 
 
 </div>
