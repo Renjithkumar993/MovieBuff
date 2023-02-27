@@ -192,21 +192,6 @@ const modalStreamingSection = document.getElementById('modalStreamingTabContent'
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Sample of what the accordion buttons should look like.
 //<button class="accordion">Section 1</button>
 //<div class="panel">

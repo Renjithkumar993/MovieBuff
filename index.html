@@ -40,131 +40,19 @@
               Search
             </button>
             <a id="historyBtn" class="button is-primary">View Search History</a>
+            <a id="openWatchLaterBtn" class="button is-primary">Open Watch Later</a>
           </p>
         </div>
       </form>
 
       <div class="container mt-6">
 
-    <h1 class="title is-2"> Search Results for movies</h1>
+    <h1 class="title is-2"> Search Results for movies:</h1>
       </div>
       
       <!-- colums for movies search result added couple of them to see how it shows .we can remove them after we dynamically add it  -->
       <div class="columns is-multiline mt-3"  id="movieCardWrapper">
-        <div class="column is-one-quarter">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img id="moviePoster" src="" alt="Movie poster">
-              </figure>
-            </div>
-            <div class="card-content">
-              <div class="media">
-                <div class="media-content">
-                  <p class="title is-4" id="movieTitle">Movie Title</p>
-                  <p class="subtitle is-6" id="releaseDate">Year Released</p>
-                </div>
-              </div>
-              <div class="content" id="overview">
-                details of movie
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Movie poster">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">Movie Title</p>
-                    <p class="subtitle is-6">Year Released</p>
-                  </div>
-                </div>
-                <div class="content">
-                  Movie plot summary goes here...
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          
-          <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Movie poster">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">Movie Title</p>
-                    <p class="subtitle is-6">Year Released</p>
-                  </div>
-                </div>
-                <div class="content">
-                  Movie plot summary goes here...
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          
-          <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Movie poster">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">Movie Title</p>
-                    <p class="subtitle is-6">Year Released</p>
-                  </div>
-                </div>
-                <div class="content">
-                  Movie plot summary goes here...
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          
-          <div class="column is-one-quarter">
-            <div class="card">
-              <div class="card-image">
-                <figure class="image is-4by3">
-                  <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Movie poster">
-                </figure>
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">Movie Title</p>
-                    <p class="subtitle is-6">Year Released</p>
-                  </div>
-                </div>
-                <div class="content">
-                  Movie plot summary goes here...
-                </div>
-              </div>
-            </div>
-          </div>
-              
-      </div>
-    </div>
-
-    <div class="container mt-3">
-        <button class="button is-medium is-fullwidth">Click here to view more</button>
-
+      </div> 
     </div>
      
     <!-- Modal -->
@@ -192,7 +80,6 @@
             </ul>
           </div>
 
-
           <!-- Main Modal Content -->
           <div id="modalInfoTabContent">
             <!-- Info content here --><p>1</p>
@@ -201,11 +88,10 @@
             <!-- Streaming content here --><p>2</p>
           </div>
 
-
           <!-- Content ... -->
         </section>
         <footer class="modal-card-foot">
-          <button class="button is-success">Add to 'watch later'</button>
+          <button id = "watchLaterBtn" class="button is-success">Add to 'Watch Later'</button>
           <button id="closeModalBtn" class="button">Cancel</button>
         </footer>
       </div>
@@ -223,8 +109,16 @@
             </a>
           </p>
         </div>
-
       </div>
+
+    <!-- Modal for Watch Later-->  
+    <div id= "watchMoreMovies" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <!-- Any other Bulma elements you want -->
+      </div>
+      <button id = "closeWatchLater" class="modal-close is-large" aria-label="close"></button>
+    </div>
 
     <footer class="footer">
         <div class="content has-text-centered">
@@ -235,9 +129,7 @@
           </p>
         </div>
       </footer>
-    
-    
-    
+
   </body>
 </html>
 

@@ -1,11 +1,3 @@
-/* This block of code should allow us to move between pages once we have selected our movie.
-const redirectURL = "../movieinfo.html";
-function redirectToPage(url){
-  document.location = url;
-}
-redirectToPage(redirectURL);
-*/
-
 const searchHistorySpace = document.getElementById('searchHistoryWrapper');
 var searchInput = document.getElementById('searchField');
 
@@ -66,47 +58,38 @@ function clearSearchHistory(){
   searchHistorySpace.textContent='';
 }
 
-
 //Toggle Modal Tabs
-const modalInfoTabLink = document.getElementById('modalInfoTabLink');
-const modalStreamingTabLink = document.getElementById('modalStreamingTabLink');
-
-// Toggle Modal Content
-function showTabContent(tabID){
-  var tabContents = document.querySelectorAll('.modal-card-body > div');
-  // Hide all tab content divs
-  tabContents.forEach(function(tabContent) {
-    tabContent.style.display = 'none';
-  });
-   // Show the selected tab content div
-   var selectedTabContent = document.getElementById(tabID);
-   selectedTabContent.style.display = 'block';
- }
-
+const modalInfoTabLink = document.querySelector('.modalInfoTabLink');
+const modalStreamingTabLink = document.querySelector('.modalStreamingTabLink');
 
 // Add event listeners to the tab links
 modalInfoTabLink.addEventListener('click', () => {
+  console.log('Movie Info');
   // Toggle the is-active class on the tab links
   modalInfoTabLink.parentElement.classList.add('is-active');
   modalStreamingTabLink.parentElement.classList.remove('is-active');
 });
 
 modalStreamingTabLink.addEventListener('click', () => {
+  console.log('Streaming Services');
   // Toggle the is-active class on the tab links
   modalStreamingTabLink.parentElement.classList.add('is-active');
   modalInfoTabLink.parentElement.classList.remove('is-active');
-
-  // Switch the content of the modal to the music section
-  // ...
 });
 
-
-
-
-
-
-
-
+// Toggle Modal Content
+function showTabContent(tabID){
+  var tabContents = document.querySelectorAll('.modal-card-body > div');
+ // Hide all the modal content divs except the one containing the tabs
+ tabContents.forEach(function(tabContent, index) {
+  if (index !== 0) {
+    tabContent.style.display = 'none';
+  }
+});
+   // Show the selected tab content div
+   var selectedTabContent = document.getElementById(tabID);
+   selectedTabContent.style.display = 'block';
+ }
 
 //Locic for accordion animation 
 var acc = document.getElementsByClassName("accordion");
@@ -123,3 +106,4 @@ for (i = 0; i < acc.length; i++) {
     }
   });
 }
+

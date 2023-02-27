@@ -79,15 +79,6 @@ body {
   padding: 16px;
 }
 
-/* Modal */
-
-
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-
 /* Accordion */
 
 .accordion:after {
@@ -100,4 +91,14 @@ body {
 
 .active:after {
   content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+/* Modal */
+
+
+
+/* Media Queries */
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
