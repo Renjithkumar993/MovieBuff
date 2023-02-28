@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,25 +8,20 @@
 
     <link rel="stylesheet" href="./develop/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-</head>
-<body>
+  </head>
 
+  <body>
     <!-- Header -->
     <section class="hero is-primary is-halfheight ">
-          
       <div class="hero-body">
-        
         <div class="container">
-
           <h1 class="title">Movie Buff</h1>
           <h2 class="subtitle">Find your favorite movies</h2>
-        
         </div>
       </div>
     </section>
 
-    <!-- search colum and the button to search -->
-
+  <!-- Search column and the button to search -->
     <div class="container mt-6">
       <form id="searchForm">
         <div class="field is-grouped">
@@ -42,41 +37,26 @@
           </p>
         </div>
       </form>
-
-      <div class="container mt-6">
-
-        </section>
-        
-      </div>
     </div>
+  <!-- End of search column section -->
 
-    <button class="modal-close is-large" aria-label="close"></button>
-  </div>
-  </div>
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>
-      </p>
-    </div>
-  </footer>
-
-
+  <!-- Main Content Section -->  
     <div class="container mt-6">
-
-    <h1 class="title is-2"> Search Results for movies:</h1>
-      </div>
-      
+      <h1 class="title is-2"> Search Results for movies:</h1>
       <!-- colums for movies search result added couple of them to see how it shows .we can remove them after we dynamically add it  -->
-      <div class="columns is-multiline mt-3"  id="movieCardWrapper">
-      </div> 
+        <div class="columns is-multiline mt-3"  id="movieCardWrapper">
+        </div> 
     </div>
-     
+  <!-- End of main content section -->
+
+  <!-- Sections for content that does not show up directly on the page (e.g., modals), to help keep things separate and manage the flow of our code -->
+   <section>
     <!-- Modal -->
     <div id="myModal" class="modal">
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p id="modalTitle" class="modal-card-title">Placeholder<!--I want this text to be the title form the movie I clicked on --></p>
+          <p id="modalTitle" class="modal-card-title">Placeholder</p>
         </header>
         <section class="modal-card-body">
 
@@ -97,21 +77,21 @@
           </div>
 
           <!-- Main Modal Content -->
-          <div id="modalInfoTabContent">
-            <!-- Info content here --><p>1</p>
+          <div id = "modalInfoTabContent">
+            <div id = "movieInfoWrapper"></div>"
           </div>
-          <div id="modalStreamingTabContent" style="display:none">
-            <div id="streamingServicesWrapper"></div>
+          <div id = "modalStreamingTabContent" style = "display:none">
+            <div id = "streamingServicesWrapper"></div>
           </div>
 
-          <!-- Content ... -->
-        </section>
-        <footer class="modal-card-foot">
-          <button id = "watchLaterBtn" class="button is-success">Add to 'Watch Later'</button>
-          <button id="closeModalBtn" class="button">Cancel</button>
+        <!-- Modal Buttons -->
+        <footer class = "modal-card-foot">
+          <button id = "watchLaterBtn" class = "button is-success">Add to Watch Later</button>
+          <button id = "closeModalBtn" class = "button">Cancel</button>
         </footer>
       </div>
     </div>
+  <!-- Modal End -->
 
     <!-- Search History - Off Canvas -->
       <div id="mySidenav" class="sidenav">
@@ -126,15 +106,22 @@
           </p>
         </div>
       </div>
-    <!-- Modal for Watch Later-->  
+    <!-- Off Canvas End -->
+
+  <!-- Modal for Watch Later -->  
     <div id= "watchLaterWrapper" class="modal">
       <div class="modal-background"></div>
       <div class="modal-content">
-        <!-- Any other Bulma elements you want -->
+        <!-- Bulma elements we may -->
       </div>
       <button id = "closeWatchLater" class="modal-close is-large" aria-label="close"></button>
     </div>
+   </section>
+  <!-- End of modal --> 
 
+  <!--End of section for content set aside -->
+
+ <!-- Main page footer --> 
     <footer class="footer">
         <div class="content has-text-centered">
           <p>
@@ -144,9 +131,12 @@
           </p>
         </div>
       </footer>
+
+  <!-- Section for script files -->    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="develop/script.js"></script>
     <script src="develop/tmdb.js"></script>
     <script src="develop/wm.js"></script>
-</body>
+  
+  </body>
 </html>
