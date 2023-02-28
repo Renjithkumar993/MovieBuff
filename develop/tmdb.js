@@ -308,6 +308,7 @@ var modalStreamingSectionEl = document.getElementById('modalStreamingTabContent'
             console.log("The strings are not equivalent."); //Why aren't the equivalent??
             }
             
+            setAccordionLogic(); 
           })
           .catch(function(error) {
             // Handle any errors that occur in the fetch or processing of data
@@ -333,3 +334,22 @@ var modalStreamingSectionEl = document.getElementById('modalStreamingTabContent'
       // Call the modalToggle function to close the modal
       modalToggle();
     });
+
+// Locic for accordion animation //
+function setAccordionLogic(){
+  var accordion = document.getElementsByClassName("accordion");
+  var j;
+
+  for (j = 0; j < accordion.length; j++) {
+    accordion[j].addEventListener("click", function() {
+      console.log('this click was registered');
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
+  }
+}
