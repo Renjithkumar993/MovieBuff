@@ -12,7 +12,7 @@ document.cookie = "_ga=value; domain=.play.google.com; path=/; SameSite=None; Se
 document.cookie = "OTZ=value; domain=.play.google.com; path=/; SameSite=None; Secure";
 
 
-$(".slidesImagesvideo").hide();
+
 
 
 var posterImage = "";
@@ -145,8 +145,6 @@ fetch(nowPlayingUrl)
             autoplay: true, 
             autoplayTimeout: 1350, 
             autoplayHoverPause: true, 
-            animateOut: 'slideOutDown',
-            animateIn: 'flipInX',
             items:1,
             margin:30,
             stagePadding:30,
@@ -195,7 +193,7 @@ fetch(nowPlayingUrl)
 
 
               if (index === 0) {
-                var videoUrlrender = `<iframe class="responsive" width="1250" height="600" src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
+                var videoUrlrender = `<iframe class="responsive" width="560" height="315"  src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
               } else {
                 var videoUrlrender = `<iframe class="responsive" width="560" height="315" src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
               }
@@ -226,17 +224,6 @@ fetch(nowPlayingUrl)
       
 
 
-    
-      $(".Upcoming").on('click', function(){
-        console.log("i am clicking");
-        $(".slidesImagesrecent").hide();
-        $(".slidesImagesonair").hide()
-        $(".slidesImagesmain").hide()
-        $(".search ").hide();  
-        $(".slidesImagesvideo").show();
-        
-        
-        })
 
         document.addEventListener('DOMContentLoaded', () => {
             // Functions to open and close a modal

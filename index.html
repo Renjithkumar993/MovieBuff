@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="./develop/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
 </head>
 <body>
 
@@ -22,6 +23,7 @@
               </figure>
           <h1 class="title">Movie Buff</h1>
           <h2 class="subtitle">Find your favorite movies</h2>
+          <button class="js-modal-trigger Upcoming button is-success" data-target="modal-js-example">upcoming videos</button>
         
         </div>
       </div>
@@ -45,39 +47,59 @@
         </div>
       </form>
 
+
       <div class="container mt-6">
 
-        </section>
-        <footer class="modal-card-foot">
+        <h1 class="title is-2"> Search Results for movies:</h1>
+          </div>
 
-          <button class="button">Go back</button>
-        </footer>
+      <div class="slidesImagesmain ">
       </div>
-    </div>
 
-    <button class="modal-close is-large" aria-label="close"></button>
-  </div>
-  </div>
-  <footer class="footer">
-    <div class="content has-text-centered">
-      <p>
-        <strong>MovieBuff</strong> by <a href="https://jgthms.com">Team 3</a>. The source code is licensed
-        <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-        is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-      </p>
-    </div>
-  </footer>
+      <div class="container mt-2">
 
-
-    <div class="container mt-6">
-
-    <h1 class="title is-2"> Search Results for movies:</h1>
+        <h1 class="title is-2"> Trending Today</h1>
+          </div>
+      <div class="slidesImagesrecent ">
       </div>
+      <div class="container mt-2">
+
+        <h1 class="title is-2"> Currently on air</h1>
+          </div>
+
+      <div class="slidesImagesonair ">
+      </div>
+
+
+</div>
+<div id="modal-js-example" class="modal ">
+  <div class="modal-background"></div>
+  <div class="modal-card container" style="width: 100%;">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Videos for upcoming movies</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body ">
+      <div class="slidesImagesvideo  columns is-multiline mt-5">
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button">Go back</button>
+    </footer>
+  </div>
+</div>
+
+      <button class="modal-close is-large" aria-label="close"></button>
+    </div>
+    </div>
+    
       
       <!-- colums for movies search result added couple of them to see how it shows .we can remove them after we dynamically add it  -->
+      <div class="container">
       <div class="columns is-multiline mt-3"  id="movieCardWrapper">
       </div> 
     </div>
+  </div>
      
     <!-- Modal -->
     <div id="myModal" class="modal">
@@ -152,9 +174,13 @@
           </p>
         </div>
       </footer>
+
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="develop/script.js"></script>
     <script src="develop/tmdb.js"></script>
     <script src="develop/wm.js"></script>
+    <script src="./slides.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 </body>
 </html>
