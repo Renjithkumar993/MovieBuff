@@ -87,9 +87,11 @@ document.getElementById('movieCardWrapper').addEventListener('click', function(e
     let cardMovieTitle = title.textContent;
     runFetch(cardMovieTitle)
     runFetch2(cardMovieTitle)
+    modalToggle()
+    setModalTitle(cardMovieTitle)
       .then(function() {
-        modalToggle();
-        setModalTitle(cardMovieTitle);
+        //modalToggle();
+        //setModalTitle(cardMovieTitle);
       })
       .catch(function(error) {
         // Handle the error
