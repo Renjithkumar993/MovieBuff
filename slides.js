@@ -188,13 +188,14 @@ fetch(nowPlayingUrl)
 
     
             var keys = data.results[0].key;
-              var Urltogo = "https://www.youtube.com/embed/" + keys;
+              var Urltogo = "https://www.youtube.com/embed/" + keys + "?feature=oembed&enablejsapi=1";
+              ;
 
 
 
 
               if (index === 0) {
-                var videoUrlrender = `<iframe class="responsive" width="1250" height="600" src="${Urltogo}" frameborder="0" allowfullscreen allow ="autoplay"; mute></iframe>`;
+                var videoUrlrender = `<iframe class="responsive" width="1250" height="600" src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
               } else {
                 var videoUrlrender = `<iframe class="responsive" width="560" height="315" src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
               }
@@ -209,7 +210,7 @@ fetch(nowPlayingUrl)
 
   
               
-    console.log(videoUrlrender)
+
              
             }
           
