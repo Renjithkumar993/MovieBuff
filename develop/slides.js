@@ -264,7 +264,7 @@ fetch(nowPlayingUrl)
           console.log(data)
 
     
-       var modalForNews =' ';
+       var modalForNews ='';
 
        for(i=0; i < data.articles.length; i++){
         var author = data.articles[i].author;
