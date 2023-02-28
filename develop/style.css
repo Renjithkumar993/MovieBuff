@@ -3,6 +3,26 @@
   padding: 16px;
 }
 
+.siteLogo {
+  max-height: 275px;
+  max-width: 275px;
+}
+
+/* Watch Later Modal */
+.modal-content {
+  position:fixed;
+  top: 40%;
+  left: 15%;
+  transform: translate(-50%,-50%);
+  display:flex;
+  max-width: 60;
+  max-height: fit-content;
+  padding: 20px;
+  box-shadow: 0, 5px, 30px rgba(0,0,0,.30);
+  background-color: #f1f1f1;
+}
+
+
 /* Card hover effects */
 .card {
     transition: all 0.3s ease-in-out
