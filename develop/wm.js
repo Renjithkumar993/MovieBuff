@@ -22,7 +22,7 @@ watchLater = [];
   function saveWatchLater(){
     console.log("the watch later button el has been clicked");
     watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
-    localStorage.setItem('MyWatchLaterList', watchLater);
+    localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
   }
 
 
@@ -35,10 +35,13 @@ watchLater = [];
 //Set Watch Later to be generated upon page loading //
 window.onload = function(){
   WatchLaterListEl.innerHTML='';
-  const watchLaterData = JSON.parse(localStorage.getItem('watchLaterList')) || []; // use empty array as default value if search history not found in local storage
+  var watchLaterData = JSON.parse(localStorage.getItem('MyWatchLaterList')) || []; // use empty array as default value if search history not found in local storage
 // Loop through the array
+console.log("is this working?????")
+console.log(watchLaterData.length);
 for (var i = 0; i < watchLaterData.length; i++) {
     // Get the name of the current item
+    console.log("i");
     var itemName = watchLaterData[i].name;
 
     // Create a new div element
@@ -48,14 +51,14 @@ for (var i = 0; i < watchLaterData.length; i++) {
     div.text(itemName);
   
     // Append the div to the document body or another parent element
-    $('body').append(div);
+    $('#watchLaterListWrapper').append(div);
   }
 }
 
 // Set watch later to be updated every time a new entry is added //
 function generateNewWatchLaterContent(){
   WatchLaterListEl.innerHTML='';
-  const watchLaterData = JSON.parse(localStorage.getItem('watchLaterList')) || []; // use empty array as default value if search history not found in local storage
+  var watchLaterData = JSON.parse(localStorage.getItem('MyWatchLaterList')) || []; // use empty array as default value if search history not found in local storage
 // Loop through the array
 for (var i = 0; i < watchLaterData.length; i++) {
     // Get the name of the current item
@@ -68,7 +71,7 @@ for (var i = 0; i < watchLaterData.length; i++) {
     div.text(itemName);
   
     // Append the div to the document body or another parent element
-    $('body').append(div);
+    $('#watchLaterListWrapper').append(div);
   }
 }
 
