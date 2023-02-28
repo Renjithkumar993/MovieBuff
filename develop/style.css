@@ -8,6 +8,10 @@
     box-shadow: 0px 20px 40px rgba(0, 0, 0, 0.2);
   }
 
+  .modal-card  {
+
+    width: 100%;
+  }
   /* Accordion */
   .accordion {
     background-color: #eee;
