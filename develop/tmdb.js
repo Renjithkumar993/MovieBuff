@@ -88,10 +88,10 @@ document.getElementById('movieCardWrapper').addEventListener('click', function(e
     runFetch(cardMovieTitle)
     runFetch2(cardMovieTitle)
     modalToggle()
-    setModalTitle(cardMovieTitle)
+    //setModalTitle(cardMovieTitle)
       .then(function() {
         //modalToggle();
-        //setModalTitle(cardMovieTitle);
+        setModalTitle(cardMovieTitle);
       })
       .catch(function(error) {
         // Handle the error
@@ -138,38 +138,79 @@ var modalStreamingSectionEl = document.getElementById('modalStreamingTabContent'
           return response.json()
         })
         .then(function(data) {
-          // Extract the streaming services from the streaming information
+          // Extract the movie information
+          setModalTitle(cardMovieTitle) // This pops in a little slow... I wonder if there is another way to make it work better?
           console.log(data);
+
+          const movieInfoWrapperEl = document.getElementById("movieInfoWrapper");
+          var infoElmt = '';
+
+            //Initializing Elements
+            runtimeEl = data.runtime_minutes;
+              console.log(runtimeEl);
+            filmTitleEl = data.title;
+              console.log(filmTitleEl);
+            genreEl = data.genre_name;
+              console.log(genreEl);
+            userRatingEl = data.user_rating;
+              console.log(userRatingEl);
+            criticScoreEl = data.critic_score;
+              console.log(criticScoreEl);
+            usRatingEl = data.us_rating;
+              console.log(usRatingEl);
+            backdropEl = data.backdrop;
+              console.log(backdropEl);
+            similarTitlesEl = data.similar_titles;
+              console.log(similarTitlesEl);
+            trailerEl = data.trailer
+              console.log(trailerEl);
+            plotOverviewEl = data.plot_overview
+              console.log(plotOverviewEl);
+            infoElmt += /*html*/ `<div>
+              <div class = "modalInfoBodyContent">
+                <div class = "media-content">
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img src="${backdropEl}" alt="Movie backdrop">
+                    </figure>
+                  </div>
+                  <div class = "content">
+                    <h2><strong>${filmTitleEl}</strong></h2>
+                      <ul>
+                      <li> Film Runtime: ${runtimeEl} minutes</li>
+                      <li> Title Genre: ${genreEl}</li>
+                      <li> MPA Film Rating: ${usRatingEl}</li>
+                      </ul>
+                  </div>
+
+                  <div class="content">
+                    ${plotOverviewEl}
+                  </div>
+
+                  <div class="media-content">
+                    <p class="title is-4">Scores:</p>
+                    <p class="subtitle is-6">Viewer rating: ${userRatingEl}</p>
+                    <p class="subtitle is-6">Critic Rating ${criticScoreEl}</p>
+                  </div>
+
+                  <div>
+                  <a href ="${trailerEl}" class="button is-danger is-rounded">View the Trailer</a>
+                  </div>
+
+                  <div>
+                    <p>If you like <strong>${filmTitleEl}</strong>, you may also like ${similarTitlesEl}. Be sure to also check out these films!
+                  </div>
+
+                </div>
+              </div>
+            </div>`
+            
+            console.log(infoElmt);
+            //$('movieInfoWrapper').html(infoElmt);
+            movieInfoWrapperEl.innerHTML = infoElmt;
         });
     })
   }   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -228,15 +269,15 @@ var modalStreamingSectionEl = document.getElementById('modalStreamingTabContent'
               console.log (streamingElmt);
               console.log(newArray[i]);
               var streamingServiceName = newArray[i].name;
-              console.log(streamingServiceName);
+                console.log(streamingServiceName);
               var accessType = newArray[i].type;
-              console.log(accessType);
+                console.log(accessType);
               var regionalAvailability = newArray[i].region;
-              console.log(regionalAvailability);
+                console.log(regionalAvailability);
               var webURL = newArray[i].web_url;
-              console.log(webURL);
+                console.log(webURL);
               var price = newArray[i].price;
-              console.log(price);
+                console.log(price);
               streamingElmt += `<div>
               <button class = "accordion">${streamingServiceName}</button>
               <div class = "panel">

@@ -332,7 +332,6 @@ return `<div>
 }
 */
 
-  //watchmodeId = data.title_results[0].id;
   //runtimeEl = data.title_results[0].runtime_minutes;
   //genreEl = data.title_results[0].genre_name;
   //userRatingEl = data.title_results[0].user_rating;
@@ -341,6 +340,8 @@ return `<div>
   //posterEl = data.title_results[0].poster;
   //similarTitlesEl = data.title_results[0].similar_titles;
   //trailerEl = data.title_results[0].trailer
+  //similarFilmEl = data.title_results[i].similar_title
+  //plotoverviewEl = data.title_results[i].plot_overview
 
   //streamingserviceName = data.title_results[i].name;
   //accessType = data.title_results[i].type;
