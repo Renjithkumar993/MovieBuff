@@ -197,27 +197,13 @@ fetch(trendingURL)
 //                 var videoUrlrender = `<iframe class="responsive" width="560" height="315" src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
 //               }
 
-           
-    
 //               var figure = $("<figure>").addClass("column ");
 //               var iframe = $(videoUrlrender);    
 //               figure.append(iframe);
 //               $(".slidesImagesvideo").append(figure);
-            
-
-  
-              
-    
-             
 //             }
-          
-            
 //             )
-       
-            
 //             })
-  
-            
 //           })
           
       

@@ -1,15 +1,13 @@
 const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
 const IMBDKey = '60284bb58aafe269068499987d0a2596';
-
+const newsKey = '74048026fce748b094d550cf6a962a0f'
 
 let nowPlayingUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${IMBDKey}&language=en-US`
 var onAirUrl = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${IMBDKey}&language=en-US`;
 var videoURL = `GET https://api.themoviedb.org/3/movie/upcoming?api_key=${IMBDKey}`
 
 
-document.cookie = "PREF=value; domain=.youtube.com; path=/; SameSite=None; Secure";
-document.cookie = "_ga=value; domain=.play.google.com; path=/; SameSite=None; Secure";
-document.cookie = "OTZ=value; domain=.play.google.com; path=/; SameSite=None; Secure";
+
 
 
 
@@ -164,62 +162,53 @@ fetch(nowPlayingUrl)
 
 
 
-   var UpcomingMovieUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${IMBDKey}`;
-   var VideoMovieURL = `https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=${IMBDKey}`;
+  //  var UpcomingMovieUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${IMBDKey}`;
+  //  var VideoMovieURL = `https://api.themoviedb.org/3/movie/{movie_id}/videos?api_key=${IMBDKey}`;
 
-    fetch(UpcomingMovieUrl)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {
-      var upcomingMovies = data.results;
+  //   fetch(UpcomingMovieUrl)
+  //   .then(function(response) {
+  //     return response.json();
+  //   })
+  //   .then(function(data) {
+  //     var upcomingMovies = data.results;
 
-      upcomingMovies.forEach(function(movie , index) {
-        var movieId = movie.id;
-        var videoUrl = VideoMovieURL.replace('{movie_id}', movieId);
-        fetch(videoUrl)
-          .then(function(response) {
-            return response.json();
-          })
-          .then(function(data) {
+  //     upcomingMovies.forEach(function(movie , index) {
+  //       var movieId = movie.id;
+  //       var videoUrl = VideoMovieURL.replace('{movie_id}', movieId);
+  //       fetch(videoUrl)
+  //         .then(function(response) {
+  //           return response.json();
+  //         })
+  //         .then(function(data) {
 
 
     
-            var keys = data.results[0].key;
-              var Urltogo = "https://www.youtube.com/embed/" + keys + "?feature=oembed&enablejsapi=1";
-              ;
+  //           var keys = data.results[0].key;
+  //             var Urltogo = "https://www.youtube.com/embed/" + keys + "?feature=oembed&enablejsapi=1";
+  //             ;
 
 
 
 
-              if (index === 0) {
-                var videoUrlrender = `<iframe class="responsive" width="560" height="315"  src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
-              } else {
-                var videoUrlrender = `<iframe class="responsive" width="560" height="315" src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
-              }
+  //             if (index === 0) {
+  //               var videoUrlrender = `<iframe class="responsive" width="560" height="315"  src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
+  //             } else {
+  //               var videoUrlrender = `<iframe class="responsive" width="560" height="315" src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
+  //             }
 
            
     
-              var figure = $("<figure>").addClass("column ");
-              var iframe = $(videoUrlrender);    
-              figure.append(iframe);
-              $(".slidesImagesvideo").append(figure);
-            
-
-  
-              
-
+  //             var figure = $("<figure>").addClass("column ");
+  //             var iframe = $(videoUrlrender);    
+  //             figure.append(iframe);
+  //             $(".slidesImagesvideo").append(figure);
              
-            }
+  //           }
+                     
+  //           )
           
-            
-            )
-       
-            
-            })
-  
-            
-          })
+  //           })
+  //         })
           
       
 
@@ -260,3 +249,62 @@ fetch(nowPlayingUrl)
               });
             });
         });
+
+
+
+        var newsURL = `https://newsapi.org/v2/everything?q=movie&sortBy=popularity&apiKey=${newsKey}`
+    
+      
+        fetch(newsURL)
+        .then(function(response){
+         return response.json();
+        })
+        .then(function(data){
+
+          console.log(data)
+
+    
+       var modalForNews ='';
+
+       for(i=0; i < data.articles.length; i++){
+        var author = data.articles[i].author;
+        var description = data.articles[i].description;
+        var source = data.articles[i].source.name;
+        var imageUrl = data.articles[i].urlToImage;
+       var siteUrl = data.articles[i].url;
+       var title = data.articles[i].title
+        
+        modalForNews +=
+        `<div class="box container">
+        <article class="media">
+          <div class="media-left">
+            <figure class="image is-128x128">
+              <img class="news image" src="${imageUrl} " alt="Image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <div class="content">
+              <p>
+                <strong class="titlenews">${title}</strong>
+                <br>
+                <strong class="newsauther">${author}</strong> <small class="newsauthersource"> ${source}</small>
+                <br>
+              <p class="newsdescription">    ${description}   </p>
+             <a class="newslinktoURL" href="${siteUrl}">Click to read more</a>
+              </p>
+            </div>
+        </article>
+      </div>`
+
+       }
+
+
+       $("#newsmodalwrapper").html(modalForNews);
+
+
+
+          
+        })
+
+
+        
