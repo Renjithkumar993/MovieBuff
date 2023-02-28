@@ -88,7 +88,6 @@ document.getElementById('movieCardWrapper').addEventListener('click', function(e
     runFetch(cardMovieTitle)
     runFetch2(cardMovieTitle)
       .then(function() {
-        //modalContent();
         modalToggle();
         setModalTitle(cardMovieTitle);
       })

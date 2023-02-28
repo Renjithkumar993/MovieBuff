@@ -29,20 +29,9 @@ watchLater = [];
   const watchLaterBodyEl = document.getElementById('watchLaterWrapper'); // replace with ID of search history display element
   watchLaterBodyEl.innerHTML=''; // use innerHTML instead of textContent to clear previous contents
   const watchLaterData = JSON.parse(localStorage.getItem('watchLaterList')) || []; // use empty array as default value if search history not found in local storage
-
-  /*
-  watchLaterData.forEach(searchTerm => {
-    const button = document.createElement('button'); // create button element
-    button.classList.add('history-button'); // add class to button for styling
-    button.textContent = searchTerm;
-    button.addEventListener('click', function() {
-      //performSearch(searchTerm); // replace with function that performs a search using the clicked search term
-    });
-    searchHistorySpace.appendChild(button);
-  });
-*/
   }
 
-
-
 // Remove from Watch Later Functionality
+  function removeWatchLaterEntry(){
+    
+  }
