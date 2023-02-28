@@ -3,7 +3,7 @@ const IMBDKey = '60284bb58aafe269068499987d0a2596';
 const newsKey = '74048026fce748b094d550cf6a962a0f'
 
 let nowPlayingUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${IMBDKey}&language=en-US`
-var onAirUrl = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${IMBDKey}&language=en-US`;
+var onAirUrl = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${IMBDKey}&language=en-US`
 var videoURL = `GET https://api.themoviedb.org/3/movie/upcoming?api_key=${IMBDKey}`
 
 
