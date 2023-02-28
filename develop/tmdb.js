@@ -302,12 +302,14 @@ var modalStreamingSectionEl = document.getElementById('modalStreamingTabContent'
             modalStreamingWrapper.innerHTML = streamingElmt;
             console.log(modalStreamingWrapper.innerHTML);
             
+            //  Just to help me bug fix //
             if (streamingElmt.localeCompare(modalStreamingWrapper.innerHTML) === 0) {
             console.log("Both strings are equivalent.");
             } else {
             console.log("The strings are not equivalent."); //Why aren't the equivalent??
             }
             
+            // Applies the logic to the accordion elements //
             setAccordionLogic(); 
           })
           .catch(function(error) {
