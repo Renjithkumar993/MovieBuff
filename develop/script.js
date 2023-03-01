@@ -33,7 +33,10 @@ function closeNav() {
 
 
 // Loading Search History Buttons on page load //
-window.onload = function(){
+window.addEventListener('DOMContentLoaded', searchHistoryOnLoad);
+
+function searchHistoryOnLoad(){
+console.log('at least this is working');
   const searchHistorySpace = document.getElementById('searchHistoryWrapper'); // replace with ID of search history display element
   searchHistorySpace.innerHTML=''; // use innerHTML instead of textContent to clear previous contents
   const localStorageData = JSON.parse(localStorage.getItem('searchHistory')) || []; // use empty array as default value if search history not found in local storage
