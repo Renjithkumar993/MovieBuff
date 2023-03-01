@@ -42,12 +42,28 @@ window.onload = function(){
     const button = document.createElement('button'); // create button element
     button.classList.add('history-button'); // add class to button for styling
     button.textContent = searchTerm;
-    button.addEventListener('click', function() {
-      loadMovies(searchTerm);
+    button.addEventListener('click', () => {
+      TMDb_(searchTerm)
+        .then((movies) => {
+          // creating the wrapper for the movies
+          const wrapper = document.getElementById('movieCardWrapper');
+          // initializing movie card element as a empty string
+          var movieElmt = '';
+          console.log(movies);
+          // looping through the movie results
+          for (let i = 0; i < movies.length; i++) {
+            movieElmt += movieCard(movies[i]);
+          }
+          // setting the content inside the wrapper to display all the movies from the array with the templated string
+          wrapper.innerHTML = movieElmt;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     });
     searchHistorySpace.appendChild(button);
-  });
-}
+  })
+};
 
  // Creating Search History Buttons //
 function createHistoryButtons(){
@@ -59,15 +75,29 @@ function createHistoryButtons(){
     const button = document.createElement('button'); // create button element
     button.classList.add('history-button'); // add class to button for styling
     button.textContent = searchTerm;
-    button.addEventListener('click', function() {
-      loadMovies(searchTerm);
+    button.addEventListener('click', () => {
+      TMDb_(searchTerm)
+        .then((movies) => {
+          // creating the wrapper for the movies
+          const wrapper = document.getElementById('movieCardWrapper');
+          // initializing movie card element as a empty string
+          var movieElmt = '';
+          console.log(movies);
+          // looping through the movie results
+          for (let i = 0; i < movies.length; i++) {
+            movieElmt += movieCard(movies[i]);
+          }
+          // setting the content inside the wrapper to display all the movies from the array with the templated string
+          wrapper.innerHTML = movieElmt;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     });
     searchHistorySpace.appendChild(button);
-  });
-}
+  })
+};
 
-    function loadMovies(searchTerm){
-      console.log(searchTerm);
       //performSearch(searchTerm); // replace with function that performs a search using the clicked search term
         // function that fetches the TMDb API when search history buttons are clicked
           async function TMDb_(searchTerm) {
