@@ -102,7 +102,7 @@ for (var i = 0; i < watchLaterData.length; i++) {
     // Return a promise
     return new Promise(function(resolve, reject) {
       //Watchmode API key
-      const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
+      const WMKey = '3J4pqlC0fGosW0vLQFW9ps0IMUFhI1gB0xcSPTor';
 
       // Search for the movie using the Watchmode API's search functionality
       fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(itemName)}`)
@@ -205,7 +205,7 @@ for (var i = 0; i < watchLaterData.length; i++) {
       // Return a promise
       return new Promise(function(resolve, reject) {
         //Watchmode API key
-        const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
+        const WMKey = '3J4pqlC0fGosW0vLQFW9ps0IMUFhI1gB0xcSPTor';
 
         // Search for the movie using the Watchmode API's search functionality
         fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(itemName)}`)
