@@ -1,3 +1,28 @@
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+.siteLogo {
+  max-height: 275px;
+  max-width: 275px;
+}
+
+/* Watch Later Modal */
+.modal-content {
+  position:fixed;
+  top: 40%;
+  left: 15%;
+  transform: translate(-50%,-50%);
+  display:flex;
+  max-width: 60;
+  max-height: fit-content;
+  padding: 20px;
+  box-shadow: 0, 5px, 30px rgba(0,0,0,.30);
+  background-color: #f1f1f1;
+}
+
+
 /* Card hover effects */
 .card {
     transition: all 0.3s ease-in-out
@@ -12,7 +37,9 @@
 
     width: 100%;
   }
-  /* Accordion */
+/* Card hover effects end */
+
+/* Accordion */
   .accordion {
     background-color: #eee;
     color: #444;
@@ -37,6 +64,7 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
   }
+/* Accordion stylings end */
 
 /* Off Canvas */
 body {
@@ -77,14 +105,9 @@ body {
   font-size: 36px;
   margin-left: 50px;
 }
-
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
-}
+/* Slide-in stylings end */
 
 /* Accordion */
-
 .accordion:after {
   content: '\02795'; /* Unicode character for "plus" sign (+) */
   font-size: 13px;
@@ -96,8 +119,11 @@ body {
 .active:after {
   content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
+/* Accordion styles end */
+
 /* Media Queries */
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
+/* Media Queries end */

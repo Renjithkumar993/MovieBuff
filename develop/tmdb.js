@@ -86,9 +86,11 @@ document.getElementById('movieCardWrapper').addEventListener('click', function(e
     console.log(title.textContent);
     let cardMovieTitle = title.textContent;
     runFetch(cardMovieTitle)
+    runFetch2(cardMovieTitle)
+    modalToggle()
+    //setModalTitle(cardMovieTitle)
       .then(function() {
-        //modalContent();
-        modalToggle();
+        //modalToggle();
         setModalTitle(cardMovieTitle);
       })
       .catch(function(error) {
@@ -101,394 +103,255 @@ document.getElementById('movieCardWrapper').addEventListener('click', function(e
 });
 
 var modalTitleEl = document.getElementById('modalTitle');
-const modalInfoSectionEl = document.getElementById('modalInfoTabContent');
+var modalInfoSectionEl = document.getElementById('modalInfoTabContent');
 var modalStreamingSectionEl = document.getElementById('modalStreamingTabContent');
 
-// Function that fetches the Watchmode API data
-function runFetch(cardMovieTitle) {
-  // Return a promise
-  return new Promise(function(resolve, reject) {
-    //Watchmode API key
-    const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
 
-    // Search for the movie using the Watchmode API's search functionality
-    fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(cardMovieTitle)}`)
-      .then(function(response) {
-        return response.json()
-      })
-      .then(function(data) {
-        // Check if any search results were returned
-        if (data.title_results && data.title_results[0]) {
-          console.log(data);
-          // Extract the Watchmode ID for the first search result
-          watchmodeId = data.title_results[0].id;
-          // Retrieve the streaming information for the movie using the Watchmode ID
-          return fetch(`https://api.watchmode.com/v1/title/${watchmodeId}/sources/?apiKey=${WMKey}`);
-        } else {
-          // Handle the case where there are no search results
-          throw new Error("No search results found");
-        }
-      })
-      .then(function(response) {
-        return response.json()
-      })
-      .then(function(data) {
-        // Extract the streaming services from the streaming information
-        console.log(data);
-        const newArray = data.reduce((accumulator, current) => {
-          if (!accumulator.some(obj => obj.source_id === current.source_id && obj.name === current.name)) {
-            accumulator.push(current);
+// API Calls to get more information //
+
+  // 1. Function that fetches the Watchmode API data for streaming services //
+  function runFetch2(cardMovieTitle) {
+    // Return a promise
+    return new Promise(function(resolve, reject) {
+      //Watchmode API key
+      const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
+
+      // Search for the movie using the Watchmode API's search functionality
+      fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(cardMovieTitle)}`)
+        .then(function(response) {
+          return response.json()
+        })
+        .then(function(data) {
+          // Check if any search results were returned
+          if (data.title_results && data.title_results[0]) {
+            console.log(data);
+            // Extract the Watchmode ID for the first search result
+            watchmodeId = data.title_results[0].id;
+            // Retrieve the streaming information for the movie using the Watchmode ID
+            return fetch(`https://api.watchmode.com/v1/title/${watchmodeId}/details/?apiKey=${WMKey}`);
+          } else {
+            // Handle the case where there are no search results
+            throw new Error("No search results found");
           }
-          return accumulator;
-        }, []);
-        // Remove duplicate results.
-        console.log(newArray);
-        console.log(newArray.length);
-        // Resolve the promise with the data
-        resolve(newArray);
-        //Initialize wrapper as an empty string
-        const modalStreamingWrapper = document.getElementById("streamingServicesWrapper");
-        modalStreamingWrapper.innerHTML = '';
-        //Initialize streaming element as an empty string
-        var streamingElmt = '';
-        // Initializing other Elements 
-        modalTitleEl.innerHTML = '';
-        
-        // Loop through streaming services
-        for (let i = 0; i < newArray.length; i++) {
-          console.log (streamingElmt);
-          console.log(newArray[i]);
-          var streamingServiceName = newArray[i].name;
-          console.log(streamingServiceName);
-          var accessType = newArray[i].type;
-          console.log(accessType);
-          var regionalAvailability = newArray[i].region;
-         console.log(regionalAvailability);
-        var webURL = newArray[i].web_url;
-          console.log(webURL);
-          var price = newArray[i].price;
-          console.log(price);
-          streamingElmt += `<div>
-          <button class = "accordion">${streamingServiceName}</button>
-           <div class = "panel">
-            <div>
-              <ul>
-                <li>Accesible by ${accessType}</li>
-                <li>Available in ${regionalAvailability}</li>
-                <li><a> href = "${webURL}>Web URL</a></li>
-                <li>Service cost ${price}</li>
-              </ul>
-            </div>
-          </div>
-        </div>`
-          //printToModal(newArray[i]);
-          console.log(streamingElmt);
-          //modalStreamingWrapper.appendChild(streamingElmt);
-        }
-        // setting the content inside the wrapper to display all the streaming services from the array with the templated string
-        $('#streamingServicesWrapper').html(streamingElmt);
+        })
+        .then(function(response) {
+          return response.json()
+        })
+        .then(function(data) {
+          // Extract the movie information
+          setModalTitle(cardMovieTitle) // This pops in a little slow... I wonder if there is another way to make it work better?
+          console.log(data);
 
-        console.log(streamingElmt)
-        modalStreamingWrapper.innerHTML = streamingElmt;
-        console.log(modalStreamingWrapper.innerHTML);
-        
-        if (streamingElmt.localeCompare(modalStreamingWrapper.innerHTML) === 0) {
-        console.log("Both strings are equivalent.");
-        } else {
-        console.log("The strings are not equivalent."); //Why aren't the equivalent??
-        }
-        
-      })
-      .catch(function(error) {
-        // Handle any errors that occur in the fetch or processing of data
-        console.error(error);
-        // Reject the promise with the error
-        reject(error);
+          const movieInfoWrapperEl = document.getElementById("movieInfoWrapper");
+          var infoElmt = '';
+
+            //Initializing Elements
+            runtimeEl = data.runtime_minutes;
+              console.log(runtimeEl);
+            filmTitleEl = data.title;
+              console.log(filmTitleEl);
+            genreEl = data.genre_name;
+              console.log(genreEl);
+            userRatingEl = data.user_rating;
+              console.log(userRatingEl);
+            criticScoreEl = data.critic_score;
+              console.log(criticScoreEl);
+            usRatingEl = data.us_rating;
+              console.log(usRatingEl);
+            backdropEl = data.backdrop;
+              console.log(backdropEl);
+            similarTitlesEl = data.similar_titles;
+              console.log(similarTitlesEl);
+            trailerEl = data.trailer
+              console.log(trailerEl);
+            plotOverviewEl = data.plot_overview
+              console.log(plotOverviewEl);
+            infoElmt += /*html*/ `<div>
+              <div class = "modalInfoBodyContent">
+                <div class = "media-content">
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img src="${backdropEl}" alt="Movie backdrop">
+                    </figure>
+                  </div>
+                  <div class = "content">
+                    <h2><strong>${filmTitleEl}</strong></h2>
+                      <ul>
+                      <li> Film Runtime: ${runtimeEl} minutes</li>
+                      <li> Title Genre: ${genreEl}</li>
+                      <li> MPA Film Rating: ${usRatingEl}</li>
+                      </ul>
+                  </div>
+
+                  <div class="content">
+                    ${plotOverviewEl}
+                  </div>
+
+                  <div class="media-content">
+                    <p class="title is-4">Scores:</p>
+                    <p class="subtitle is-6">Viewer rating: ${userRatingEl}</p>
+                    <p class="subtitle is-6">Critic Rating ${criticScoreEl}</p>
+                  </div>
+
+                  <div>
+                  <a href ="${trailerEl}" class="button is-danger is-rounded">View the Trailer</a>
+                  </div>
+
+                  <div>
+                    <p>If you like <strong>${filmTitleEl}</strong>, you may also like ${similarTitlesEl}. Be sure to also check out these films!
+                  </div>
+
+                </div>
+              </div>
+            </div>`
+            
+            console.log(infoElmt);
+            //$('movieInfoWrapper').html(infoElmt);
+            movieInfoWrapperEl.innerHTML = infoElmt;
+        });
+    })
+  }   
+
+
+
+    // 2. Function that fetches the Watchmode API data for streaming services //
+    function runFetch(cardMovieTitle) {
+      // Return a promise
+      return new Promise(function(resolve, reject) {
+        //Watchmode API key
+        const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
+
+        // Search for the movie using the Watchmode API's search functionality
+        fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(cardMovieTitle)}`)
+          .then(function(response) {
+            return response.json()
+          })
+          .then(function(data) {
+            // Check if any search results were returned
+            if (data.title_results && data.title_results[0]) {
+              console.log(data);
+              // Extract the Watchmode ID for the first search result
+              watchmodeId = data.title_results[0].id;
+              // Retrieve the streaming information for the movie using the Watchmode ID
+              return fetch(`https://api.watchmode.com/v1/title/${watchmodeId}/sources/?apiKey=${WMKey}`);
+            } else {
+              // Handle the case where there are no search results
+              throw new Error("No search results found");
+            }
+          })
+          .then(function(response) {
+            return response.json()
+          })
+          .then(function(data) {
+            // Extract the streaming services from the streaming information
+            console.log(data);
+            const newArray = data.reduce((accumulator, current) => {
+              if (!accumulator.some(obj => obj.source_id === current.source_id && obj.name === current.name)) {
+                accumulator.push(current);
+              }
+              return accumulator;
+            }, []);
+            // Remove duplicate results.
+            console.log(newArray);
+            console.log(newArray.length);
+            // Resolve the promise with the data
+            resolve(newArray);
+            //Initialize wrapper as an empty string
+            const modalStreamingWrapper = document.getElementById("streamingServicesWrapper");
+            modalStreamingWrapper.innerHTML = '';
+            //Initialize streaming element as an empty string
+            var streamingElmt = '';
+            // Initializing other Elements 
+            modalTitleEl.innerHTML = '';
+            
+            // Loop through streaming services
+            for (let i = 0; i < newArray.length; i++) {
+              console.log (streamingElmt);
+              console.log(newArray[i]);
+              var streamingServiceName = newArray[i].name;
+                console.log(streamingServiceName);
+              var accessType = newArray[i].type;
+                console.log(accessType);
+              var regionalAvailability = newArray[i].region;
+                console.log(regionalAvailability);
+              var webURL = newArray[i].web_url;
+                console.log(webURL);
+              var price = newArray[i].price;
+                console.log(price);
+              streamingElmt += `<div>
+              <button class = "accordion">${streamingServiceName}</button>
+              <div class = "panel">
+                <div>
+                  <ul>
+                    <li>Accesible by ${accessType}</li>
+                    <li>Available in ${regionalAvailability}</li>
+                    <li><a> href = "${webURL}>Web URL</a></li>
+                    <li>Service cost ${price}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>`
+              //printToModal(newArray[i]);
+              console.log(streamingElmt);
+              //modalStreamingWrapper.appendChild(streamingElmt);
+            }
+            // setting the content inside the wrapper to display all the streaming services from the array with the templated string
+            $('#streamingServicesWrapper').html(streamingElmt);
+
+            console.log(streamingElmt)
+            modalStreamingWrapper.innerHTML = streamingElmt;
+            console.log(modalStreamingWrapper.innerHTML);
+            
+            //  Just to help me bug fix //
+            if (streamingElmt.localeCompare(modalStreamingWrapper.innerHTML) === 0) {
+            console.log("Both strings are equivalent.");
+            } else {
+            console.log("The strings are not equivalent."); //Why aren't the equivalent??
+            }
+            
+            // Applies the logic to the accordion elements //
+            setAccordionLogic(); 
+          })
+          .catch(function(error) {
+            // Handle any errors that occur in the fetch or processing of data
+            console.error(error);
+            // Reject the promise with the error
+            reject(error);
+          });
       });
-  });
-}
-
-//Modal Section 
-// Function to open and close modal.
-function modalToggle(){
-  $(document).ready(function() {
-    $('#myModal').toggle();
-  });
-}
-
-// Get the "Cancel" button element
-const closeModalBtn = document.getElementById('closeModalBtn');
-// Add an event listener to the "Cancel" button
-closeModalBtn.addEventListener('click', function() {
-  // Call the modalToggle function to close the modal
-  modalToggle();
-});
-
-// Function to dynamically set the modal content
-    function printToModal(newArray) {
-      console.log(newArray);
-    // variables for the streaming service, service type, region, watch URL, and price
-    var streamingServiceName = newArray.name;
-      console.log(streamingServiceName);
-    var accessType = newArray.type;
-      console.log(accessType);
-    var regionalAvailability = newArray.region;
-      console.log(regionalAvailability);
-    var webURL = newArray.web_url;
-      console.log(webURL);
-    var price = newArray.price;
-      console.log(price);
     }
-      
 
-  // templated string to display all the movies from the array
-  /*
-  return `<div>
-  <button class = "accordion">${streamingServiceName}</button>
-   <div class = "panel">
-    <div>
-      <ul>
-        <li>Accesible by ${accessType}</li>
-        <li>Available in ${regionalAvailability}</li>
-        <li><a> href = "${webURL}>Web URL</a></li>
-        <li>Service cost ${price}</li>
-      </ul>
-    </div>
-  </div>
-</div>`;
-}
-*/
+    //Modal Section 
+    // Function to open and close modal.
+    function modalToggle(){
+      $(document).ready(function() {
+        $('#myModal').toggle();
+      });
+    }
 
-    //watchmodeId = data.title_results[0].id;
-    //runtimeEl = data.title_results[0].runtime_minutes;
-    //genreEl = data.title_results[0].genre_name;
-    //userRatingEl = data.title_results[0].user_rating;
-    //criticScoreEl = data.title_results[0].critic_score;
-    //usRatingEl = data.title_results[0].us_rating;
-    //posterEl = data.title_results[0].poster;
-    //similarTitlesEl = data.title_results[0].similar_titles;
-    //trailerEl = data.title_results[0].trailer
-
-    //streamingserviceName = data.title_results[i].name;
-    //accessType = data.title_results[i].type;
-    //regionalAvailability = data.title_results[i].region;
-    //webURL = data.title_results[i].web_url;
-    //price = data.title_results[i].price;
-
-/*Ask about getting this set up in class
-function runFetch(cardMovieTitle) { 
-
-  //Watchmode API key
-  const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
-
-  // Search for the movie using the Watchmode API's search functionality
-  fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(cardMovieTitle)}`)
-    .then(function(response) {
-      return response.json()
-    })
-    .then(function(data) {
-      // Check if any search results were returned
-      if (data.title_results && data.title_results[0]) {
-        console.log(data);
-        // Extract the Watchmode ID for the first search result
-        watchmodeId = data.title_results[0].id;
-        // Retrieve the streaming information for the movie using the Watchmode ID
-        return fetch(`https://api.watchmode.com/v1/title/${watchmodeId}/sources/?apiKey=${WMKey}`);
-      } else {
-        // Handle the case where there are no search results
-        throw new Error("No search results found");
-      }
-    })
-    .then(function(response) {
-      return response.json()
-    })
-    .then(function(data) {
-      // Extract the streaming services from the streaming information
-      console.log(data);
-      const newArray = data.reduce((accumulator, current) => {
-        if (!accumulator.some(obj => obj.source_id === current.source_id && obj.name === current.name)) {
-          accumulator.push(current);
-        }
-        return accumulator;
-      }, []);
-      // Remove duplicate results.
-      console.log(newArray);
-      console.log(newArray.length);
-      // Resolve the promise with the data
-      resolve(newArray);
-      //Initialize wrapper as an empty string
-      const modalStreamingWrapper = document.getElementById("streamingServicesWrapper");
-      modalStreamingWrapper.innerHTML = '';
-      //Initialize streaming element as an empty string
-      var streamingElmt = '';
-      // Initializing other Elements 
-      modalTitleEl.innerHTML = '';
-      
-      // Loop through streaming services
-      for (let i = 0; i < newArray.length; i++) {
-        console.log (streamingElmt);
-        console.log(newArray[i]);
-        var streamingServiceName = newArray[i].name;
-        console.log(streamingServiceName);
-        var accessType = newArray[i].type;
-        console.log(accessType);
-        var regionalAvailability = newArray[i].region;
-       console.log(regionalAvailability);
-      var webURL = newArray[i].web_url;
-        console.log(webURL);
-        var price = newArray[i].price;
-        console.log(price);
-        streamingElmt += `<div>
-        <button class = "accordion">${streamingServiceName}</button>
-         <div class = "panel">
-          <div>
-            <ul>
-              <li>Accesible by ${accessType}</li>
-              <li>Available in ${regionalAvailability}</li>
-              <li><a> href = "${webURL}>Web URL</a></li>
-              <li>Service cost ${price}</li>
-            </ul>
-          </div>
-        </div>
-      </div>`
-        //printToModal(newArray[i]);
-        console.log(streamingElmt);
-        //modalStreamingWrapper.appendChild(streamingElmt);
-      }
-      // setting the content inside the wrapper to display all the streaming services from the array with the templated string
-      $('#streamingServicesWrapper').html(streamingElmt);
-
-      console.log(streamingElmt)
-      modalStreamingWrapper.innerHTML = streamingElmt;
-      console.log(modalStreamingWrapper.innerHTML);
-      
-      if (streamingElmt.localeCompare(modalStreamingWrapper.innerHTML) === 0) {
-      console.log("Both strings are equivalent.");
-      } else {
-      console.log("The strings are not equivalent."); //Why aren't the equivalent??
-      }
-      
-    })
-    .catch(function(error) {
-      // Handle any errors that occur in the fetch or processing of data
-      console.error(error);
-      // Reject the promise with the error
-      reject(error);
+    // Get the "Cancel" button element
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    // Add an event listener to the "Cancel" button
+    closeModalBtn.addEventListener('click', function() {
+      // Call the modalToggle function to close the modal
+      modalToggle();
     });
-});
-}
 
-//Modal Section 
-// Function to open and close modal.
-function modalToggle(){
-$(document).ready(function() {
-  $('#myModal').toggle();
-});
-}
+// Locic for accordion animation //
+function setAccordionLogic(){
+  var accordion = document.getElementsByClassName("accordion");
+  var j;
 
-// Get the "Cancel" button element
-const closeModalBtn = document.getElementById('closeModalBtn');
-// Add an event listener to the "Cancel" button
-closeModalBtn.addEventListener('click', function() {
-// Call the modalToggle function to close the modal
-modalToggle();
-});
-
-// Function to dynamically set the modal content
-  function printToModal(newArray) {
-    console.log(newArray);
-  // variables for the streaming service, service type, region, watch URL, and price
-  var streamingServiceName = newArray.name;
-    console.log(streamingServiceName);
-  var accessType = newArray.type;
-    console.log(accessType);
-  var regionalAvailability = newArray.region;
-    console.log(regionalAvailability);
-  var webURL = newArray.web_url;
-    console.log(webURL);
-  var price = newArray.price;
-    console.log(price);
+  for (j = 0; j < accordion.length; j++) {
+    accordion[j].addEventListener("click", function() {
+      console.log('this click was registered');
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
   }
-    
-
-// templated string to display all the movies from the array
-/*
-return `<div>
-<button class = "accordion">${streamingServiceName}</button>
- <div class = "panel">
-  <div>
-    <ul>
-      <li>Accesible by ${accessType}</li>
-      <li>Available in ${regionalAvailability}</li>
-      <li><a> href = "${webURL}>Web URL</a></li>
-      <li>Service cost ${price}</li>
-    </ul>
-  </div>
-</div>
-</div>`;
 }
-*/
-
-  //watchmodeId = data.title_results[0].id;
-  //runtimeEl = data.title_results[0].runtime_minutes;
-  //genreEl = data.title_results[0].genre_name;
-  //userRatingEl = data.title_results[0].user_rating;
-  //criticScoreEl = data.title_results[0].critic_score;
-  //usRatingEl = data.title_results[0].us_rating;
-  //posterEl = data.title_results[0].poster;
-  //similarTitlesEl = data.title_results[0].similar_titles;
-  //trailerEl = data.title_results[0].trailer
-
-  //streamingserviceName = data.title_results[i].name;
-  //accessType = data.title_results[i].type;
-  //regionalAvailability = data.title_results[i].region;
-  //webURL = data.title_results[i].web_url;
-  //price = data.title_results[i].price;
-
-/*Ask about getting this set up in class
-function runFetch(cardMovieTitle) { 
-
-//Watchmode API key
-const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
-
-// Search for the movie using the Watchmode API's search functionality
-const searchRequest = fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(cardMovieTitle)}`)
-  .then(function(response) {
-    return response.json();
-  })
-  .then(function (data) {
-    // Check if any search results were returned
-    if (data.title_results && data.title_results[0]) {
-      console.log(data);
-      // Extract the Watchmode ID for the first search result
-      const watchmodeId = data.title_results[0].id;
-      // Retrieve the streaming information for the movie using the Watchmode ID
-      return fetch(`https://api.watchmode.com/v1/title/${watchmodeId}/sources/?apiKey=${WMKey}`);
-    } else {
-      // Handle the case where there are no search results
-      throw new Error("No search results found");
-    }
-  });
-
-// Perform another fetch request
-const anotherFetchRequest = searchRequest.then(function(response) {
-  return response.json();
-}).then(function (data) {
-  console.log(data);
-  // Extract the Watchmode ID from the response
-  const watchmodeId = data.title.id;
-  // Retrieve the details for the movie using the Watchmode ID
-  return fetch(`https://api.watchmode.com/v1/title/${watchmodeId}/details/?apiKey=${WMKey}&append_to_response=sources`);
-}).then(function(response) {
-  return response.json();
-}).then(function (data) {
-  console.log(data);
-});
-
-// Wait for both fetch requests to complete
-Promise.all([searchRequest, anotherFetchRequest])
-  .then(function(results) {
-    console.log('Both fetch requests complete:', results);
-  });
-}
-*/
