@@ -28,7 +28,7 @@ fetch(nowPlayingUrl)
             var column = $("<div>").addClass("column ");
             var card = $("<div>").addClass("card");
             var cardImage = $("<div>").addClass("card-image");
-            var figure = $("<figure>").addClass("image is-3by4 poster is-rounded");
+            var figure = $("<figure>").addClass("image is-3by1poster is-rounded");
             var img = $("<img>").attr("src", imageURLPoster).attr("alt", "Movie poster");
             figure.append(img);
             cardImage.append(figure);
@@ -112,7 +112,7 @@ fetch(nowPlayingUrl)
         return response.json();
     })
     .then(function (data) {
-        var carousel = $("<div>").addClass("owl-carousel is-multiline container mt-5"); 
+        var carousel = $("<div>").addClass("owl-carousel is-multiline  mt-5"); 
         
         for (var i = 0; i < data.results.length; i++) {
 
@@ -123,7 +123,7 @@ fetch(nowPlayingUrl)
             var column = $("<div>").addClass("column ");
             var card = $("<div>").addClass("card");
             var cardImage = $("<div>").addClass("card-image");
-            var figure = $("<figure>").addClass("image is-5by4poster is-rounded");
+            var figure = $("<figure>").addClass("image image is-3by1 is-rounded ");
             var img = $("<img>").attr("src", imageURLPoster).attr("alt", "Movie poster");
             figure.append(img);
             cardImage.append(figure);
@@ -264,7 +264,7 @@ fetch(nowPlayingUrl)
           console.log(data)
 
     
-       var modalForNews ='';
+       var modalForNews =' ';
 
        for(i=0; i < data.articles.length; i++){
         var author = data.articles[i].author;
