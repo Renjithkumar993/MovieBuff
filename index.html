@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MovieBuff</title>
-
     <link rel="stylesheet" href="./develop/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-  </head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+</head>
+<body>
 
   <body>
     <!-- Header -->
@@ -18,6 +19,8 @@
           <img class = "siteLogo" src="./assets/potentialLogo.jpg" alt="site logo">
           <h1 class="title">Movie Buff</h1>
           <h2 class="subtitle">Find your favorite movies</h2>
+          <button class="js-modal-trigger Upcoming button is-success" data-target="modal-js-example">Upcoming movie videos</button>
+          <button class="js-modal-trigger newssection button is-success" data-target="modal-js-news">Movie News</button>
         </div>
       </div>
     </section>
@@ -38,6 +41,78 @@
           </p>
         </div>
       </form>
+
+<!-- text area for  Search Results for movies: -->
+      <div class="container mt-6">
+
+        <h1 class="title is-2"> Search Results for movies:</h1>
+          </div>
+          
+<!-- big images -->
+      <div class="slidesImagesmain container">
+      </div>
+
+      <!-- 2 secions of images sliding  -->
+      <div class="container mt-2">
+
+        <h1 class="title is-2"> Trending Today</h1>
+          </div>
+      <div class="slidesImagesrecent ">
+      </div>
+      <div class="container mt-2">
+
+        <h1 class="title is-2"> Currently on air</h1>
+          </div>
+
+      <div class="slidesImagesonair ">
+      </div>
+
+<!-- modal for upcoming movie vidoes -->
+</div>
+<div id="modal-js-example" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card container" style="width: 100%;">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Videos for upcoming movies</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body ">
+      <div class="slidesImagesvideo  columns is-multiline mt-5">
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button">Go back</button>
+    </footer>
+  </div>
+</div>
+</div>
+
+<!-- movie news modal -->
+<div id="modal-js-news" class="modal">
+  <div class="modal-background"></div>
+  <div class="modal-card container" style="width: 100%;">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Movie News</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body ">
+      <div id="newsmodalwrapper" class=" mt-5">
+      </div>
+      
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button">Go back</button>
+    </footer>
+  </div>
+</div>
+
+      <!-- colums for movies search result added couple of them to see how it shows .we can remove them after we dynamically add it  -->
+      <div class="container">
+      <div class="columns is-multiline mt-3"  id="movieCardWrapper">
+      </div> 
+    </div>
+  </div>
+     
     </div>
   <!-- End of search column section -->
 
@@ -52,6 +127,7 @@
 
   <!-- Sections for content that does not show up directly on the page (e.g., modals), to help keep things separate and manage the flow of our code -->
    <section>
+   
     <!-- Modal -->
     <div id="myModal" class="modal">
       <div class="modal-background"></div>
@@ -127,20 +203,24 @@
 
  <!-- Main page footer --> 
     <footer class="footer">
-      <div class="content has-text-centered">
-        <p>
-          <strong>MovieBuff</strong> by <a href="https://jgthms.com">Team 3</a>. The source code is licensed
-          <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-          is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-        </p>
-      </div>
-    </footer>
+    
+        <div class="content has-text-centered">
+          <p>
+            <strong>MovieBuff</strong> by <a href="https://jgthms.com">Team 3</a>. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+            is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
+          </p>
+        </div>
+      </footer>
 
   <!-- Section for script files -->    
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="develop/script.js"></script>
     <script src="develop/tmdb.js"></script>
     <script src="develop/wm.js"></script>
+    <script src="./develop/slides.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+</body>
   
-  </body>
 </html>
