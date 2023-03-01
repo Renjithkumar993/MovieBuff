@@ -105,7 +105,7 @@ for (var i = 0; i < watchLaterData.length; i++) {
       const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
 
       // Search for the movie using the Watchmode API's search functionality
-      fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(cardMovieTitle)}`)
+      fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(itemName)}`)
         .then(function(response) {
           return response.json()
         })
@@ -127,7 +127,7 @@ for (var i = 0; i < watchLaterData.length; i++) {
         })
         .then(function(data) {
           // Extract the movie information
-          setModalTitle(cardMovieTitle) // This pops in a little slow... I wonder if there is another way to make it work better?
+          setModalTitle(itemName) // This pops in a little slow... I wonder if there is another way to make it work better?
           console.log(data);
 
           const movieInfoWrapperEl = document.getElementById("movieInfoWrapper");
@@ -208,7 +208,7 @@ for (var i = 0; i < watchLaterData.length; i++) {
         const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
 
         // Search for the movie using the Watchmode API's search functionality
-        fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(cardMovieTitle)}`)
+        fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(itemName)}`)
           .then(function(response) {
             return response.json()
           })
