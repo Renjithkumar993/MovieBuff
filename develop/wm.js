@@ -42,7 +42,8 @@ console.log(watchLaterData.length);
 for (var i = 0; i < watchLaterData.length; i++) {
     // Get the name of the current item
     console.log("i");
-    var itemName = watchLaterData[i].name;
+    var itemName = watchLaterData[i]
+    console.log(itemName);
 
     // Create a new div element
     var div = $('<div></div>');
@@ -62,10 +63,15 @@ function generateNewWatchLaterContent(){
 // Loop through the array
 for (var i = 0; i < watchLaterData.length; i++) {
     // Get the name of the current item
-    var itemName = watchLaterData[i].name;
+    var itemName = watchLaterData[i];
 
     // Create a new div element
-    var div = $('<div></div>');
+    var div = $('<div></div>').addClass('wlButtons').addClass('wlButtons2').attr('role','button');
+
+    div.on('click', function(){
+      // function to 
+    });
+
   
     // Set the content of the div to the item name
     div.text(itemName);
@@ -74,4 +80,22 @@ for (var i = 0; i < watchLaterData.length; i++) {
     $('#watchLaterListWrapper').append(div);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Copied from tmdb.js just to see if this works //
+
+
 
