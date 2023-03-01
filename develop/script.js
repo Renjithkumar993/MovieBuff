@@ -1,7 +1,7 @@
 const searchHistorySpace = document.getElementById('searchHistoryWrapper');
 var searchInput = document.getElementById('searchField');
 
-let searchCounter = localStorage.getItem("searchCounter") || 1; // get current value of searchCounter from local storage, or initialize to 1 if not set
+let searchCounter = localStorage.getItem("searchCounter") || 1; // get current value of searchCounter from local storage, or initialize to 1 if not set //
 let searchHistory =[];
 
 document.querySelector('#searchForm').addEventListener('submit', function(e){
@@ -9,6 +9,7 @@ document.querySelector('#searchForm').addEventListener('submit', function(e){
   console.log(searchInput.value.trim());
   let searchQuery = searchInput.value.trim();
   searchCounter++; // increment counter variable for next search
+  localStorage.setItem('How many searches?',searchCounter)
   searchHistory.push(searchQuery);
   localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
   createHistoryButtons(searchQuery);
@@ -175,7 +176,7 @@ function createHistoryButtons(){
 const clearHistoryEl = document.getElementById('clearHistoryBtn');
 clearHistoryEl.addEventListener('click', clearSearchHistory);
 function clearSearchHistory(){
-  localStorage.clear();
+  localStorage.removeItem('searchHistory'); //If this messes up set it back to localStorage.clear();
   searchHistory=[];
   searchHistorySpace.textContent='';
 }
