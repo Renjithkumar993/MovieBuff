@@ -217,7 +217,7 @@ var modalStreamingSectionEl = document.getElementById('modalStreamingTabContent'
       // Return a promise
       return new Promise(function(resolve, reject) {
         //Watchmode API key
-        const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
+        const WMKey = '3J4pqlC0fGosW0vLQFW9ps0IMUFhI1gB0xcSPTor';
 
         // Search for the movie using the Watchmode API's search functionality
         fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(cardMovieTitle)}`)
@@ -368,7 +368,7 @@ hereButton.addEventListener('click', function(){
       console.log('is this even working?');
     document.getElementById("movieCardWrapper").innerHTML = '';
     for (i = 0; i < similarTitlesEl.length; i++) { 
-      const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
+      const WMKey = '3J4pqlC0fGosW0vLQFW9ps0IMUFhI1gB0xcSPTor';
       fetch(`https://api.watchmode.com/v1/title/${similarTitlesEl[i]}/details/?apiKey=${WMKey}`)
         .then(function(response) {
           return response.json();
