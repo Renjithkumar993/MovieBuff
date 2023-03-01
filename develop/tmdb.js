@@ -367,7 +367,7 @@ hereButton.addEventListener('click', function(){
       console.log(similarTitlesEl[2]);
       console.log('is this even working?');
     document.getElementById("movieCardWrapper").innerHTML = '';
-    for (i = 0; i < 2; i++) { //similar.TitlesEl.length
+    for (i = 0; i < similarTitlesEl.length; i++) { 
       const WMKey = 'LoVEu2tw5mIYG5E37IhSybc6HmM2ovxVxxx8VJxf';
       fetch(`https://api.watchmode.com/v1/title/${similarTitlesEl[i]}/details/?apiKey=${WMKey}`)
         .then(function(response) {
@@ -415,7 +415,7 @@ hereButton.addEventListener('click', function(){
           `);
 
           // append the movie card to a parent element on the page
-          $('#movie-list').append($movieCard);
+          $('#movieCardWrapper').append($movieCard);
         });
     }
   }
