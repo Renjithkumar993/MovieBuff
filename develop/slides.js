@@ -290,7 +290,7 @@ fetch(nowPlayingUrl)
                 <strong class="newsauther">${author}</strong> <small class="newsauthersource"> ${source}</small>
                 <br>
               <p class="newsdescription">    ${description}   </p>
-             <a class="newslinktoURL" href="${siteUrl}">Click to read more</a>
+             <a class="newslinktoURL" href="${siteUrl}" target="_blank" >Click to read more</a>
               </p>
             </div>
         </article>
