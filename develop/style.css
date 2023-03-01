@@ -8,6 +8,17 @@
   max-width: 275px;
 }
 
+/* More like this text in the modal */
+#moreLikeThisButton {
+  cursor: pointer;
+}
+
+#moreLikeThisButton:hover{
+  text-shadow: #444;
+  opacity: .6;
+}
+/* End of more like this prompt */
+
 /* Watch Later Modal */
 .modal-content {
   position:fixed;

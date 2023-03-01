@@ -127,7 +127,7 @@ var modalStreamingSectionEl = document.getElementById('modalStreamingTabContent'
             console.log(data);
             // Extract the Watchmode ID for the first search result
             watchmodeId = data.title_results[0].id;
-            // Retrieve the streaming information for the movie using the Watchmode ID
+            // Retrieve the movie information for the movie using the Watchmode ID
             return fetch(`https://api.watchmode.com/v1/title/${watchmodeId}/details/?apiKey=${WMKey}`);
           } else {
             // Handle the case where there are no search results
@@ -198,7 +198,7 @@ var modalStreamingSectionEl = document.getElementById('modalStreamingTabContent'
                   </div>
 
                   <div>
-                    <p>If you like <strong>${filmTitleEl}</strong>, you may also like ${similarTitlesEl}. Be sure to also check out these films!
+                    <p>If you like <strong>${filmTitleEl}</strong>, we may know some other movies you will enjoy! Click <span id= "moreLikeThisButton" class="has-text-weight-bold" onclick = fetchMoreLikeThis(similarTitlesEl)>here</span> to check out these films!</p>
                   </div>
 
                 </div>
@@ -211,8 +211,6 @@ var modalStreamingSectionEl = document.getElementById('modalStreamingTabContent'
         });
     })
   }   
-
-
 
     // 2. Function that fetches the Watchmode API data for streaming services //
     function runFetch(cardMovieTitle) {
@@ -355,3 +353,70 @@ function setAccordionLogic(){
     });
   }
 }
+
+
+// Fetch for similar titles //
+/*
+const hereButton = document.getElementById("moreLikeThisButton");
+hereButton.addEventListener('click', function(){
+ fetchMoreLikeThis(similarTitlesEl);
+});
+*/
+  function fetchMoreLikeThis(similarTitlesEl) {
+    modalToggle();
+      console.log(similarTitlesEl[2]);
+      console.log('is this even working?');
+    document.getElementById("movieCardWrapper").innerHTML = '';
+    for (i = 0; i < similarTitlesEl.length; i++) { 
+      const WMKey = '3J4pqlC0fGosW0vLQFW9ps0IMUFhI1gB0xcSPTor';
+      fetch(`https://api.watchmode.com/v1/title/${similarTitlesEl[i]}/details/?apiKey=${WMKey}`)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          console.log(data);
+          // Initialize Elements //
+          var filmTitleEl = data.title;
+          console.log(filmTitleEl);
+          var plotOverviewEl = data.plot_overview;
+          console.log(plotOverviewEl);
+          var releaseYearEl = data.year;
+          console.log(releaseYearEl);
+          var posterEl = data.poster;
+          console.log(posterEl);
+
+          // Create a new div element to hold the movie card //
+          var moreLikeThisMovieCard = $('<div>').addClass('column is-one-quarter');
+          $('#movieCardWrapper').append(moreLikeThisMovieCard);
+
+          // create a new div element to hold the movie card
+          var $movieCard = $('<div>').addClass('column is-one-quarter');
+
+          // set the HTML content of the movie card using the templated string
+          $movieCard.html(/*html*/`
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="${posterEl}" alt="Movie poster">
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">${filmTitleEl}</p>
+                    <p class="subtitle is-6">${releaseYearEl}</p>
+                  </div>
+                </div>
+                <div class="content">
+                  ${plotOverviewEl}
+                </div>
+              </div>
+            </div>
+          `);
+
+          // append the movie card to a parent element on the page
+          $('#movieCardWrapper').append($movieCard);
+        });
+    }
+  }
+

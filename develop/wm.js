@@ -186,7 +186,7 @@ for (var i = 0; i < watchLaterData.length; i++) {
                   </div>
 
                   <div>
-                    <p>If you like <strong>${filmTitleEl}</strong>, you may also like ${similarTitlesEl}. Be sure to also check out these films!
+                  <p>If you like <strong>${filmTitleEl}</strong>, we may know some other movies you will enjoy! Click <span id= "moreLikeThisButton" class="has-text-weight-bold" onclick = fetchMoreLikeThis(similarTitlesEl)>here</span> to check out these films!</p>
                   </div>
 
                 </div>
