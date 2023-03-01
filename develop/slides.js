@@ -21,15 +21,19 @@ fetch(nowPlayingUrl)
     })
     .then(function (data) {
         var carousel = $("<div>").addClass("owl-carousel is-multiline container mt-5"); 
+        console.log(data);
         for (var i = 0; i < data.results.length; i++) {
-            var posterImage = data.results[i].poster_path;
+           
+          
+          var posterImage = data.results[i].poster_path;
+            var posterImageMovie = data.results[i].original_title;            ;
             var imageURLPoster = "https://image.tmdb.org/t/p/w500" + posterImage;
 
             var column = $("<div>").addClass("column ");
             var card = $("<div>").addClass("card");
             var cardImage = $("<div>").addClass("card-image");
             var figure = $("<figure>").addClass("image is-3by1poster is-rounded");
-            var img = $("<img>").attr("src", imageURLPoster).attr("alt", "Movie poster");
+            var img = $("<img>").attr("src", imageURLPoster).attr("alt", "Movie poster").attr("id" , posterImageMovie).addClass("imagemodaltrending");
             figure.append(img);
             cardImage.append(figure);
             card.append(cardImage);
@@ -38,7 +42,14 @@ fetch(nowPlayingUrl)
             carousel.append(column); 
         }
         $(".slidesImagesrecent").append(carousel); 
+       
+        $(".imagemodaltrending").on("click", function(){
 
+          var movieNametrending = $(this).attr("id");
+
+          console.log(movieNametrending);
+        })
+   
       
         carousel.owlCarousel({
             rtl:true,
@@ -72,13 +83,14 @@ fetch(nowPlayingUrl)
 
            
             var posterImage = data.results[i].poster_path;
+            var posterImageMovie = data.results[i].name
             var imageURLPoster = "https://image.tmdb.org/t/p/w500" + posterImage;
 
             var column = $("<div>").addClass("column ");
-            var card = $("<div>").addClass("card");
+            var card = $("<div>").addClass("card ");
             var cardImage = $("<div>").addClass("card-image");
-            var figure = $("<figure>").addClass("image is-3by4 poster is-rounded");
-            var img = $("<img>").attr("src", imageURLPoster).attr("alt", "Movie poster");
+            var figure = $("<figure>").addClass("image is-3by4 poster is-rounded ");
+            var img = $("<img>").attr("src", imageURLPoster).attr("alt", "Movie poster" ).attr("id" , posterImageMovie ).addClass("imagemodalonair");
             figure.append(img);
             cardImage.append(figure);
             card.append(cardImage);
@@ -88,6 +100,13 @@ fetch(nowPlayingUrl)
         }
         $(".slidesImagesonair").append(carousel); 
 
+          $(".imagemodalonair").on("click", function(){
+
+            var movieNameonair = $(this).attr("id")
+
+            console.log(movieNameonair);
+          })
+     
       
         carousel.owlCarousel({
             rtl:true,
