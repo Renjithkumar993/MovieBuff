@@ -64,14 +64,14 @@ const modalStreamingTabLink = document.querySelector('.modalStreamingTabLink');
 
 // Add event listeners to the tab links
 modalInfoTabLink.addEventListener('click', () => {
-  console.log('Movie Info');
+  
   // Toggle the is-active class on the tab links
   modalInfoTabLink.parentElement.classList.add('is-active');
   modalStreamingTabLink.parentElement.classList.remove('is-active');
 });
 
 modalStreamingTabLink.addEventListener('click', () => {
-  console.log('Streaming Services');
+  
   // Toggle the is-active class on the tab links
   modalStreamingTabLink.parentElement.classList.add('is-active');
   modalInfoTabLink.parentElement.classList.remove('is-active');
