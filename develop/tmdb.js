@@ -337,7 +337,11 @@ function watchLaterModalToggle(){
   });
 }
 
-watchLater = [];
+var watchLater = JSON.parse(localStorage.getItem('MyWatchLaterList'));
+
+if(!watchLater) {
+  watchLater = [];
+}
 
 //Add to Watch Later Functionality
   const watchLaterButtonEl = document.getElementById('watchLaterBtn');
@@ -345,7 +349,7 @@ watchLater = [];
   const modalMovieTitleEl = document.getElementById("modalTitle");
 
   // Adds new entry to local storage when the watch later button is clicked
-  function saveWatchLater(){
+  function saveWatchLater() {
     console.log("the watch later button el has been clicked");
     watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
     localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
