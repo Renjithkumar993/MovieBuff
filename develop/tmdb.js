@@ -58,9 +58,6 @@ function movieCard(movie) {
            <p class="subtitle is-6">${movieReleaseDate}</p>
          </div>
        </div>
-       <div class="content">
-         ${overview}
-       </div>
      </div>
    </div>
  </div>`;
