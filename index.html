@@ -11,9 +11,8 @@
 </head>
 <body>
 
-  <body>
     <!-- Header -->
-    <section class="hero is-primary is-halfheight ">
+    <!-- <section class="hero is-primary is-halfheight ">
       <div class="hero-body">
         <div class="container">
           <img class = "siteLogo" src="./assets/potentialLogo.jpg" alt="site logo">
@@ -23,7 +22,19 @@
           <button class="js-modal-trigger newssection button is-success" data-target="modal-js-news">Movie News</button>
         </div>
       </div>
-    </section>
+    </section> -->
+
+
+    <header>
+      <div class="slidesImagesmain headerimage">
+      </div>
+      <div class="logotitle">
+          <h1 class="title">Movie Buff</h1>
+          <h2 class="subtitle">Find your favorite movies</h2>
+        </div>
+          <button class="js-modal-trigger Upcoming button is-success" data-target="modal-js-example">Upcoming movie videos</button>
+          <button class="js-modal-trigger newssection button is-success" data-target="modal-js-news">Movie News</button>
+    </header>
 
   <!-- Search column and the button to search -->
     <div class="container mt-6">
@@ -43,19 +54,15 @@
       </form>
 
 <!-- text area for  Search Results for movies: -->
-      <div class="container mt-6">
-
-        <h1 class="title is-2"> Search Results for movies:</h1>
-          </div>
-          
 <!-- big images -->
-      <div class="slidesImagesmain container">
-      </div>
+<div class="hidewhensearch">
+      <!-- <div class="slidesImagesmain container">
+      </div> -->
 
       <!-- 2 secions of images sliding  -->
       <div class="container mt-2">
 
-        <h1 class="title is-2"> Trending Today</h1>
+        <h1 class="title is-2 "> Trending Today</h1>
           </div>
       <div class="slidesImagesrecent ">
       </div>
@@ -66,6 +73,7 @@
 
       <div class="slidesImagesonair ">
       </div>
+</div>
 
 <!-- modal for upcoming movie vidoes -->
 </div>
@@ -105,7 +113,8 @@
     </footer>
   </div>
 </div>
-
+<div class="container mt-6">
+  <h1 class="title is-2 searchresultheading"> Search Results:</h1>
       <!-- colums for movies search result added couple of them to see how it shows .we can remove them after we dynamically add it  -->
       <div class="container">
       <div class="columns is-multiline mt-3"  id="movieCardWrapper">
@@ -117,8 +126,7 @@
   <!-- End of search column section -->
 
   <!-- Main Content Section -->  
-    <div class="container mt-6">
-      <h1 class="title is-2"> Search Results for movies:</h1>
+  
       <!-- colums for movies search result added couple of them to see how it shows .we can remove them after we dynamically add it  -->
         <div class="columns is-multiline mt-3"  id="movieCardWrapper">
         </div> 

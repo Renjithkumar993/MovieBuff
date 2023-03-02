@@ -6,7 +6,7 @@ let nowPlayingUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${IM
 var onAirUrl = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${IMBDKey}&language=en-US`
 var videoURL = `GET https://api.themoviedb.org/3/movie/upcoming?api_key=${IMBDKey}`
 
-
+   $(".searchresultheading").hide();
 
 
 
@@ -324,3 +324,14 @@ fetch(nowPlayingUrl)
 
 
         
+
+        $("#searchBtn").on("click", function(){
+         
+          // $(".slidesImagesonair").hide();
+          // $(".slidesImagesrecent").hide();
+          // $(".slidesImagesmain").hide();
+          $(".hidewhensearch").hide();
+          $(".searchresultheading").show();
+
+
+        })

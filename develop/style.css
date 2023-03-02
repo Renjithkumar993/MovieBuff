@@ -126,3 +126,15 @@ body {
   .sidenav a {font-size: 18px;}
 }
 /* Media Queries end */
+
+
+
+.headerimage{
+  opacity: 0.7;
+}
+
+.logotitle{
+position: absolute;
+top: 10%;
+left: 5%;
+}
