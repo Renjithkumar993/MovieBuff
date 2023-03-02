@@ -263,7 +263,7 @@ function runFetch(cardMovieTitle) {
                   <ul>
                     <li>Accesible by ${accessType}</li>
                     <li>Available in ${regionalAvailability}</li>
-                    <li><a> href = "${webURL}>Web URL</a></li>
+                    <li><a href = "${webURL}" target="_blank">Watch Here!</a></li>
                     <li>Service cost ${price}</li>
                   </ul>
                 </div>
