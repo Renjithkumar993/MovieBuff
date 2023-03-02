@@ -66,6 +66,11 @@ function clearSearchHistory(){
   localStorage.clear();
   searchHistory=[];
   searchHistorySpace.textContent='';
+  let currentSearchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+    if (!currentSearchHistory) {
+      currentSearchHistory = [];
+      localStorage.setItem('searchHistory', JSON.stringify(currentSearchHistory));
+    }
 }
 
 //Toggle Modal Tabs
