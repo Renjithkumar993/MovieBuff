@@ -25,7 +25,6 @@ watchLater = [];
     localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
   }
 
-
 // Remove from Watch Later Functionality
   function removeWatchLaterEntry(){
   
