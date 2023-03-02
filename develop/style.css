@@ -130,11 +130,12 @@ body {
 
 
 .headerimage{
-  opacity: 0.7;
+  opacity: 0.4;
 }
 
 .logotitle{
+  width: 2000px;
 position: absolute;
-top: 10%;
-left: 5%;
+top: 15%;
+left: 35%;
 }

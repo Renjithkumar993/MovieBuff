@@ -158,17 +158,14 @@ fetch(nowPlayingUrl)
             rtl:true,
             items: 1, 
             loop: true, 
-            margin: 10, 
             autoplay: true, 
             autoplayTimeout: 1350, 
             autoplayHoverPause: true, 
             items:1,
-            margin:30,
-            stagePadding:30,
-            smartSpeed:300,
+            smartSpeed:600,
             responsive: {
                 0: { items: 1 }, 
-                768: { items: 2 }, 
+                768: { items: 1 }, 
                 1024: { items: 1 } 
             }
         });

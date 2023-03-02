@@ -28,13 +28,18 @@
     <header>
       <div class="slidesImagesmain headerimage">
       </div>
-      <div class="logotitle">
-          <h1 class="title">Movie Buff</h1>
-          <h2 class="subtitle">Find your favorite movies</h2>
+      <div class="logotitle ">
+        <img src="./assets/logo.PNG">
         </div>
-          <button class="js-modal-trigger Upcoming button is-success" data-target="modal-js-example">Upcoming movie videos</button>
-          <button class="js-modal-trigger newssection button is-success" data-target="modal-js-news">Movie News</button>
-    </header>
+      </header>
+
+
+      <div class="container">
+          <button class="js-modal-trigger Upcoming button is-primary" data-target="modal-js-example">Upcoming movie videos</button>
+          <button class="js-modal-trigger newssection button is-primary" data-target="modal-js-news">Movie News</button>
+          <button id="historyBtn" class="button is-primary">View Search History</button>
+          <button id="openWatchLaterBtn" class="button is-primary">Open Watch Later</button>
+      </div>
 
   <!-- Search column and the button to search -->
     <div class="container mt-6">
@@ -47,8 +52,6 @@
             <button class="button is-primary" id="searchBtn">
               Search
             </button>
-            <a id="historyBtn" class="button is-primary">View Search History</a>
-            <a id="openWatchLaterBtn" class="button is-primary">Open Watch Later</a>
           </p>
         </div>
       </form>
