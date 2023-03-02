@@ -1,3 +1,6 @@
+
+ 
+ 
 #main {
   transition: margin-left .5s;
   padding: 16px;
@@ -124,18 +127,29 @@ body {
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
+
+
+
+
+
 }
+
+
+.lanes{
+  transform: scale(2,3);
+  transform: ;
+  
+}
+
+
+
 /* Media Queries end */
 
 
+.headings{
+  font-family: 'Poppins', sans-serif;
+font-family: 'Unbounded', cursive;
+font-weight: bolder;
+font-size: 50px;
 
-.headerimage{
-  opacity: 0.4;
-}
-
-.logotitle{
-  width: 2000px;
-position: absolute;
-top: 15%;
-left: 35%;
 }

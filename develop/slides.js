@@ -60,8 +60,8 @@ fetch(nowPlayingUrl)
             autoplayTimeout: 1350, 
             autoplayHoverPause: true, 
             responsive: {
-                0: { items: 1 }, 
-                768: { items: 2 }, 
+                0: { items: 3 }, 
+                768: { items: 5 }, 
                 1024: { items: 6 } 
             }
         });
@@ -117,8 +117,8 @@ fetch(nowPlayingUrl)
             autoplayTimeout: 1350, 
             autoplayHoverPause: true, 
             responsive: {
-                0: { items: 1 }, 
-                768: { items: 2 }, 
+                0: { items: 3}, 
+                768: { items: 5 }, 
                 1024: { items: 6 } 
             }
         });
@@ -131,7 +131,7 @@ fetch(nowPlayingUrl)
         return response.json();
     })
     .then(function (data) {
-        var carousel = $("<div>").addClass("owl-carousel is-multiline  mt-5"); 
+        var carousel = $("<div>").addClass("owl-carousel is-multiline"); 
         
         for (var i = 0; i < data.results.length; i++) {
 
@@ -139,8 +139,8 @@ fetch(nowPlayingUrl)
             var posterImage = data.results[i].backdrop_path;            ;
             var imageURLPoster = "https://image.tmdb.org/t/p/w780" + posterImage;
 
-            var column = $("<div>").addClass("column ");
-            var card = $("<div>").addClass("card");
+            var column = $("<div>")
+            var card = $("<div>")
             var cardImage = $("<div>").addClass("card-image");
             var figure = $("<figure>").addClass("image image is-3by1 is-rounded ");
             var img = $("<img>").attr("src", imageURLPoster).attr("alt", "Movie poster");
@@ -166,16 +166,10 @@ fetch(nowPlayingUrl)
             responsive: {
                 0: { items: 1 }, 
                 768: { items: 1 }, 
-                1024: { items: 1 } 
+                1024: { items: 1} 
             }
         });
     });
-
-
-
-
-
-
 
 
    var UpcomingMovieUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${IMBDKey}`;
@@ -324,11 +318,23 @@ fetch(nowPlayingUrl)
 
         $("#searchBtn").on("click", function(){
          
-          // $(".slidesImagesonair").hide();
-          // $(".slidesImagesrecent").hide();
-          // $(".slidesImagesmain").hide();
           $(".hidewhensearch").hide();
+
           $(".searchresultheading").show();
-
-
+         
         })
+
+
+
+        function toggleNavbarBurger() {
+
+          const burger = document.querySelector('.navbar-burger');
+          const menu = document.querySelector(`#${burger.dataset.target}`);
+ 
+          burger.classList.toggle('is-active');
+          menu.classList.toggle('is-active');
+        }
+    
+        const navbarBurger = document.querySelector('.navbar-burger');
+        navbarBurger.addEventListener('click', toggleNavbarBurger);
+        

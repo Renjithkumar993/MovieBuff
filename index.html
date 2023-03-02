@@ -8,70 +8,98 @@
     <link rel="stylesheet" href="./develop/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-</head>
-<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Unbounded:wght@200&display=swap" rel="stylesheet">
 
-    <!-- Header -->
-    <!-- <section class="hero is-primary is-halfheight ">
-      <div class="hero-body">
-        <div class="container">
-          <img class = "siteLogo" src="./assets/potentialLogo.jpg" alt="site logo">
-          <h1 class="title">Movie Buff</h1>
-          <h2 class="subtitle">Find your favorite movies</h2>
-          <button class="js-modal-trigger Upcoming button is-success" data-target="modal-js-example">Upcoming movie videos</button>
-          <button class="js-modal-trigger newssection button is-success" data-target="modal-js-news">Movie News</button>
-        </div>
-      </div>
-    </section> -->
+</head>
+<body class=" has-background-black">
 
 
     <header>
-      <div class="slidesImagesmain headerimage">
-      </div>
-      <div class="logotitle ">
-        <img src="./assets/logo.PNG">
+    <nav class="navbar has-background-black container " role="navigation" aria-label="main navigation">
+    <img src="./assets/logo.png" width="250px">
+      
+        <a role="button" class="navbar-burger burger has-background-black has-text-primary" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span class="lanes" aria-hidden="true"></span>
+          <span class="lanes" aria-hidden="true"></span>
+          <span class="lanes" aria-hidden="true"></span>
+        </a>
+  
+      <div id="navbarBasicExample" class="navbar-menu has-background-black has-text-primary">
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <button class="js-modal-trigger Upcoming button has-background-black has-text-primary" data-target="modal-js-example">
+                <span class="icon">
+                  <i class="fas fa-video"></i>
+                </span>
+                <span>Upcoming movie videos</span>
+              </button>
+              <button class="js-modal-trigger newssection button has-background-black has-text-primary" data-target="modal-js-news">
+                <span class="icon">
+                  <i class="fas fa-newspaper"></i>
+                </span>
+                <span>Movie News</span>
+              </button>
+              <button id="historyBtn" class="button has-background-black has-text-primary">
+                <span class="icon">
+                  <i class="fas fa-history"></i>
+                </span>
+                <span>View Search History</span>
+              </button>
+              <button id="openWatchLaterBtn" class="button has-background-black has-text-primary">
+                <span class="icon">
+                  <i class="fas fa-clock"></i>
+                </span>
+                <span>Open Watch Later</span>
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+    </nav>
+
+       <div class="slidesImagesmain ">   
+        
+       </div> 
+       
       </header>
 
 
-      <div class="container">
-          <button class="js-modal-trigger Upcoming button is-primary" data-target="modal-js-example">Upcoming movie videos</button>
-          <button class="js-modal-trigger newssection button is-primary" data-target="modal-js-news">Movie News</button>
-          <button id="historyBtn" class="button is-primary">View Search History</button>
-          <button id="openWatchLaterBtn" class="button is-primary">Open Watch Later</button>
-      </div>
-
+     
   <!-- Search column and the button to search -->
-    <div class="container mt-6">
+    <div class="container ">
       <form id="searchForm">
-        <div class="field is-grouped">
+        <div class="field is-grouped is-align-items-center">
           <p class="control is-expanded">
             <input class="input" type="text" id="searchField" placeholder="Search by movie title...">
           </p>
           <p class="control">
-            <button class="button is-primary" id="searchBtn">
+            <button class="button has-background-black has-text-primary is-medium" id="searchBtn">
               Search
             </button>
           </p>
         </div>
       </form>
 
-<!-- text area for  Search Results for movies: -->
+
 <!-- big images -->
 <div class="hidewhensearch">
       <!-- <div class="slidesImagesmain container">
       </div> -->
 
       <!-- 2 secions of images sliding  -->
-      <div class="container mt-2">
+      <div class="container mt-5">
 
-        <h1 class="title is-2 "> Trending Today</h1>
+        <h1 class=" has-background-black p-4 has-text-primary is-large has-text-centered headings"> Trending Today</h1>
           </div>
       <div class="slidesImagesrecent ">
       </div>
       <div class="container mt-2">
 
-        <h1 class="title is-2"> Currently on air</h1>
+        <h1 class="  p-4 has-background-black has-text-primary is-large has-text-centered headings"> Currently on air</h1>
           </div>
 
       <div class="slidesImagesonair ">
@@ -109,15 +137,44 @@
     <section class="modal-card-body ">
       <div id="newsmodalwrapper" class=" mt-5">
       </div>
-      
+      <nav class="pagination mt-4" role="navigation" aria-label="pagination">
+        <a class="pagination-previous">Previous</a>
+        <a class="pagination-next">Next page</a>
+        <ul class="pagination-list">
+          <li>
+            <a class="pagination-link" aria-label="Goto page 1">1</a>
+          </li>
+          <li>
+            <span class="pagination-ellipsis">&hellip;</span>
+          </li>
+          <li>
+            <a class="pagination-link" aria-label="Goto page 2">2</a>
+          </li>
+          <li>
+            <a class="pagination-link is-current" aria-label="Page 3" aria-current="page">3</a>
+          </li>
+          <li>
+            <a class="pagination-link" aria-label="Goto page 4">4</a>
+          </li>
+          <li>
+            <span class="pagination-ellipsis">&hellip;</span>
+          </li>
+          <li>
+            <a class="pagination-link" aria-label="Goto page 5">5</a>
+          </li>
+        </ul>
+      </nav>
     </section>
+    
     <footer class="modal-card-foot">
       <button class="button">Go back</button>
+
     </footer>
+    
   </div>
 </div>
 <div class="container mt-6">
-  <h1 class="title is-2 searchresultheading"> Search Results:</h1>
+  <h1 class="title is-1 has-background-black p-4 has-text-primary is-large searchresultheading"> Search Results:</h1>
       <!-- colums for movies search result added couple of them to see how it shows .we can remove them after we dynamically add it  -->
       <div class="container">
       <div class="columns is-multiline mt-3"  id="movieCardWrapper">
@@ -232,6 +289,7 @@
     <script src="develop/wm.js"></script>
     <script src="./develop/slides.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://kit.fontawesome.com/351fdf99bf.js" crossorigin="anonymous"></script>
 </body>
   
 </html>
