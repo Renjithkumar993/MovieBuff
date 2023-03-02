@@ -73,6 +73,10 @@ function clearSearchHistory(){
     }
 }
 
+var modalInfoSectionEl = document.getElementById("modalInfoTabContent");
+var modalStreamingSectionEl = document.getElementById("modalStreamingTabContent");
+
+
 //Toggle Modal Tabs
 const modalInfoTabLink = document.querySelector('.modalInfoTabLink');
 const modalStreamingTabLink = document.querySelector('.modalStreamingTabLink');

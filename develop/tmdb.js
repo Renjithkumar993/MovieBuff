@@ -92,10 +92,6 @@ document
   });
 
 var modalTitleEl = document.getElementById("modalTitle");
-var modalInfoSectionEl = document.getElementById("modalInfoTabContent");
-var modalStreamingSectionEl = document.getElementById(
-  "modalStreamingTabContent"
-);
 
 // API Calls to get more information //
 
