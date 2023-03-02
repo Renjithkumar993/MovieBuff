@@ -194,10 +194,6 @@ var modalStreamingSectionEl = document.getElementById('modalStreamingTabContent'
                   <a href ="${trailerEl}" class="button is-danger is-rounded">View the Trailer</a>
                   </div>
 
-                  <div>
-                    <p>If you like <strong>${filmTitleEl}</strong>, you may also like ${similarTitlesEl}. Be sure to also check out these films!
-                  </div>
-
                 </div>
               </div>
             </div>`
