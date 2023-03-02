@@ -96,12 +96,14 @@ modalStreamingTabLink.addEventListener('click', () => {
   modalInfoTabLink.parentElement.classList.remove('is-active');
 });
 
+
 // Toggle Modal Content
 function showTabContent(tabID){
   var tabContents = document.querySelectorAll('.modal-card-body > div');
  // Hide all the modal content divs except the one containing the tabs
  tabContents.forEach(function(tabContent, index) {
-  if (index !== 0) {
+  console.log("the problem is here");
+  if (index > 2) {
     tabContent.style.display = 'none';
   }
 });
