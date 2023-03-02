@@ -92,10 +92,6 @@ document
   });
 
 var modalTitleEl = document.getElementById("modalTitle");
-var modalInfoSectionEl = document.getElementById("modalInfoTabContent");
-var modalStreamingSectionEl = document.getElementById(
-  "modalStreamingTabContent"
-);
 
 // API Calls to get more information //
 
@@ -263,7 +259,7 @@ function runFetch(cardMovieTitle) {
                   <ul>
                     <li>Accesible by ${accessType}</li>
                     <li>Available in ${regionalAvailability}</li>
-                    <li><a> href = "${webURL}>Web URL</a></li>
+                    <li><a href = "${webURL}" target="_blank">Watch Here!</a></li>
                     <li>Service cost ${price}</li>
                   </ul>
                 </div>
@@ -324,3 +320,260 @@ function setAccordionLogic() {
     });
   }
 }
+
+
+// Moved from wm.js //
+
+const openWatchLaterButtonEl = document.getElementById('openWatchLaterBtn');
+openWatchLaterButtonEl.addEventListener('click', watchLaterModalToggle);
+const closeWatchLaterEl = document.getElementById('closeWatchLater');
+closeWatchLaterEl.addEventListener('click', watchLaterModalToggle);
+
+// Watch Later Modal Section 
+// Function to open and close modal
+function watchLaterModalToggle(){
+  $(document).ready(function() {
+    $('#watchLaterWrapper').toggle();
+  });
+}
+
+watchLater = [];
+
+//Add to Watch Later Functionality
+  const watchLaterButtonEl = document.getElementById('watchLaterBtn');
+  watchLaterButtonEl.addEventListener('click', saveWatchLater);
+  const modalMovieTitleEl = document.getElementById("modalTitle");
+
+  // Adds new entry to local storage when the watch later button is clicked
+  function saveWatchLater(){
+    console.log("the watch later button el has been clicked");
+    watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
+    localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
+  }
+
+// Remove from Watch Later Functionality
+  function removeWatchLaterEntry(){
+  
+  }
+
+  const WatchLaterListEl = document.getElementById("watchLaterListWrapper");
+//Set Watch Later to be generated upon page loading //
+window.onload = function(){
+  WatchLaterListEl.innerHTML='';
+  var watchLaterData = JSON.parse(localStorage.getItem('MyWatchLaterList')) || []; // use empty array as default value if search history not found in local storage
+// Loop through the array
+console.log("is this working?????")
+console.log(watchLaterData.length);
+for (var i = 0; i < watchLaterData.length; i++) {
+    // Get the name of the current item
+    console.log("i");
+    var itemName = watchLaterData[i]
+    console.log(itemName);
+
+    // Create a new div element
+    var div = $('<div></div>').addClass('button').addClass('is-warning').attr('role','button');
+
+    div.on('click', function(){
+      // functions to allow searches
+      runFetch(itemName);
+      runFetch2(itemName);
+      modalToggle();
+      watchLaterModalToggle();
+    });
+  
+    // Set the content of the div to the item name
+    div.text(itemName);
+  
+    // Append the div to the document body or another parent element
+    $('#watchLaterListWrapper').append(div);
+  }
+}
+
+// Set watch later to be updated every time a new entry is added //
+function generateNewWatchLaterContent(){
+  WatchLaterListEl.innerHTML='';
+  var watchLaterData = JSON.parse(localStorage.getItem('MyWatchLaterList')) || []; // use empty array as default value if search history not found in local storage
+// Loop through the array
+for (var i = 0; i < watchLaterData.length; i++) {
+    // Get the name of the current item
+    var itemName = watchLaterData[i];
+
+    // Create a new div element
+    var div = $('<div></div>').addClass('button').addClass('is-warning').attr('role','button');
+
+    div.on('click', function(){
+      // functions to allow searches
+      runFetch(itemName);
+      runFetch2(itemName);
+      modalToggle();
+      watchLaterModalToggle();
+    });
+
+    // Set the content of the div to the item name
+    div.text(itemName);
+  
+    // Append the div to the document body or another parent element
+    $('#watchLaterListWrapper').append(div);
+  }
+}
+
+//Modal Section 
+    // Function to open and close modal.
+    function modalToggle(){
+      $(document).ready(function() {
+        $('#myModal').toggle();
+      });
+    }
+
+    const searchHistorySpace = document.getElementById('searchHistoryWrapper');
+    var searchInput = document.getElementById('searchField');
+    
+    let searchCounter = localStorage.getItem("searchCounter") || 1; // get current value of searchCounter from local storage, or initialize to 1 if not set
+    
+    // Initializing local storage on page load //
+    let currentSearchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+    
+    if (!currentSearchHistory) {
+      currentSearchHistory = [];
+      localStorage.setItem('searchHistory', JSON.stringify(currentSearchHistory));
+     } else {
+      createHistoryButtons();
+    }
+    
+    document.querySelector('#searchForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      let searchQuery = searchInput.value.trim();
+      let storedSearchHistory = localStorage.getItem('searchHistory');
+      let storedSearchHistoryArray = JSON.parse(storedSearchHistory);
+      storedSearchHistoryArray.push(searchQuery);
+      let updatedStoredSearchJSON = JSON.stringify(storedSearchHistoryArray);
+      localStorage.setItem('searchHistory', updatedStoredSearchJSON);
+      createHistoryButtons();
+    });
+    
+    // Off Canvas for search history buttons.
+    const searchHistoryEl = document.getElementById('historyBtn');
+    searchHistoryEl.addEventListener("click", openNav);
+    
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+      document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft= "0";
+      document.body.style.backgroundColor = "white";
+    }
+    
+    // Creating Search History Buttons //
+function createHistoryButtons(){
+  const searchHistorySpace = document.getElementById('searchHistoryWrapper'); // replace with ID of search history display element
+  searchHistorySpace.innerHTML=''; // use innerHTML instead of textContent to clear previous contents
+  const localStorageData = JSON.parse(localStorage.getItem('searchHistory')) || []; // use empty array as default value if search history not found in local storage
+
+  localStorageData.forEach(searchTerm => {
+    const button = document.createElement('button'); // create button element
+    button.classList.add('history-button'); // add class to button for styling
+    button.textContent = searchTerm;
+    button.addEventListener('click', () => {
+      TMDb_(searchTerm)
+        .then((movies) => {
+          // creating the wrapper for the movies
+          const wrapper = document.getElementById('movieCardWrapper');
+          // initializing movie card element as a empty string
+          var movieElmt = '';
+          console.log(movies);
+          // looping through the movie results
+          for (let i = 0; i < movies.length; i++) {
+            movieElmt += movieCard(movies[i]);
+          }
+          // setting the content inside the wrapper to display all the movies from the array with the templated string
+          wrapper.innerHTML = movieElmt;
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+    searchHistorySpace.appendChild(button);
+  })
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    //Clearing Search History
+    //const searchHistorySpace = document.getElementById('searchHistoryWrapper');
+    const clearHistoryEl = document.getElementById('clearHistoryBtn');
+    clearHistoryEl.addEventListener('click', clearSearchHistory);
+    function clearSearchHistory(){
+      localStorage.clear();
+      searchHistory=[];
+      searchHistorySpace.textContent='';
+      let currentSearchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+        if (!currentSearchHistory) {
+          currentSearchHistory = [];
+          localStorage.setItem('searchHistory', JSON.stringify(currentSearchHistory));
+        }
+    }
+    
+    var modalInfoSectionEl = document.getElementById("modalInfoTabContent");
+    var modalStreamingSectionEl = document.getElementById("modalStreamingTabContent");
+    
+    
+    //Toggle Modal Tabs
+    const modalInfoTabLink = document.querySelector('.modalInfoTabLink');
+    const modalStreamingTabLink = document.querySelector('.modalStreamingTabLink');
+    
+    // Add event listeners to the tab links
+    modalInfoTabLink.addEventListener('click', () => {
+      
+      // Toggle the is-active class on the tab links
+      modalInfoTabLink.parentElement.classList.add('is-active');
+      modalStreamingTabLink.parentElement.classList.remove('is-active');
+    });
+    
+    modalStreamingTabLink.addEventListener('click', () => {
+      
+      // Toggle the is-active class on the tab links
+      modalStreamingTabLink.parentElement.classList.add('is-active');
+      modalInfoTabLink.parentElement.classList.remove('is-active');
+    });
+    
+    
+    // Toggle Modal Content
+    function showTabContent(tabID){
+      var tabContents = document.querySelectorAll('.modal-card-body > div');
+     // Hide all the modal content divs except the one containing the tabs
+     tabContents.forEach(function(tabContent, index) {
+      console.log("the problem is here");
+      if (index > 2) {
+        tabContent.style.display = 'none';
+      }
+    });
+       // Show the selected tab content div
+       var selectedTabContent = document.getElementById(tabID);
+       selectedTabContent.style.display = 'block';
+     }
+    
