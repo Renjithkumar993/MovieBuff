@@ -2,18 +2,27 @@ const searchHistorySpace = document.getElementById('searchHistoryWrapper');
 var searchInput = document.getElementById('searchField');
 
 let searchCounter = localStorage.getItem("searchCounter") || 1; // get current value of searchCounter from local storage, or initialize to 1 if not set
-let searchHistory =[];
+
+// Initializing local storage on page load //
+let currentSearchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+
+if (!currentSearchHistory) {
+  currentSearchHistory = [];
+  localStorage.setItem('searchHistory', JSON.stringify(currentSearchHistory));
+ } else {
+  createHistoryButtons();
+}
 
 document.querySelector('#searchForm').addEventListener('submit', function(e){
   e.preventDefault();
-  console.log(searchInput.value.trim());
   let searchQuery = searchInput.value.trim();
-  searchCounter++; // increment counter variable for next search
-  searchHistory.push(searchQuery);
-  localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
-  createHistoryButtons(searchQuery);
+  let storedSearchHistory = localStorage.getItem('searchHistory');
+  let storedSearchHistoryArray = JSON.parse(storedSearchHistory);
+  storedSearchHistoryArray.push(searchQuery);
+  let updatedStoredSearchJSON = JSON.stringify(storedSearchHistoryArray);
+  localStorage.setItem('searchHistory', updatedStoredSearchJSON);
+  createHistoryButtons();
 });
-
 
 // Off Canvas for search history buttons.
 const searchHistoryEl = document.getElementById('historyBtn');
@@ -37,12 +46,13 @@ function createHistoryButtons(){
   searchHistorySpace.innerHTML=''; // use innerHTML instead of textContent to clear previous contents
   const localStorageData = JSON.parse(localStorage.getItem('searchHistory')) || []; // use empty array as default value if search history not found in local storage
 
-  localStorageData.forEach(searchTerm => {
-    const button = document.createElement('button'); // create button element
-    button.classList.add('history-button'); // add class to button for styling
+  localStorageData.forEach((searchTerm) => {
+    const button = document.createElement('button');
+    button.classList.add('history-button');
     button.textContent = searchTerm;
-    button.addEventListener('click', function() {
-      //performSearch(searchTerm); // replace with function that performs a search using the clicked search term
+    button.addEventListener('click', () => {
+      // perform search for the clicked search term
+      performSearch(searchTerm);
     });
     searchHistorySpace.appendChild(button);
   });
