@@ -213,17 +213,8 @@ fetch(nowPlayingUrl)
             var keys = trailers[0].key;
               var Urltogo = "https://www.youtube.com/embed/" + keys + "?feature=oembed&enablejsapi=1";
               ;
-
-
-              if (index === 0) {
-                var videoUrlrender = `<iframe class="responsive" width="560" height="315"  src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
-              } else {
-                var videoUrlrender = `<iframe class="responsive" width="560" height="315" src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`;
-              }
-
-           
-    
-              var figure = $("<figure>").addClass("column ");
+              var videoUrlrender = `<iframe class="responsive"  src="${Urltogo}" frameborder="0" allowfullscreen></iframe>`
+              var figure = $("<figure>").addClass("column is-flex is-justify-content-center");
               var iframe = $(videoUrlrender);    
               figure.append(iframe);
               $(".slidesImagesvideo").append(figure);
@@ -338,21 +329,21 @@ function newsRender(){
        var title = data.articles[i].title
         
         modalForNews +=
-        `<div class="box container newsboxes">
+        `<div class="box container newsboxes has-background-black has-text-primary ">
         <article class="media is-flex">
           <div class="media-left">
             <figure class="image is-128x128">
-              <img class="news image" src="${imageUrl} " alt="Image">
+              <img class="news image is-flex" src="${imageUrl} " alt="Image">
             </figure>
           </div>
-          <div class="media-content">
+          <div class="media-content ">
             <div class="content">
               <p>
-                <strong class="titlenews">${title}</strong>
+                <strong class="titlenews has-text-white">${title}</strong>
                 <br>
-                <strong class="newsauther">${author}</strong> <small class="newsauthersource"> ${source}</small>
+                <strong class="newsauther has-text-warning">${author}</strong> <small class="newsauthersource has-text-danger"> ${source}</small>
                 <br>
-              <p class="newsdescription is-flex">    ${description}   </p>
+              <p class="newsdescription ">    ${description}   </p>
              <a class="newslinktoURL" href="${siteUrl}" target="_blank" >Click to read more</a>
               </p>
             </div>

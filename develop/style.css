@@ -165,3 +165,19 @@ font-size: 50px;
 .text-color {
   color: #00d1b2;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+  border:#00d1b2 ;
+  border-style: dotted;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 0;
+  background: #070707;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background: hsl(171, 100%, 41%)
+}
