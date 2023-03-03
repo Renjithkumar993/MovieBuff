@@ -135,10 +135,19 @@ body {
   margin-left: 50px;
 }
 
+#closeButton{
+  position: absolute;
+  left: 0;
+  margin-left: 10px;
+}
+
+/*
 #body {
   transition: margin-left .5s;
   padding: 20px;
 }
+*/
+
 /* Slide-in stylings end */
 
 /* Accordion */
