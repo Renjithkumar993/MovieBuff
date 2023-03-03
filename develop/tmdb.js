@@ -49,11 +49,11 @@ function movieCard(movie) {
          <img src="${posterPath}" alt="Movie poster">
        </figure>
      </div>
-     <div class="card-content">
+     <div class="card-content p-1 mt-2">
        <div class="media">
          <div class="media-content">
            <p class="title is-4 is-size-7-mobile">${movieTitle}</p>
-           <p class="subtitle is-6">${movieReleaseDate}</p>
+           <p class="subtitle is-6 ">${movieReleaseDate}</p>
          </div>
        </div>
      </div>
