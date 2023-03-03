@@ -352,8 +352,10 @@ if(!watchLater) {
   function saveWatchLater() {
     console.log("the watch later button el has been clicked");
       if(!watchLater.includes(modalMovieTitleEl.textContent)) {
-        watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
-        localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
+        $(document).ready(function() {
+          watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
+          localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
+        });
       }
   }
 
