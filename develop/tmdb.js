@@ -100,7 +100,7 @@ function runFetch2(cardMovieTitle) {
   // Return a promise
   return new Promise(function (resolve, reject) {
     //Watchmode API key
-    const WMKey = "3J4pqlC0fGosW0vLQFW9ps0IMUFhI1gB0xcSPTor";
+    const WMKey = "FsLuIFnSyCV78DmZaaBgNkK3QZn1cprUHovPTxcW";
 
     // Search for the movie using the Watchmode API's search functionality
     fetch(
@@ -190,7 +190,7 @@ function runFetch(cardMovieTitle) {
   // Return a promise
   return new Promise(function (resolve, reject) {
     //Watchmode API key
-    const WMKey = "3J4pqlC0fGosW0vLQFW9ps0IMUFhI1gB0xcSPTor";
+    const WMKey = "FsLuIFnSyCV78DmZaaBgNkK3QZn1cprUHovPTxcW";
 
     // Search for the movie using the Watchmode API's search functionality
     fetch(
@@ -451,8 +451,14 @@ for (var i = 0; i < watchLaterData.length; i++) {
     document.querySelector('#searchForm').addEventListener('submit', function(e){
       e.preventDefault();
       let searchQuery = searchInput.value.trim();
+      if (searchQuery == "") {
+        return;
+      }
       let storedSearchHistory = localStorage.getItem('searchHistory');
       let storedSearchHistoryArray = JSON.parse(storedSearchHistory);
+      if (storedSearchHistory.includes(searchQuery)){
+        return;
+      }
       storedSearchHistoryArray.push(searchQuery);
       let updatedStoredSearchJSON = JSON.stringify(storedSearchHistoryArray);
       localStorage.setItem('searchHistory', updatedStoredSearchJSON);
@@ -484,6 +490,9 @@ function createHistoryButtons(){
   localStorageData.forEach(searchTerm => {
     const button = document.createElement('button'); // create button element
     button.classList.add('history-button'); // add class to button for styling
+    button.classList.add('button');
+    button.classList.add('is-light');
+    button.classList.add('is-small');
     button.textContent = searchTerm;
     button.addEventListener('click', () => {
       TMDb_(searchTerm)
