@@ -451,22 +451,26 @@ for (var i = 0; i < watchLaterData.length; i++) {
       createHistoryButtons();
     }
     
+    var searchFieldEl = document.getElementById('searchField');
+
     document.querySelector('#searchForm').addEventListener('submit', function(e){
       e.preventDefault();
       let searchQuery = searchInput.value.trim();
       if (searchQuery == "") {
+        clearSearchBar();
         return;
       }
       let storedSearchHistory = localStorage.getItem('searchHistory');
       let storedSearchHistoryArray = JSON.parse(storedSearchHistory);
       if (storedSearchHistory.includes(searchQuery)){
+        clearSearchBar();
         return;
       }
       storedSearchHistoryArray.push(searchQuery);
       let updatedStoredSearchJSON = JSON.stringify(storedSearchHistoryArray);
       localStorage.setItem('searchHistory', updatedStoredSearchJSON);
       createHistoryButtons();
-
+      clearSearchBar();
     });
     
     // Off Canvas for search history buttons.
@@ -531,28 +535,6 @@ function createHistoryButtons(){
   })
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
     //Clearing Search History
     //const searchHistorySpace = document.getElementById('searchHistoryWrapper');
@@ -607,4 +589,11 @@ function createHistoryButtons(){
        var selectedTabContent = document.getElementById(tabID);
        selectedTabContent.style.display = 'block';
      }
+    
+
+    function clearSearchBar (){
+      var searchQuery = $("#searchField").val();
+      // Your search logic here
+      $("#searchField").val(""); // This clears the input field
+    };
     
