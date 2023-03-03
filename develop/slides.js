@@ -196,6 +196,7 @@ fetch(nowPlayingUrl)
     .then(function(data) {
       var upcomingMovies = data.results;
 
+    
       upcomingMovies.forEach(function(movie , index) {
         var movieId = movie.id;
         var videoUrl = VideoMovieURL.replace('{movie_id}', movieId);
@@ -204,14 +205,14 @@ fetch(nowPlayingUrl)
             return response.json();
           })
           .then(function(data) {
+            var trailers = data.results.filter(function(trailer) {
+            return trailer.type === 'Trailer';
 
+          });
 
-    
-            var keys = data.results[0].key;
+            var keys = trailers[0].key;
               var Urltogo = "https://www.youtube.com/embed/" + keys + "?feature=oembed&enablejsapi=1";
               ;
-
-
 
 
               if (index === 0) {
@@ -277,20 +278,58 @@ fetch(nowPlayingUrl)
 
 
         var newsURL = `https://newsapi.org/v2/everything?q=movie&sortBy=popularity&apiKey=${newsKey}`
+        var linkspagination = $(".pagination-link");
+        console.log(linkspagination.length);
+
     
-      
+        var fornumber = 0;
+
+        var newsPerpage = 10 ;
+
+        linkspagination.on("click", function(){
+
+          var pageNumber = $(this).text();
+  
+          
+          if (pageNumber === "1"){
+            fornumber = 0;
+            newsPerpage = 10
+          
+          } else if(pageNumber === "2"){
+            fornumber = 10;
+            newsPerpage = 20;
+
+          }else if(pageNumber === "3"){
+            fornumber = 20;
+            newsPerpage = 30;
+           
+          }else if(pageNumber === "4"){
+            fornumber = 30;
+            newsPerpage = 40;
+
+          }else if(pageNumber === "5"){
+            fornumber = 40;
+            newsPerpage = 50;
+          }
+        
+  newsRender();
+         })
+  
+
+
+
+function newsRender(){
+
         fetch(newsURL)
         .then(function(response){
          return response.json();
         })
         .then(function(data){
 
-          console.log(data)
 
     
        var modalForNews =' ';
-
-       for(i=0; i < data.articles.length; i++){
+       for(i=fornumber; i < newsPerpage; i++){
         var author = data.articles[i].author;
         var description = data.articles[i].description;
         var source = data.articles[i].source.name;
@@ -299,8 +338,8 @@ fetch(nowPlayingUrl)
        var title = data.articles[i].title
         
         modalForNews +=
-        `<div class="box container">
-        <article class="media">
+        `<div class="box container newsboxes">
+        <article class="media is-flex">
           <div class="media-left">
             <figure class="image is-128x128">
               <img class="news image" src="${imageUrl} " alt="Image">
@@ -313,7 +352,7 @@ fetch(nowPlayingUrl)
                 <br>
                 <strong class="newsauther">${author}</strong> <small class="newsauthersource"> ${source}</small>
                 <br>
-              <p class="newsdescription">    ${description}   </p>
+              <p class="newsdescription is-flex">    ${description}   </p>
              <a class="newslinktoURL" href="${siteUrl}" target="_blank" >Click to read more</a>
               </p>
             </div>
@@ -325,9 +364,10 @@ fetch(nowPlayingUrl)
 
        $("#newsmodalwrapper").html(modalForNews);
 
+
         })
-
-
+      }
+      newsRender();
         
 
         $("#searchBtn").on("click", function(){
