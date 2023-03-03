@@ -471,10 +471,27 @@ for (var i = 0; i < watchLaterData.length; i++) {
     const searchHistoryEl = document.getElementById('historyBtn');
     searchHistoryEl.addEventListener("click", openNav);
     
+    function closeNav() {
+      var sideNavEl = document.getElementById("mySidenav");
+      sideNavEl.style.width = "0";
+      document.getElementById("main").style.marginLeft= "0";
+      document.body.style.backgroundColor = "white";
+    }
+    
     function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
+      var sideNavEl = document.getElementById("mySidenav");
+      sideNavEl.style.width = "250px";
       document.getElementById("main").style.marginLeft = "250px";
       document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+    
+      var clickListener = function(event){
+        const targetElement = event.target;
+        if (!sideNavEl.contains(targetElement)){
+          closeNav();
+          document.removeEventListener('click', clickListener);
+        }
+      };
+      document.addEventListener('click', clickListener); 
     }
     
     function closeNav() {
@@ -482,6 +499,15 @@ for (var i = 0; i < watchLaterData.length; i++) {
       document.getElementById("main").style.marginLeft= "0";
       document.body.style.backgroundColor = "white";
     }
+
+
+
+
+
+
+
+
+
     
     // Creating Search History Buttons //
 function createHistoryButtons(){
