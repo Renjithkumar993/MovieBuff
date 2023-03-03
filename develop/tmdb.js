@@ -466,6 +466,7 @@ for (var i = 0; i < watchLaterData.length; i++) {
       let updatedStoredSearchJSON = JSON.stringify(storedSearchHistoryArray);
       localStorage.setItem('searchHistory', updatedStoredSearchJSON);
       createHistoryButtons();
+
     });
     
     // Off Canvas for search history buttons.
@@ -493,12 +494,6 @@ for (var i = 0; i < watchLaterData.length; i++) {
       $(".searchresultheading").show();
      
     })
-
-
-
-
-
-
     
     // Creating Search History Buttons //
 function createHistoryButtons(){
