@@ -493,7 +493,7 @@ function createHistoryButtons(){
     const button = document.createElement('button'); // create button element
     button.classList.add('history-button'); // add class to button for styling
     button.classList.add('button');
-    button.classList.add('is-light');
+    button.classList.add('is-black');
     button.classList.add('is-small');
     button.textContent = searchTerm;
     button.addEventListener('click', () => {
