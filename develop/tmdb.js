@@ -375,7 +375,7 @@ for (var i = 0; i < watchLaterData.length; i++) {
     console.log(itemName);
 
     // Create a new div element
-    var div = $('<div></div>').addClass('button is-black mr-2').attr('role','button');
+    var div = $('<div></div>').addClass('button is-normal is-responsive is-outlined is-dark has-text-primary mr-2').attr('role','button');
 
     div.on('click', function(){
       // functions to allow searches
