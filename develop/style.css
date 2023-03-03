@@ -8,6 +8,14 @@
   max-width: 275px;
 }
 
+#noBullets{
+  list-style-type: none;
+}
+
+#modalTitleItem{
+  margin-top: 5px;
+}
+
 /* Watch Later Modal */
 .modal-content {
   position:fixed;
@@ -20,6 +28,10 @@
   padding: 20px;
   box-shadow: 0, 5px, 30px rgba(0,0,0,.30);
   background-color: #f1f1f1;
+}
+
+#myModalCardBody{
+  background-color: #444;
 }
 
 /* Card hover effects */
@@ -36,6 +48,7 @@
 
     width: 100%;
   }
+
 /* Card hover effects end */
 
 /* Accordion */

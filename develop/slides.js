@@ -422,7 +422,6 @@ function newsRender(){
                 //Initializing Elements
                 var runtimeEl = data.runtime_minutes;
                 var filmTitleEl = data.title;
-                var genreEl = data.genre_name;
                 var userRatingEl = data.user_rating;
                 var criticScoreEl = data.critic_score;
                 var usRatingEl = data.us_rating;
@@ -431,39 +430,41 @@ function newsRender(){
                 var plotOverviewEl = data.plot_overview;
         
                 infoElmt += /*html*/ `<div>
-                      <div class = "modalInfoBodyContent">
-                        <div class = "media-content">
-                          <div class="card-image">
-                            <figure class="image is-4by3">
-                              <img src="${backdropEl}" alt="Movie backdrop">
-                            </figure>
-                          </div>
-                          <div class = "content">
-                            <h2><strong>${filmTitleEl}</strong></h2>
-                              <ul>
-                              <li> Film Runtime: ${runtimeEl} minutes</li>
-                              <li> Title Genre: ${genreEl}</li>
-                              <li> MPA Film Rating: ${usRatingEl}</li>
-                              </ul>
-                          </div>
-        
-                          <div class="content">
-                            ${plotOverviewEl}
-                          </div>
-        
-                          <div class="media-content">
-                            <p class="title is-4">Scores:</p>
-                            <p class="subtitle is-6">Viewer rating: ${userRatingEl}</p>
-                            <p class="subtitle is-6">Critic Rating ${criticScoreEl}</p>
-                          </div>
-        
-                          <div>
-                          <a href ="${trailerEl}" class="button is-danger is-rounded">View the Trailer</a>
-                          </div>
-        
-                        </div>
-                      </div>
-                    </div>`;
+              <div class = "modalInfoBodyContent">
+                <div class = "media-content">
+                  <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img src="${backdropEl}" alt="Movie backdrop">
+                    </figure>
+                  </div>
+                  <div class = "content">
+                    <h2 class="has-text-weight-bold" id="modalTitleItem"><strong>${filmTitleEl}</strong></h2>
+                      <ul id="noBullets" class="has-text-weight-semibold">
+                      <li> Runtime: ${runtimeEl} minutes</li>
+                      <li> Age Rating: ${usRatingEl}</li>
+                      </ul>
+                  </div>
+
+                  <div class="content has-text-weight-semibold">
+                    ${plotOverviewEl}
+                  </div>
+
+                  <div class="media-content">
+                    <p class="title is-4">Revew Scores:</p>
+                    <ul id="noBullets" class="subtitle is-6 has-text-weight-semibold">
+                      <li>Viewer rating: <strong>${userRatingEl}</strong></li>
+                      <li>Critic Rating: <strong>${criticScoreEl}</strong></li>
+                      </ul>
+                  </div>
+
+                  <div>
+                  <br>
+                  <a href ="${trailerEl}" class="button is-primary">View the Trailer</a>
+                  </div>
+                  <br>
+                </div>
+              </div>
+            </div>`;
                 //$('movieInfoWrapper').html(infoElmt);
                 movieInfoWrapperEl.innerHTML = infoElmt;
               });

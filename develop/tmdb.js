@@ -100,7 +100,7 @@ var modalTitleEl = document.getElementById("modalTitle");
 // 1. Function that fetches the Watchmode API data for streaming services //
 function runFetch2(cardMovieTitle) {
   // Return a promise
-  return new Promise(function (resolve, reject) {
+  return new Promise(function (resolve, reject) { // Test to see if this is necessary anymore //
     //Watchmode API key
     const WMKey = "FsLuIFnSyCV78DmZaaBgNkK3QZn1cprUHovPTxcW";
 
@@ -118,6 +118,7 @@ function runFetch2(cardMovieTitle) {
         if (data.title_results && data.title_results[0]) {
           // Extract the Watchmode ID for the first search result
           watchmodeId = data.title_results[0].id;
+          console.log(watchmodeId);
           // Retrieve the streaming information for the movie using the Watchmode ID
           return fetch(
             `https://api.watchmode.com/v1/title/${watchmodeId}/details/?apiKey=${WMKey}`
@@ -132,14 +133,13 @@ function runFetch2(cardMovieTitle) {
       })
       .then(function (data) {
         // Extract the movie information
-        setModalTitle(cardMovieTitle); // This pops in a little slow... I wonder if there is another way to make it work better?
+        //setModalTitle(cardMovieTitle); // This pops in a little slow... I wonder if there is another way to make it work better?
         const movieInfoWrapperEl = document.getElementById("movieInfoWrapper");
         var infoElmt = "";
 
         //Initializing Elements
         var runtimeEl = data.runtime_minutes;
         var filmTitleEl = data.title;
-        var genreEl = data.genre_name;
         var userRatingEl = data.user_rating;
         var criticScoreEl = data.critic_score;
         var usRatingEl = data.us_rating;
@@ -156,28 +156,30 @@ function runFetch2(cardMovieTitle) {
                     </figure>
                   </div>
                   <div class = "content">
-                    <h2><strong>${filmTitleEl}</strong></h2>
-                      <ul>
-                      <li> Film Runtime: ${runtimeEl} minutes</li>
-                      <li> Title Genre: ${genreEl}</li>
-                      <li> MPA Film Rating: ${usRatingEl}</li>
+                    <h2 class="has-text-weight-bold" id="modalTitleItem"><strong>${filmTitleEl}</strong></h2>
+                      <ul id="noBullets" class="has-text-weight-semibold">
+                      <li> Runtime: ${runtimeEl} minutes</li>
+                      <li> Age Rating: ${usRatingEl}</li>
                       </ul>
                   </div>
 
-                  <div class="content">
+                  <div class="content has-text-weight-semibold">
                     ${plotOverviewEl}
                   </div>
 
                   <div class="media-content">
-                    <p class="title is-4">Scores:</p>
-                    <p class="subtitle is-6">Viewer rating: ${userRatingEl}</p>
-                    <p class="subtitle is-6">Critic Rating ${criticScoreEl}</p>
+                    <p class="title is-4">Revew Scores:</p>
+                    <ul id="noBullets" class="subtitle is-6 has-text-weight-semibold">
+                      <li>Viewer rating: <strong>${userRatingEl}</strong></li>
+                      <li>Critic Rating: <strong>${criticScoreEl}</strong></li>
+                      </ul>
                   </div>
 
                   <div>
-                  <a href ="${trailerEl}" class="button is-danger is-rounded">View the Trailer</a>
+                  <br>
+                  <a href ="${trailerEl}" class="button is-primary">View the Trailer</a>
                   </div>
-
+                  <br>
                 </div>
               </div>
             </div>`;
@@ -484,8 +486,14 @@ for (var i = 0; i < watchLaterData.length; i++) {
       document.body.style.backgroundColor = "white";
     }
 
+    // Hide trending and currently on air //
+    $(".history-button").on("click", function(){
+         
+      $(".hidewhensearch").hide();
 
-
+      $(".searchresultheading").show();
+     
+    })
 
 
 
