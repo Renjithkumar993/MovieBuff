@@ -337,7 +337,11 @@ function watchLaterModalToggle(){
   });
 }
 
-watchLater = [];
+var watchLater = JSON.parse(localStorage.getItem('MyWatchLaterList'));
+
+if(!watchLater) {
+  watchLater = [];
+}
 
 //Add to Watch Later Functionality
   const watchLaterButtonEl = document.getElementById('watchLaterBtn');
@@ -345,10 +349,14 @@ watchLater = [];
   const modalMovieTitleEl = document.getElementById("modalTitle");
 
   // Adds new entry to local storage when the watch later button is clicked
-  function saveWatchLater(){
-    console.log("the watch later button el has been clicked");
-    watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
-    localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
+  function saveWatchLater() {
+    //save to watch later after page load
+      if(!watchLater.includes(modalMovieTitleEl.textContent)) {
+        $(document).ready(function() {
+          watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
+          localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
+        });
+      }
   }
 
 // Remove from Watch Later Functionality
@@ -371,7 +379,7 @@ for (var i = 0; i < watchLaterData.length; i++) {
     console.log(itemName);
 
     // Create a new div element
-    var div = $('<div></div>').addClass('button').addClass('is-warning').attr('role','button');
+    var div = $('<div></div>').addClass('button is-normal is-responsive is-outlined is-dark has-text-primary mr-2').attr('role','button');
 
     div.on('click', function(){
       // functions to allow searches
