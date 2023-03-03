@@ -351,8 +351,10 @@ if(!watchLater) {
   // Adds new entry to local storage when the watch later button is clicked
   function saveWatchLater() {
     console.log("the watch later button el has been clicked");
-    watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
-    localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
+      if(!watchLater.includes(modalMovieTitleEl.textContent)) {
+        watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
+        localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
+      }
   }
 
 // Remove from Watch Later Functionality
