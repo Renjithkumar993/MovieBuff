@@ -350,7 +350,7 @@ if(!watchLater) {
 
   // Adds new entry to local storage when the watch later button is clicked
   function saveWatchLater() {
-    console.log("the watch later button el has been clicked");
+    //save to watch later after page load
       if(!watchLater.includes(modalMovieTitleEl.textContent)) {
         $(document).ready(function() {
           watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
