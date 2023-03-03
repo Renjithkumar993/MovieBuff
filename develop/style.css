@@ -111,10 +111,16 @@ body {
 
 #mySidenav {
   display: flex;
+  flex-wrap: wrap;
   /* justify-content: center; */
   align-items: center;
   flex-direction: column;
   margin-top: 10px;
+}
+
+#clearHistoryBtn{
+  background-color: rgb(24, 221, 155);
+  margin-top: 5px;
 }
 
 .sidenav a:hover {
@@ -127,6 +133,11 @@ body {
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+}
+
+#body {
+  transition: margin-left .5s;
+  padding: 20px;
 }
 /* Slide-in stylings end */
 
