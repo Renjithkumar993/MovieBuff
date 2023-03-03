@@ -8,8 +8,30 @@
   max-width: 275px;
 }
 
+#logo:hover{
+  cursor: pointer;
+}
+
+
 #noBullets{
   list-style-type: none;
+  color: #00d1b2;
+}
+
+#vwrRtng{
+  color: #00d1b2;
+}
+
+#critRtng{
+  color: #00d1b2;
+}
+
+#modalInfoTab{
+  color: #00d1b2;
+}
+
+#modalStreamingTab{
+  color: #00d1b2;
 }
 
 #modalTitleItem{
@@ -32,6 +54,18 @@
 
 #myModalCardBody{
   background-color: #444;
+}
+
+#myModal{
+  color: #00d1b2;
+}
+
+#titleColour{
+  color: #00d1b2;
+}
+
+#filmTitonModal{
+  color: #00d1b2;
 }
 
 /* Card hover effects */

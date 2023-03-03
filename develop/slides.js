@@ -6,12 +6,14 @@ let nowPlayingUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${IM
 var onAirUrl = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${IMBDKey}&language=en-US`
 var videoURL = `GET https://api.themoviedb.org/3/movie/upcoming?api_key=${IMBDKey}`
 
+// Added by Jared - Refresh page on logo click //
+
+document.getElementById('logo').addEventListener('click', function() {
+  location.reload();
+});
+
+
    $(".searchresultheading").hide();
-
-
-
-
-
 
 var posterImage = "";
 
@@ -438,7 +440,7 @@ function newsRender(){
                     </figure>
                   </div>
                   <div class = "content">
-                    <h2 class="has-text-weight-bold" id="modalTitleItem"><strong>${filmTitleEl}</strong></h2>
+                    <h2 class="has-text-weight-bold" id="modalTitleItem"><strong id = "filmTitonModal">${filmTitleEl}</strong></h2>
                       <ul id="noBullets" class="has-text-weight-semibold">
                       <li> Runtime: ${runtimeEl} minutes</li>
                       <li> Age Rating: ${usRatingEl}</li>
@@ -450,10 +452,10 @@ function newsRender(){
                   </div>
 
                   <div class="media-content">
-                    <p class="title is-4">Revew Scores:</p>
+                    <p id="titleColour" class="title is-4">Revew Scores:</p>
                     <ul id="noBullets" class="subtitle is-6 has-text-weight-semibold">
-                      <li>Viewer rating: <strong>${userRatingEl}</strong></li>
-                      <li>Critic Rating: <strong>${criticScoreEl}</strong></li>
+                      <li>Viewer rating: <strong id="vwrRtng">${userRatingEl}</strong></li>
+                      <li>Critic Rating: <strong id="critRtng">${criticScoreEl}</strong></li>
                       </ul>
                   </div>
 
