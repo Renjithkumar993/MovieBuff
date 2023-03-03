@@ -42,7 +42,7 @@ function movieCard(movie) {
   var movieReleaseDate = movie.release_date;
 
   // templated string to display all the movies from the array
-  return /*html*/ `<div class="column is-one-quarter">
+  return /*html*/ `<div class="  column is-4-mobile is-one-quarter">
    <div class="card">
      <div class="card-image">
        <figure class="image is-4by3">
@@ -52,14 +52,16 @@ function movieCard(movie) {
      <div class="card-content">
        <div class="media">
          <div class="media-content">
-           <p class="title is-4">${movieTitle}</p>
+           <p class="title is-4 is-size-7-mobile">${movieTitle}</p>
            <p class="subtitle is-6">${movieReleaseDate}</p>
          </div>
        </div>
      </div>
    </div>
  </div>`;
+ 
 }
+
 
 function setModalTitle(cardMovieTitle) {
   modalTitleEl.textContent = cardMovieTitle;
