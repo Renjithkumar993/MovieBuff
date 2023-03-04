@@ -1,6 +1,26 @@
-# group3Project
+# Movie Buff
 
-An application designed for lovers of film who want to learn more about their favourite movies and where they can watch them. Powered by the TMDB api and Watchmode api, with styling from Bulma.
+## Description
+
+This application is designed for lovers of film who want to learn more about their favourite movies and where they can watch them. Powered by the TMDB API, Watchmode API, IMDB API, News API
+
+
+and featuring styling from the Bulma CSS framework.
+
+The deployed application may be accessed [here]().
+
+## Screenshots
+
+## Installation
+
+## Usage
+
+## Credits
+
+## License 
+
+Please referto the LICENSE in the repo.
+
 
 ## User Stories
 

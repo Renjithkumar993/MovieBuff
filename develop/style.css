@@ -52,6 +52,10 @@
   background-color: #f1f1f1;
 }
 
+.modal-card{
+  padding-top: 3%;
+}
+
 #myModalCardBody{
   background-color: black;
 }
