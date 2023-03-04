@@ -38,6 +38,10 @@
   margin-top: 5px;
 }
 
+#streamPanels{
+  border-radius: 0px;
+}
+
 /* Watch Later Modal */
 .modal-content {
   position:fixed;

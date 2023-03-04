@@ -61,7 +61,6 @@ function movieCard(movie) {
  </div>`;
 }
 
-
 function setModalTitle(cardMovieTitle) {
   modalTitleEl.textContent = cardMovieTitle;
 }
@@ -95,11 +94,10 @@ document
 var modalTitleEl = document.getElementById("modalTitle");
 
 // API Calls to get more information //
-
 // 1. Function that fetches the Watchmode API data for streaming services //
 function runFetch2(cardMovieTitle) {
   // Return a promise
-  return new Promise(function (resolve, reject) { // Test to see if this is necessary anymore //
+  return new Promise(function (resolve, reject) {
     //Watchmode API key
     const WMKey = "FsLuIFnSyCV78DmZaaBgNkK3QZn1cprUHovPTxcW";
 
@@ -117,7 +115,7 @@ function runFetch2(cardMovieTitle) {
         if (data.title_results && data.title_results[0]) {
           // Extract the Watchmode ID for the first search result
           watchmodeId = data.title_results[0].id;
-          console.log(watchmodeId);
+          
           // Retrieve the streaming information for the movie using the Watchmode ID
           return fetch(
             `https://api.watchmode.com/v1/title/${watchmodeId}/details/?apiKey=${WMKey}`
@@ -132,7 +130,6 @@ function runFetch2(cardMovieTitle) {
       })
       .then(function (data) {
         // Extract the movie information
-        //setModalTitle(cardMovieTitle); // This pops in a little slow... I wonder if there is another way to make it work better?
         const movieInfoWrapperEl = document.getElementById("movieInfoWrapper");
         var infoElmt = "";
 
@@ -157,8 +154,8 @@ function runFetch2(cardMovieTitle) {
                   <div class = "content">
                     <h2 class="has-text-weight-bold" id="modalTitleItem"><strong id = "filmTitonModal">${filmTitleEl}</strong></h2>
                       <ul id="noBullets" class="has-text-weight-semibold">
-                      <li> Runtime: ${runtimeEl} minutes</li>
-                      <li> Age Rating: ${usRatingEl}</li>
+                        <li> Runtime: ${runtimeEl} minutes</li>
+                        <li> Age Rating: ${usRatingEl}</li>
                       </ul>
                   </div>
 
@@ -171,18 +168,17 @@ function runFetch2(cardMovieTitle) {
                     <ul id="noBullets" class="subtitle is-6 has-text-weight-semibold">
                       <li>Viewer rating: <strong id="vwrRtng">${userRatingEl}</strong></li>
                       <li>Critic Rating: <strong id="critRtng">${criticScoreEl}</strong></li>
-                      </ul>
+                    </ul>
                   </div>
 
                   <div>
-                  <br>
+                    <br>
                   <a href ="${trailerEl}" class="button is-primary">View the Trailer</a>
                   </div>
-                  <br>
+                    <br>
                 </div>
               </div>
             </div>`;
-        //$('movieInfoWrapper').html(infoElmt);
         movieInfoWrapperEl.innerHTML = infoElmt;
       });
   });
@@ -223,18 +219,14 @@ function runFetch(cardMovieTitle) {
       })
       .then(function (data) {
         // Extract the streaming services from the streaming information
+        // Remove duplicate results.
         const newArray = data.reduce((accumulator, current) => {
-          if (
-            !accumulator.some(
-              (obj) =>
-                obj.source_id === current.source_id && obj.name === current.name
-            )
+          if (!accumulator.some((obj) =>obj.source_id === current.source_id && obj.name === current.name)
           ) {
             accumulator.push(current);
           }
           return accumulator;
         }, []);
-        // Remove duplicate results.
         // Resolve the promise with the data
         resolve(newArray);
         //Initialize wrapper as an empty string
@@ -257,7 +249,7 @@ function runFetch(cardMovieTitle) {
 
           streamingElmt += `<div>
               <button class = "accordion">${streamingServiceName}</button>
-              <div class = "panel">
+              <div id="streamPanels" class = "panel">
                 <div>
                   <ul>
                     <li>Accesible by ${accessType}</li>
@@ -288,7 +280,7 @@ function runFetch(cardMovieTitle) {
   });
 }
 
-//Modal Section
+//Modal Section //
 // Function to open and close modal.
 function modalToggle() {
   $(document).ready(function () {
@@ -324,15 +316,12 @@ function setAccordionLogic() {
   }
 }
 
-
-// Moved from wm.js //
-
+// Watch Later Section //
 const openWatchLaterButtonEl = document.getElementById('openWatchLaterBtn');
 openWatchLaterButtonEl.addEventListener('click', watchLaterModalToggle);
 const closeWatchLaterEl = document.getElementById('closeWatchLater');
 closeWatchLaterEl.addEventListener('click', watchLaterModalToggle);
 
-// Watch Later Modal Section 
 // Function to open and close modal
 function watchLaterModalToggle(){
   $(document).ready(function() {
@@ -347,39 +336,36 @@ if(!watchLater) {
 }
 
 //Add to Watch Later Functionality
-  const watchLaterButtonEl = document.getElementById('watchLaterBtn');
-  watchLaterButtonEl.addEventListener('click', saveWatchLater);
-  const modalMovieTitleEl = document.getElementById("modalTitle");
+const watchLaterButtonEl = document.getElementById('watchLaterBtn');
+watchLaterButtonEl.addEventListener('click', saveWatchLater);
+const modalMovieTitleEl = document.getElementById("modalTitle");
 
-  // Adds new entry to local storage when the watch later button is clicked
-  function saveWatchLater() {
-    //save to watch later after page load
-      if(!watchLater.includes(modalMovieTitleEl.textContent)) {
-        $(document).ready(function() {
-          watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
-          localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
-        });
-      }
-  }
+// Adds new entry to local storage when the watch later button is clicked
+function saveWatchLater() {
+  //save to watch later after page load
+    if(!watchLater.includes(modalMovieTitleEl.textContent)) {
+      $(document).ready(function() {
+        watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
+        localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
+      });
+    }
+}
 
 // Remove from Watch Later Functionality
-  function removeWatchLaterEntry(){
-  
-  }
+function removeWatchLaterEntry(){
+}
 
-  const WatchLaterListEl = document.getElementById("watchLaterListWrapper");
+const WatchLaterListEl = document.getElementById("watchLaterListWrapper");
 //Set Watch Later to be generated upon page loading //
 window.onload = function(){
   WatchLaterListEl.innerHTML='';
   var watchLaterData = JSON.parse(localStorage.getItem('MyWatchLaterList')) || []; // use empty array as default value if search history not found in local storage
-// Loop through the array
-console.log("is this working?????")
-console.log(watchLaterData.length);
-for (var i = 0; i < watchLaterData.length; i++) {
-    // Get the name of the current item
-    console.log("i");
-    var itemName = watchLaterData[i]
-    console.log(itemName);
+  // Loop through the array
+  for (var i = 0; i < watchLaterData.length; i++) {
+      // Get the name of the current item
+      console.log("i");
+      var itemName = watchLaterData[i]
+      console.log(itemName);
 
     // Create a new div element
     var div = $('<div></div>').addClass('button is-normal is-responsive is-outlined is-dark has-text-primary mr-2').attr('role','button');
@@ -404,13 +390,13 @@ for (var i = 0; i < watchLaterData.length; i++) {
 function generateNewWatchLaterContent(){
   WatchLaterListEl.innerHTML='';
   var watchLaterData = JSON.parse(localStorage.getItem('MyWatchLaterList')) || []; // use empty array as default value if search history not found in local storage
-// Loop through the array
-for (var i = 0; i < watchLaterData.length; i++) {
-    // Get the name of the current item
-    var itemName = watchLaterData[i];
+  // Loop through the array
+  for (var i = 0; i < watchLaterData.length; i++) {
+      // Get the name of the current item
+      var itemName = watchLaterData[i];
 
-    // Create a new div element
-    var div = $('<div></div>').addClass('button').addClass('is-warning').attr('role','button');
+      // Create a new div element
+      var div = $('<div></div>').addClass('button').addClass('is-warning').attr('role','button');
 
     div.on('click', function(){
       // functions to allow searches
@@ -422,84 +408,81 @@ for (var i = 0; i < watchLaterData.length; i++) {
 
     // Set the content of the div to the item name
     div.text(itemName);
-  
+    
     // Append the div to the document body or another parent element
     $('#watchLaterListWrapper').append(div);
   }
 }
 
 //Modal Section 
-    // Function to open and close modal.
-    function modalToggle(){
-      $(document).ready(function() {
-        $('#myModal').toggle();
-      });
-    }
+// Function to open and close modal.
+function modalToggle(){
+  $(document).ready(function() {
+    $('#myModal').toggle();
+  });
+}
 
-    const searchHistorySpace = document.getElementById('searchHistoryWrapper');
-    var searchInput = document.getElementById('searchField');
-    
-    let searchCounter = localStorage.getItem("searchCounter") || 1; // get current value of searchCounter from local storage, or initialize to 1 if not set
-    
-    // Initializing local storage on page load //
-    let currentSearchHistory = JSON.parse(localStorage.getItem('searchHistory'));
-    
-    if (!currentSearchHistory) {
-      currentSearchHistory = [];
-      localStorage.setItem('searchHistory', JSON.stringify(currentSearchHistory));
-     } else {
-      createHistoryButtons();
-    }
-    
-    var searchFieldEl = document.getElementById('searchField');
+const searchHistorySpace = document.getElementById('searchHistoryWrapper');
+var searchInput = document.getElementById('searchField');
 
-    document.querySelector('#searchForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      let searchQuery = searchInput.value.trim();
-      if (searchQuery == "") {
-        clearSearchBar();
-        return;
-      }
-      let storedSearchHistory = localStorage.getItem('searchHistory');
-      let storedSearchHistoryArray = JSON.parse(storedSearchHistory);
-      if (storedSearchHistory.includes(searchQuery)){
-        clearSearchBar();
-        return;
-      }
-      storedSearchHistoryArray.push(searchQuery);
-      let updatedStoredSearchJSON = JSON.stringify(storedSearchHistoryArray);
-      localStorage.setItem('searchHistory', updatedStoredSearchJSON);
-      createHistoryButtons();
-      clearSearchBar();
-    });
-    
-    // Off Canvas for search history buttons.
-    const searchHistoryEl = document.getElementById('historyBtn');
-    searchHistoryEl.addEventListener("click", openNav);
-    
-    function openNav() {
-      var sideNavEl = document.getElementById("mySidenav");
-      sideNavEl.style.width = "250px";
-      document.getElementById("main").style.marginLeft = "250px";
-      document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-    }
-    
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-      document.getElementById("main").style.marginLeft= "0";
-      document.body.style.backgroundColor = "white";
-    }
+let searchCounter = localStorage.getItem("searchCounter") || 1; // get current value of searchCounter from local storage, or initialize to 1 if not set
 
-    // Hide trending and currently on air //
-    $(".history-button").on("click", function(){
-         
-      $(".hidewhensearch").hide();
+// Initializing local storage on page load //
+let currentSearchHistory = JSON.parse(localStorage.getItem('searchHistory'));
 
-      $(".searchresultheading").show();
-     
-    })
+if (!currentSearchHistory) {
+  currentSearchHistory = [];
+  localStorage.setItem('searchHistory', JSON.stringify(currentSearchHistory));
+  } else {
+  createHistoryButtons();
+}
     
-    // Creating Search History Buttons //
+var searchFieldEl = document.getElementById('searchField');
+
+document.querySelector('#searchForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  let searchQuery = searchInput.value.trim();
+  if (searchQuery == "") {
+    clearSearchBar();
+    return;
+  }
+  let storedSearchHistory = localStorage.getItem('searchHistory');
+  let storedSearchHistoryArray = JSON.parse(storedSearchHistory);
+  if (storedSearchHistory.includes(searchQuery)){
+    clearSearchBar();
+    return;
+  }
+  storedSearchHistoryArray.push(searchQuery);
+  let updatedStoredSearchJSON = JSON.stringify(storedSearchHistoryArray);
+  localStorage.setItem('searchHistory', updatedStoredSearchJSON);
+  createHistoryButtons();
+  clearSearchBar();
+});
+    
+// Off Canvas for search history buttons.
+const searchHistoryEl = document.getElementById('historyBtn');
+searchHistoryEl.addEventListener("click", openNav);
+
+function openNav() {
+  var sideNavEl = document.getElementById("mySidenav");
+  sideNavEl.style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+  document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+  document.body.style.backgroundColor = "white";
+}
+
+// Hide trending and currently on air //
+$(".history-button").on("click", function(){
+  $(".hidewhensearch").hide();
+  $(".searchresultheading").show();
+})
+    
+// Creating Search History Buttons //
 function createHistoryButtons(){
   const searchHistorySpace = document.getElementById('searchHistoryWrapper'); // replace with ID of search history display element
   searchHistorySpace.innerHTML=''; // use innerHTML instead of textContent to clear previous contents
@@ -536,65 +519,65 @@ function createHistoryButtons(){
 };
 
     
-    //Clearing Search History
-    //const searchHistorySpace = document.getElementById('searchHistoryWrapper');
-    const clearHistoryEl = document.getElementById('clearHistoryBtn');
-    clearHistoryEl.addEventListener('click', clearSearchHistory);
-    function clearSearchHistory(){
-      //localStorage.clear();
-      localStorage.removeItem('searchHistory');
-      searchHistory=[];
-      searchHistorySpace.textContent='';
-      let currentSearchHistory = JSON.parse(localStorage.getItem('searchHistory'));
-        if (!currentSearchHistory) {
-          currentSearchHistory = [];
-          localStorage.setItem('searchHistory', JSON.stringify(currentSearchHistory));
-        }
+//Clearing Search History
+//const searchHistorySpace = document.getElementById('searchHistoryWrapper');
+const clearHistoryEl = document.getElementById('clearHistoryBtn');
+clearHistoryEl.addEventListener('click', clearSearchHistory);
+function clearSearchHistory(){
+  //localStorage.clear();
+  localStorage.removeItem('searchHistory');
+  searchHistory=[];
+  searchHistorySpace.textContent='';
+  let currentSearchHistory = JSON.parse(localStorage.getItem('searchHistory'));
+    if (!currentSearchHistory) {
+      currentSearchHistory = [];
+      localStorage.setItem('searchHistory', JSON.stringify(currentSearchHistory));
     }
+  }
     
-    var modalInfoSectionEl = document.getElementById("modalInfoTabContent");
-    var modalStreamingSectionEl = document.getElementById("modalStreamingTabContent");
+var modalInfoSectionEl = document.getElementById("modalInfoTabContent");
+var modalStreamingSectionEl = document.getElementById("modalStreamingTabContent");
+
+    
+//Toggle Modal Tabs
+const modalInfoTabLink = document.querySelector('.modalInfoTabLink');
+const modalStreamingTabLink = document.querySelector('.modalStreamingTabLink');
+
+// Add event listeners to the tab links
+modalInfoTabLink.addEventListener('click', () => {
+  
+  // Toggle the is-active class on the tab links
+  modalInfoTabLink.parentElement.classList.add('is-active');
+  modalStreamingTabLink.parentElement.classList.remove('is-active');
+});
+
+modalStreamingTabLink.addEventListener('click', () => {
+  
+  // Toggle the is-active class on the tab links
+  modalStreamingTabLink.parentElement.classList.add('is-active');
+  modalInfoTabLink.parentElement.classList.remove('is-active');
+});
     
     
-    //Toggle Modal Tabs
-    const modalInfoTabLink = document.querySelector('.modalInfoTabLink');
-    const modalStreamingTabLink = document.querySelector('.modalStreamingTabLink');
-    
-    // Add event listeners to the tab links
-    modalInfoTabLink.addEventListener('click', () => {
-      
-      // Toggle the is-active class on the tab links
-      modalInfoTabLink.parentElement.classList.add('is-active');
-      modalStreamingTabLink.parentElement.classList.remove('is-active');
-    });
-    
-    modalStreamingTabLink.addEventListener('click', () => {
-      
-      // Toggle the is-active class on the tab links
-      modalStreamingTabLink.parentElement.classList.add('is-active');
-      modalInfoTabLink.parentElement.classList.remove('is-active');
-    });
-    
-    
-    // Toggle Modal Content
-    function showTabContent(tabID){
-      var tabContents = document.querySelectorAll('.modal-card-body > div');
-     // Hide all the modal content divs except the one containing the tabs
-     tabContents.forEach(function(tabContent, index) {
-      console.log("the problem is here");
-      if (index > 2) {
-        tabContent.style.display = 'none';
-      }
-    });
-       // Show the selected tab content div
-       var selectedTabContent = document.getElementById(tabID);
-       selectedTabContent.style.display = 'block';
-     }
+// Toggle Modal Content
+function showTabContent(tabID){
+  var tabContents = document.querySelectorAll('.modal-card-body > div');
+  // Hide all the modal content divs except the one containing the tabs
+  tabContents.forEach(function(tabContent, index) {
+  console.log("the problem is here");
+  if (index > 2) {
+    tabContent.style.display = 'none';
+  }
+});
+    // Show the selected tab content div
+    var selectedTabContent = document.getElementById(tabID);
+    selectedTabContent.style.display = 'block';
+  }
     
 
-    function clearSearchBar (){
-      var searchQuery = $("#searchField").val();
-      // Your search logic here
-      $("#searchField").val(""); // This clears the input field
-    };
+function clearSearchBar (){
+  var searchQuery = $("#searchField").val();
+  // Your search logic here
+  $("#searchField").val(""); // This clears the input field
+};
     
