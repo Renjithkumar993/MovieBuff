@@ -2,20 +2,55 @@
 
 ## Description
 
-This application is designed for lovers of film who want to learn more about their favourite movies and where they can watch them. Powered by the TMDB API, Watchmode API, IMDB API, News API
-
-
-and featuring styling from the Bulma CSS framework.
+This application is designed for lovers of film who want to learn more about their favourite movies and where they can watch them. Powered by the TMDB API, Watchmode API, and News API, and featuring styling from the Bulma CSS framework.
 
 The deployed application may be accessed [here]().
 
 ## Screenshots
 
+![Login](./assets/appScreenshots/Screenshot_1.png)
+![Login](./assets/appScreenshots/Screenshot_2.png)
+![Login](./assets/appScreenshots/Screenshot_3.png)
+![Login](./assets/appScreenshots/Screenshot_4.png)
+![Login](./assets/appScreenshots/Screenshot_5.png)
+
 ## Installation
+
+As a browser-based application, no installation is required to use this app. This application has been tested across several popular modern browsers, including Google Chrome, Apple Safari, Mozilla Firefox, Microsoft Edge, and Opera. However, as this application was tested throughout development using Google Chrome and with that browser in mind, this is where users will likely have the best user experience. 
 
 ## Usage
 
+This application is open-source and free for use. Those wishing to use the application may follow the deployment link available above or by accessing the link available in this project's git repo. Alternatively, users may clone the repo and open the index.html file in the browser using the files cloned to their local system.
+
+## Roadmap
+
+This project if far from complete! There is still lots of room to take it further and implement new and exciting features. 
+
+
+
+Please visit the open issues for a full list of proposed features and known issues.
+
+
+## Contributing
+
+Contributions from users like you can help make this application even more special and contribute to a development environment that is a great space for both new and experienced developers to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+For those with suggestions on how to improve our application,
+please fork the repo and create a pull request. Then you can create open an issue with the tag "enhancement" or another lable to let us know the nature of the suggestion.
+
+To contribute please follow these steps:
+
+1. Fork the Project
+2. Create your Feature Branch (git checkout -b feature/AmazingFeature)
+3. Commit your Changes (git commit -m 'Add some AmazingFeature')
+4. Push to the Branch (git push origin feature/AmazingFeature)
+5. Open a Pull Request
+
+Any and all contributions are greatly appreciated!
+
 ## Credits
+
+Thanks go out to the UNB College of Extended Learning and their Full-Stack Web-Development bootcamp, including their exceptional teaching staff and student support services, for making this project possible. 
 
 ## License 
 
