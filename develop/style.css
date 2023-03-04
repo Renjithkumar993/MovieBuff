@@ -3,6 +3,7 @@
   padding: 16px;
 }
 
+/* Logo */
 .siteLogo {
   max-height: 275px;
   max-width: 275px;
@@ -12,7 +13,7 @@
   cursor: pointer;
 }
 
-
+/* List, font, and colouring */
 #noBullets{
   list-style-type: none;
   color: #00d1b2;
@@ -76,6 +77,7 @@
   color: #00d1b2;
 }
 
+/* Cards */
 /* Card hover effects */
 .card {
     transition: all 0.3s ease-in-out
@@ -87,11 +89,8 @@
   }
 
   .modal-card  {
-
     width: 100%;
   }
-
-/* Card hover effects end */
 
 /* Accordion */
   .accordion {
@@ -118,7 +117,6 @@
     overflow: hidden;
     transition: max-height 0.2s ease-out;
   }
-/* Accordion stylings end */
 
 /* Off Canvas */
 body {
