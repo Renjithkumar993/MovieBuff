@@ -87,6 +87,10 @@
     width: 100%;
   }
 
+  #alignCenter{
+    margin: 0px;
+  }
+
 /* Card hover effects end */
 
 /* Accordion */

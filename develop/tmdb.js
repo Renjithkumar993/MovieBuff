@@ -541,7 +541,8 @@ function createHistoryButtons(){
     const clearHistoryEl = document.getElementById('clearHistoryBtn');
     clearHistoryEl.addEventListener('click', clearSearchHistory);
     function clearSearchHistory(){
-      localStorage.clear();
+      //localStorage.clear();
+      localStorage.removeItem('searchHistory');
       searchHistory=[];
       searchHistorySpace.textContent='';
       let currentSearchHistory = JSON.parse(localStorage.getItem('searchHistory'));
