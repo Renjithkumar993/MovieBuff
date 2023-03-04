@@ -87,10 +87,6 @@
     width: 100%;
   }
 
-  #alignCenter{
-    margin: 0px;
-  }
-
 /* Card hover effects end */
 
 /* Accordion */
@@ -260,4 +256,11 @@ font-size: 50px;
 ::-webkit-scrollbar-thumb {
   border-radius: 0;
   background: hsl(171, 100%, 41%)
+}
+
+/* Prevent modal from being left aligned except at smaller screen sizes */
+@media only screen and (max-width: 767px) {
+  #alignCenter {
+    margin: 0px;
+  }
 }
