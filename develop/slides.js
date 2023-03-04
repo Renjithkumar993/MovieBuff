@@ -568,4 +568,6 @@ function setAccordionLogic() {
 }
 
 
-        
+      $(".logoimage").on("click", function(){
+        location.reload();
+      })
