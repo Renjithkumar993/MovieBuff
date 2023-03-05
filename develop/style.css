@@ -39,6 +39,10 @@
   margin-top: 5px;
 }
 
+#modalTitle{
+  display: none;
+}
+
 #streamPanels{
   border-radius: 0px;
 }

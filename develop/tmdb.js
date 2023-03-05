@@ -79,7 +79,7 @@ document
       runFetch(cardMovieTitle);
       runFetch2(cardMovieTitle);
       modalToggle()
-        //setModalTitle(cardMovieTitle)
+      setModalTitle(cardMovieTitle)
         .then(function () {
           //modalToggle();
           setModalTitle(cardMovieTitle);
@@ -237,8 +237,7 @@ function runFetch(cardMovieTitle) {
         //Initialize streaming element as an empty string
         var streamingElmt = "";
         // Initializing other Elements
-        modalTitleEl.innerHTML = "";
-
+        
         // Loop through streaming services
         for (let i = 0; i < newArray.length; i++) {
           var streamingServiceName = newArray[i].name;
