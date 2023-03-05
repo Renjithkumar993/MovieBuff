@@ -1,73 +1,63 @@
-# group3Project
+# Movie Buff - Find Your Favourite Movies
 
-An application designed for lovers of film who want to learn more about their favourite movies and where they can watch them. Powered by the TMDB api and Watchmode api, with styling from Bulma.
+## Description
 
-## User Stories
+This application is intended for lovers of film who want to learn more about their favourite movies and where they can watch them. Powered by the TMDB API, Watchmode API, News API, and featuring styling from the Bulma CSS framework, this app is designed as a one-stop-shop for all things movie and film-related media. 
 
-1. As a movie enthusiast,\
-I want a one-stop application where I am able to search for data on any movie that I am curious about\
-so that I am presented with information on that movie (e.g., cast, studio, year, etc).
+The deployed application may be accessed [here]().
 
-2. As a user,\
-I want to be able to see a list of streaming platforms where a movie is available to watch,\
-so that I can easily find a place to watch it.
+## Screenshots
 
-3. As a user,\
-I want to be able to search for movies by title,\
-so that I can find information about a specific movie.
+![Landing](./assets/appScreenshots/Screenshot_1.png)
+![Trending](./assets/appScreenshots/Screenshot_2.png)
+![SearchHistory](./assets/appScreenshots/Screenshot_3.png)
+![UpcomingTrailers](./assets/appScreenshots/Screenshot_4.png)
+![Modal](./assets/appScreenshots/Screenshot_5.png)
 
-4. As a user,'
-I also want to be able to view the plot summary, cast and crew information, and ratings for a movie,\
-so that I can decide if it's a movie that I want to watch.
+## Installation
 
-5. As a user,\ 
-I want to be able to save movies to a "watchlist" or "favorites" list,\
-so that I can keep track of movies that I want to watch later.
+As a browser-based application, no installation is required to use this app. This application has been tested across several popular modern browsers, including Google Chrome, Apple Safari, Mozilla Firefox, Microsoft Edge, and Opera. However, as this application was tested throughout development using Google Chrome and with that browser in mind, this is where users will likely have the best experience. 
 
-6. As a user,\
-I want to be able to remove movies from my watchlist,\
-so that I can remove movies that I'm no longer interested in.
+## Usage
 
-6. As a user,\
-I want to be able to receive recommendations for movies based on my viewing history, preferences, and critical reception\
-so that I can discover new movies that I might like.
+This application is open-source and free for use. Those wishing to access the application may follow the deployment link available above or by accessing the link available in this project's Git repo. Alternatively, users may clone the repo and open the index.html file in their browser using the files cloned to their local system.
 
-7. As a user,\
-I want the web application to be easy to navigate and use, with a simple and intuitive interface.
+When new users arrive to the landing page they are met with carousels featuring movies that are 'Trending Today' and 'Currently on Air.' If users are interested, they can click on these film posters for more information. This can be a useful resource for those searching without any particular film in mind. The landing page also features buttons that will reveal upcoming movie trailers and movie news. 
 
-8. As a user,\
-I want to be able to see the runtime of a movie,\
-so that I can plan my viewing time accordingly.
+Alternatively, users who have a specific film in mind, may search by title using the main search bar, to then be returned a series of cards. These cards feature the posters, titles, and release date of movies that feature titles similar to those specified in the user's search terms. Users can select from amongst these cards and click on each to bring up a modal that provides further information, including the movie's runtime, plot summary, user and critic scores, and also a link to where they may view the trailer. Users can then switch tabs to explore where films are available for streaming as well as save movies that they are interested in to their watch later list. Users' searched movies are automatically saved to their search history, taking advantage of their browser's local storage, and may be viewed by clicking the 'View Search History' button. This button reveals a tab with buttons that users can click on to resume their previous searches.
 
-9. As a user,\
-I want to be able to see a list of related movies and TV shows based on the movie that I'm currently viewing,\
-so that I can easily find similar content.
+## Roadmap
 
-10. As a user,\
-I want to be able to search for movies by director, actor, or other members of the cast and crew,\
-so that I can find movies that feature my favorite people.
+This project if far from complete! There is still considerable room to expand it further and implement new and exciting features. 
 
-11. As a user,\
-I want to be able to search for movies by genre,\
-so that I can find movies that might interest me.
+Planned improvements include: 
+1. Further additions to the watch later functionality to allow users to better track the films that they are interested in as well as new/upcoming films.
+2. Additional development on movie recommendations that are similar to the movies that users search. This feature was implemented previously but removed due to using too many API calls. 
+3. Integration of other movie-centric API (e.g,. the IMDB API)to provide user's with even more information, including information about movie awards, box office metrics, cast info, and film credits.
 
-## MVP Acceptance Criteria
-* There is a search bar on the home page where users can enter the title of a movie.
-* When the user enters a movie title and submits the search, the application displays a list of search results that match the query.
-* Each search result displays the movie's title, poster image, release year, and rating.
-* When the user clicks on a movie from the search results, the application displays a movie detail page.
-* The movie detail page includes the movie's title, poster image, release year, rating, plot, and a list of the cast and crew (we can add more if we like).
-* The user can navigate back to the search results page from the movie detail page.
-* When the user is on the movie detail page, there is a section that displays the streaming platforms where the movie is available.
-* Each streaming platform displays its logo and a button that links to the movie's page on the platform.
-* If the movie is not available on any streaming platforms, the section displays a message indicating that the movie is not currently available for streaming.
-* On the search results page, there is a dropdown menu that allows the user to sort the results by rating or release date.
-* The user can select a sorting option, and the application updates the search results accordingly.
-* When the user is on the movie detail page, there is a button that allows the user to add the movie to their watchlist.
-* The user can view their watchlist from the navigation menu, and it displays a list of movies that the user has saved.
-* Users can view their watchlist at any time by navigating to the "My Watchlist" page.
-* When the user is on their watchlist page, there is a button next to each movie that allows the user to remove it from their watchlist.
-* When the user clicks the remove button, the movie is removed from their watchlist.
-* On the movie detail page, there is a section that displays the movie's runtime in minutes.
-* On the search results page, there is a sidebar that allows the user to filter the results by genre.
-* The user can select one or more genres to filter by, and the application updates the search results to show only movies that match the selected genres.
+Please visit the open issues for a full list of proposed features and known issues.
+
+## Contributing
+
+Contributions from users like you can help make this application even more special and support a development environment that is a great space for both new and experienced developers to learn, inspire, and create. Any contributions you make are greatly appreciated.
+
+For those with suggestions on how to improve our application,
+please fork the repo and create a pull request. Then you can create an issue with the tag "enhancement" or another label to let us know the nature of the suggestion.
+
+To contribute please follow these steps:
+
+1. Fork the Project
+2. Create your Feature Branch (git checkout -b feature/AmazingFeature)
+3. Commit your Changes (git commit -m 'Add some AmazingFeature')
+4. Push to the Branch (git push origin feature/AmazingFeature)
+5. Open a Pull Request
+
+Any and all contributions are greatly appreciated!
+
+## Credits
+
+Thanks go out to the UNB College of Extended Learning and their Full-Stack Web-Development bootcamp, including their exceptional teaching staff and student support services, for making this project possible. 
+
+## License 
+
+Please refer to the LICENSE in the repo.

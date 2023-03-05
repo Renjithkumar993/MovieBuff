@@ -13,264 +13,240 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&family=Unbounded:wght@200&display=swap" rel="stylesheet">
 
 </head>
-<body class=" has-background-black">
-
-
+  <body id="body" class=" has-background-black">
     <header>
-    <nav class="navbar has-background-black container " role="navigation" aria-label="main navigation">
-    <img class="logoimage" src="./assets/logo.png" width="250px">
-      
-        <a role="button" class="navbar-burger burger has-background-black has-text-primary" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-          <span class="lanes" aria-hidden="true"></span>
-          <span class="lanes" aria-hidden="true"></span>
-          <span class="lanes" aria-hidden="true"></span>
-        </a>
+      <nav class="navbar has-background-black container " role="navigation" aria-label="main navigation">
+        <img  src="./assets/logo.png" id = "logo" width="250px">
   
-      <div id="navbarBasicExample" class="navbar-menu has-background-black has-text-primary">
-
-        <div class="navbar-end">
-          <div class="navbar-item">
-            <div class="buttons">
-              <button class="js-modal-trigger Upcoming button has-background-black has-text-primary" data-target="modal-js-example">
-                <span class="icon">
-                  <i class="fas fa-video"></i>
-                </span>
-                <span>Upcoming Movies Trailors</span>
-              </button>
-              <button class="js-modal-trigger newssection button has-background-black has-text-primary" data-target="modal-js-news">
-                <span class="icon">
-                  <i class="fas fa-newspaper"></i>
-                </span>
-                <span>Movie News</span>
-              </button>
-              <button id="historyBtn" class="button has-background-black has-text-primary">
-                <span class="icon">
-                  <i class="fas fa-history"></i>
-                </span>
-                <span>View Search History</span>
-              </button>
-              <button id="openWatchLaterBtn" class="button has-background-black has-text-primary">
-                <span class="icon">
-                  <i class="fas fa-clock"></i>
-                </span>
-                <span>Open Watch Later</span>
-              </button>
+          <a role="button" class="navbar-burger burger has-background-black has-text-primary" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span class="lanes" aria-hidden="true"></span>
+            <span class="lanes" aria-hidden="true"></span>
+            <span class="lanes" aria-hidden="true"></span>
+          </a>
+      
+          <div id="navbarBasicExample" class="navbar-menu has-background-black has-text-primary">
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <button class="js-modal-trigger Upcoming button has-background-black has-text-primary" data-target="modal-js-example">
+                    <span class="icon">
+                      <i class="fas fa-video"></i>
+                    </span>
+                    <span>Upcoming Movie Trailers</span>
+                  </button>
+                  <button class="js-modal-trigger newssection button has-background-black has-text-primary" data-target="modal-js-news">
+                    <span class="icon">
+                      <i class="fas fa-newspaper"></i>
+                    </span>
+                    <span>Movie News</span>
+                  </button>
+                  <button id="historyBtn" class="button has-background-black has-text-primary">
+                    <span class="icon">
+                      <i class="fas fa-history"></i>
+                    </span>
+                    <span>View Search History</span>
+                  </button>
+                  <button id="openWatchLaterBtn" class="button has-background-black has-text-primary">
+                    <span class="icon">
+                      <i class="fas fa-clock"></i>
+                    </span>
+                    <span>Open Watch Later</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
-    </nav>
+      </nav>
+      <div class="slidesImagesmain "></div> 
+    </header>
 
-       <div class="slidesImagesmain ">   
+    <!-- Search column and the button to search -->
+      <div class="container ">
+        <form id="searchForm">
+          <div class="field is-grouped is-align-items-center">
+            <p class="control is-expanded">
+              <input class="input is-focused" type="text" id="searchField" placeholder="Search by movie title...">
+            </p>
+            <p class="control">
+              <button class="button has-background-black has-text-primary is-medium  is-size-6-mobile " id="searchBtn">Search
+              </button>
+            </p>
+          </div>
+        </form>
+      </div>
         
-       </div> 
-       
-      </header>
-
-
-     
-  <!-- Search column and the button to search -->
-    <div class="container ">
-      <form id="searchForm">
-        <div class="field is-grouped is-align-items-center">
-          <p class="control is-expanded">
-            <input class="input" type="text" id="searchField" placeholder="Search by movie title...">
-          </p>
-          <p class="control">
-            <button class="button has-background-black has-text-primary is-medium  is-size-6-mobile " id="searchBtn">Search
-            </button>
-          </p>
-        </div>
-      </form>
-
-
-<!-- big images -->
-<div class="hidewhensearch">
-      <!-- <div class="slidesImagesmain container">
-      </div> -->
-
-      <!-- 2 secions of images sliding  -->
-      <div class="container mt-5">
-
-        <h1 class=" has-background-black p-4 has-text-primary is-large has-text-centered headings is-size-3-mobile"> Trending Today</h1>
-          </div>
-      <div class="slidesImagesrecent ">
-      </div>
-      <div class="container mt-2">
-
-        <h1 class="  p-4 has-background-black has-text-primary is-large has-text-centered headings is-size-3-mobile"> Currently on air</h1>
-          </div>
-
-      <div class="slidesImagesonair ">
-      </div>
-</div>
-
-<!-- modal for upcoming movie vidoes -->
-</div>
-<div id="modal-js-example" class="modal">
-  <div class="modal-background "></div>
-  <div class="modal-card container " style="width: 100%;">
-    <header class="modal-card-head has-background-black ">
-      <p class="modal-card-title has-text-primary">Upcoming movies Trailors</p>
-      <button class="delete has-background-primary " aria-label="close"></button>
-    </header>
-    <section class="modal-card-body has-background-black has-text-primary">
-      <div class="slidesImagesvideo  columns is-multiline container mt-5">
-      </div>
-    </section>
-    <footer class="modal-card-foot has-background-black">
-      <button class="button has-background-black has-text-primary">Go back</button>
-    </footer>
-  </div>
-</div>
-</div>
-
-<!-- movie news modal -->
-<div id="modal-js-news" class="modal">
-  <div class="modal-background "></div>
-  <div class="modal-card container" style="width: 100%;">
-    <header class="modal-card-head has-background-black has-text-primary">
-      <p class="modal-card-title has-text-primary">Movie News</p>
-      <button class="delete has-background-primary" aria-label="close"></button>
-    </header>
-    
-    <section class="modal-card-body has-background-black has-text-primary ">
-      <section>
-        <nav class="pagination mt-4" role="navigation" aria-label="pagination">
-         
-          <ul class="pagination-list">
-            <li>
-              <a class="pagination-link has-text-primary  " aria-label="Goto page 1">1</a>
-            </li>
-      
-            <li>
-              <a class="pagination-link has-text-primary " aria-label="Goto page 2">2</a>
-            </li>
-            <li>
-              <a class="pagination-link has-text-primary " aria-label="Page 3" aria-current="page">3</a>
-            </li>
-            <li>
-              <a class="pagination-link has-text-primary " aria-label="Goto page 4">4</a>
-            </li>
-          
-            <li>
-              <a class="pagination-link has-text-primary " aria-label="Goto page 5">5</a>
-            </li>
-          </ul>
-        </nav>
-      </section>
-      <div id="newsmodalwrapper" class=" mt-5">
-      </div>
-      
-    </section>
-    
-    <footer class="modal-card-foot has-background-black ">
-      <button class="button has-text-primary  has-background-black ">Go back</button>
-
-    </footer>
-    
-  </div>
-</div>
-<div class="container mt-6">
-  <h1 class="title is-1 has-background-black has-text-primary is-large searchresultheading is-size-3-mobile"> Search Results:</h1>
-      <!-- colums for movies search result added couple of them to see how it shows .we can remove them after we dynamically add it  -->
-      <div class="container is-flex ">
-      <div class="columns is-multiline mt-3 is-flex"  id="movieCardWrapper">
-      </div> 
+  <!-- big images -->
+  <div class="hidewhensearch">
+        
+        <!-- 2 secions of images sliding  -->
+  <div class="container mt-5">
+    <h1 class="has-background-black p-4 has-text-primary is-large has-text-centered headings is-size-3-mobile"> Trending Today</h1>
     </div>
+    <div class="slidesImagesrecent "></div>
+    <div class="container mt-2">
+      <h1 class="p-4 has-background-black has-text-primary is-large has-text-centered headings is-size-3-mobile"> Currently on Air</h1>
+    </div>
+    <div class="slidesImagesonair "></div>
   </div>
-     
-    </div>
-  <!-- End of search column section -->
 
-  <!-- Main Content Section -->  
-  
-      <!-- colums for movies search result added couple of them to see how it shows .we can remove them after we dynamically add it  -->
-        <div class="columns is-multiline mt-3"  id="movieCardWrapper">
-        </div> 
-    </div>
-  <!-- End of main content section -->
-
-  <!-- Sections for content that does not show up directly on the page (e.g., modals), to help keep things separate and manage the flow of our code -->
-   <section>
-   
-    <!-- Modal -->
-    <div id="myModal" class="modal">
-      <div class="modal-background"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p id="modalTitle" class="modal-card-title"></p>
+  <!-- modal for upcoming movie vidoes -->
+  </div>
+    <div id="modal-js-example" class="modal">
+      <div class="modal-background "></div>
+      <div class="modal-card container " style="width: 100%;">
+        <header class="modal-card-head has-background-black ">
+          <p class="modal-card-title has-text-primary">Upcoming Movie Trailors</p>
+          <button class="delete has-background-primary " aria-label="close"></button>
         </header>
-        <section class="modal-card-body">
-
-           <!-- Modal Tabs -->
-           <div class="tabs is-toggle">
-            <ul>
-              <li class="is-active" onclick="showTabContent('modalInfoTabContent')">
-                <a class="modalInfoTabLink">
-                  <span id="modalInfoTab">Movie Info</span>
-                </a>
-              </li>
-              <li>
-                <a class="modalStreamingTabLink" onclick="showTabContent('modalStreamingTabContent')">
-                  <span id="modalStreamingTab">Streaming Services</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-
-
-          <!-- Main Modal Content -->
-          <div id = "modalInfoTabContent">
-            <div id = "movieInfoWrapper"></div>
-          </div>
-          <div id = "modalStreamingTabContent" style = "display:none">
-            <div id = "streamingServicesWrapper"></div>
-          </div>
-
-        <!-- Modal Buttons -->
-        <footer class = "modal-card-foot">
-          <button id = "watchLaterBtn" class = "button is-success" onclick="generateNewWatchLaterContent()">Add to Watch Later</button>
-          <button id = "closeModalBtn" class = "button">Cancel</button>
+        <section class="modal-card-body has-background-black has-text-primary">
+          <div class="slidesImagesvideo  columns is-multiline container mt-5"></div>
+        </section>
+        <footer class="modal-card-foot has-background-black">
+          <button class="button has-background-black has-text-primary">Go back</button>
         </footer>
       </div>
     </div>
-  <!-- Modal End -->
+  </div>
 
-    <!-- Search History - Off Canvas -->
-      <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closeSlideoutbtn" onclick="closeNav()">&times;</a>
-        <a href="#">Search History</a>
-        <div id="searchHistoryWrapper"></div>
-        <div class="field is-grouped">
-          <p class="control">
-            <a id="clearHistoryBtn"class="button is-danger is-small">
-              Clear Search History
-            </a>
-          </p>
+  <!-- movie news modal -->
+  <div id="modal-js-news" class="modal">
+    <div class="modal-background "></div>
+    <div class="modal-card container" style="width: 100%;">
+
+      <header class="modal-card-head has-background-black has-text-primary">
+        <p class="modal-card-title has-text-primary">Movie News</p>
+        <button class="delete has-background-primary" aria-label="close"></button>
+      </header>
+      
+      <section class="modal-card-body has-background-black has-text-primary ">
+        <section>
+          <nav class="pagination mt-4" role="navigation" aria-label="pagination">
+            <ul class="pagination-list">
+              <li>
+                <a class="pagination-link has-text-primary  " aria-label="Goto page 1">1</a>
+              </li>
+              <li>
+                <a class="pagination-link has-text-primary " aria-label="Goto page 2">2</a>
+              </li>
+              <li>
+                <a class="pagination-link has-text-primary " aria-label="Page 3" aria-current="page">3</a>
+              </li>
+              <li>
+                <a class="pagination-link has-text-primary " aria-label="Goto page 4">4</a>
+              </li>
+              <li>
+                <a class="pagination-link has-text-primary " aria-label="Goto page 5">5</a>
+              </li>
+            </ul>
+          </nav>
+        </section>
+          <div id="newsmodalwrapper" class=" mt-5"></div>
+      </section>
+      
+      <footer class="modal-card-foot has-background-black ">
+        <button class="button has-text-primary  has-background-black ">Go back</button>
+      </footer>
+      
+    </div>
+  </div>
+  <div class="container mt-6">
+    <h1 class="title is-1 has-background-black has-text-primary is-large searchresultheading is-size-3-mobile"> Search Results:</h1>
+        <!-- colums for movies search result added couple of them to see how it shows .we can remove them after we dynamically add it  -->
+        <div class="container is-flex ">
+        <div class="columns is-multiline mt-3 is-flex"  id="movieCardWrapper">
+        </div> 
+      </div>
+    </div>
+      
+      </div>
+    <!-- End of search column section -->
+
+    <!-- Main Content Section -->  
+    
+        <!-- colums for movies search result added couple of them to see how it shows .we can remove them after we dynamically add it  -->
+          <div class="columns is-multiline mt-3"  id="movieCardWrapper">
+          </div> 
+      </div>
+    <!-- End of main content section -->
+
+    <!-- Sections for content that does not show up directly on the page (e.g., modals), to help keep things separate and manage the flow of our code -->
+    <section>
+    
+      <!-- Modal -->
+      <div id="myModal" class="modal">
+        <div class="modal-background"></div>
+        <div id="alignCenter" class="modal-card is-centered is-full-mobile">
+          <header class="modal-card-head">
+            <p id="modalTitle" class="modal-card-title"></p>
+          </header>
+          <section id= "myModalCardBody" class="modal-card-body">
+
+            <!-- Modal Tabs -->
+            <div id= "tabTextColor" class="tabs is-toggle">
+              <ul>
+                <li class="is-active" onclick="showTabContent('modalInfoTabContent')">
+                  <a class="modalInfoTabLink">
+                    <span id="modalInfoTab">Movie Info</span>
+                  </a>
+                </li>
+                <li>
+                  <a class="modalStreamingTabLink" onclick="showTabContent('modalStreamingTabContent')">
+                    <span id="modalStreamingTab">Streaming Services</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Main Modal Content -->
+            <div id = "modalInfoTabContent">
+              <div id = "movieInfoWrapper"></div>
+            </div>
+            <div id = "modalStreamingTabContent" style = "display:none">
+              <div id = "streamingServicesWrapper"></div>
+            </div>
+
+          <!-- Modal Buttons -->
+          <footer class = "modal-card-foot">
+            <button id = "watchLaterBtn" class = "button is-primary" onclick="generateNewWatchLaterContent()">Add to Watch Later</button>
+            <button id = "closeModalBtn" class = "button">Cancel</button>
+          </footer>
         </div>
       </div>
-    <!-- Off Canvas End -->
+    <!-- Modal End -->
 
-  <!-- Modal for Watch Later -->  
-    <div id= "watchLaterWrapper" class="modal">
-      <div class="modal-background"></div>
-      <div class="modal-content">
-        <section id="watchLaterBody">
-          <h1 class ="is-size-3 has-text-weight-bold text-color mb-2">Watch Later</h1>
-          <div id="watchLaterListWrapper"></div>
-        </section>
+      <!-- Search History - Off Canvas -->
+        <div id="mySidenav" class="sidenav">
+          <div id="closeButton">
+          <a href="javascript:void(0)" class="closeSlideoutbtn has-background-primary delete" onclick="closeNav()"></a>
+          </div>
+          <br>
+          <a id="searchHistoryHeader" class = "has-text-weight-bold" href="#">Search History</a>
+          <div id="searchHistoryWrapper"></div>
+          <div class="field is-grouped">
+            <p class="control">
+              <a id="clearHistoryBtn"class="button is-danger is-small">Clear Search History</a>
+            </p>
+          </div>
+        </div>
+      <!-- Off Canvas End -->
+
+    <!-- Modal for Watch Later -->  
+      <div id= "watchLaterWrapper" class="modal">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+          <section id="watchLaterBody">
+            <h1 class ="is-size-3 has-text-weight-bold text-color mb-2">Watch Later</h1>
+            <div id="watchLaterListWrapper"></div>
+          </section>
+        </div>
+        <button id = "closeWatchLater" class="modal-close is-large" aria-label="close"></button>
       </div>
-      <button id = "closeWatchLater" class="modal-close is-large" aria-label="close"></button>
-    </div>
-   </section>
-  <!-- End of modal --> 
+    </section>
+    <!-- End of modal --> 
+    <!--End of section for set aside content -->
 
-  <!--End of section for content set aside -->
-
- <!-- Main page footer --> 
-    <footer class="footer">
-    
+  <!-- Main page footer --> 
+      <footer class="footer">
         <div class="content has-text-centered">
           <p>
             <strong>MovieBuff</strong> by <a href="https://jgthms.com">Team 3</a>. The source code is licensed
@@ -280,13 +256,12 @@
         </div>
       </footer>
 
-  <!-- Section for script files -->    
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <!-- <script src="develop/script.js"></script> -->
-    <script src="develop/tmdb.js"></script>
-    <script src="./develop/slides.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-    <script src="https://kit.fontawesome.com/351fdf99bf.js" crossorigin="anonymous"></script>
-</body>
+    <!-- Section for script files -->    
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+      <script src="develop/tmdb.js"></script>
+      <script src="develop/slides.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+      <script src="https://kit.fontawesome.com/351fdf99bf.js" crossorigin="anonymous"></script>
+  </body>
   
 </html>
