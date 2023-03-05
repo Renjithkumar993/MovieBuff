@@ -366,6 +366,7 @@ $('#openWatchLaterBtn').on('click', function(){
   generateWatchLaterButtons();
 })
 
+/*
 function generateWatchLaterButtons(){
   console.log("at least this works");
   WatchLaterListEl.innerHTML='';
@@ -398,6 +399,63 @@ function generateWatchLaterButtons(){
     $('#watchLaterListWrapper').append(div);
   }
 }
+*/
+
+function generateWatchLaterButtons(){
+  console.log("at least this works");
+  WatchLaterListEl.innerHTML='';
+  var watchLaterData = JSON.parse(localStorage.getItem('watchLater')) || []; // use empty array as default value if search history not found in local storage
+  // Loop through the array
+  console.log(watchLaterData.length);
+  for (var i = 0; i < watchLaterData.length; i++) {
+    // Get the name of the current item
+    console.log("i");
+    var itemName = watchLaterData[i];
+    console.log(itemName);
+
+    // Create a new div element to hold the item and remove button
+    var itemDiv = $('<div></div>').addClass('item');
+
+    // Create a new div element for the item button
+    var itemButton = $('<div></div>').addClass('button is-normal is-responsive is-outlined is-dark has-text-primary mr-2').attr('role','button');
+
+    itemButton.data('id', i); //new
+
+    itemDiv.on('click', (function(itemName){
+      return function(){
+        // functions to allow searches
+        runFetch(itemName);
+        runFetch2(itemName);
+        modalToggle();
+        watchLaterModalToggle();
+      }
+    })(itemName));
+
+    itemButton.text(itemName);
+
+    var removeButton = $('<button></button>').addClass('button is-small is-danger').text('Remove');
+    removeButton.on('click', (function(index){
+      return function(){
+        // remove the item from the watchLaterData array in local storage
+        var updatedWatchLaterData = JSON.parse(localStorage.getItem('watchLater')) || [];
+        updatedWatchLaterData.splice(index, 1);
+        localStorage.setItem('watchLater', JSON.stringify(updatedWatchLaterData));
+
+        // remove the item div from the document
+        itemDiv.remove();
+      }
+    })(i));
+
+
+    // Add the item and remove buttons to the item div
+    itemDiv.append(itemButton);
+    itemDiv.append(removeButton);
+
+    // Append the item div to the watchLaterListWrapper
+    $('#watchLaterListWrapper').append(itemDiv);
+  }
+}
+
 
 // Set watch later to be updated every time a new entry is added //
 function generateNewWatchLaterContent(){
