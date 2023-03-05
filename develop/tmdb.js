@@ -99,7 +99,7 @@ function runFetch2(cardMovieTitle) {
   // Return a promise
   return new Promise(function (resolve, reject) {
     //Watchmode API key
-    const WMKey = "FsLuIFnSyCV78DmZaaBgNkK3QZn1cprUHovPTxcW";
+    const WMKey = "I8eqXJlEI9laBWJr8gRya9N4HVlAKNikLKwDLsfI";
 
     // Search for the movie using the Watchmode API's search functionality
     fetch(
@@ -189,7 +189,7 @@ function runFetch(cardMovieTitle) {
   // Return a promise
   return new Promise(function (resolve, reject) {
     //Watchmode API key
-    const WMKey = "FsLuIFnSyCV78DmZaaBgNkK3QZn1cprUHovPTxcW";
+    const WMKey = "I8eqXJlEI9laBWJr8gRya9N4HVlAKNikLKwDLsfI";
 
     // Search for the movie using the Watchmode API's search functionality
     fetch(
@@ -343,12 +343,17 @@ const modalMovieTitleEl = document.getElementById("modalTitle");
 
 // Adds new entry to local storage when the watch later button is clicked
 function saveWatchLater() {
-  if (!localStorage.getItem('watchLater')){
-    localStorage.setItem('watchLater', JSON.stringify([]));
+  // Retrieve the "watchLater" array from local storage
+  let watchLater = JSON.parse(localStorage.getItem('watchLater'));
+
+  // If the "watchLater" array does not exist, create it
+  if (!watchLater) {
+    watchLater = [];
+    localStorage.setItem('watchLater', JSON.stringify(watchLater));
   }
 
-  //save to watch later after page load
-  if(!watchLater.includes(modalMovieTitleEl.textContent)) {
+  // Save to "watchLater" after page load
+  if (!watchLater.includes(modalMovieTitleEl.textContent)) {
     $(document).ready(function() {
       watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
       localStorage.setItem('watchLater', JSON.stringify(watchLater));

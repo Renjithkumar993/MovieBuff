@@ -1,4 +1,4 @@
-const WMKey = 'FsLuIFnSyCV78DmZaaBgNkK3QZn1cprUHovPTxcW';
+const WMKey = 'I8eqXJlEI9laBWJr8gRya9N4HVlAKNikLKwDLsfI';
 const TMDBKey = '60284bb58aafe269068499987d0a2596';
 const newsKey = '74048026fce748b094d550cf6a962a0f';
 
@@ -324,7 +324,7 @@ navbarBurger.addEventListener('click', toggleNavbarBurger);
 // Also added by Jared //
 function getWatchmodeID (movieName){
   //Watchmode API key
-  const WMKey = "FsLuIFnSyCV78DmZaaBgNkK3QZn1cprUHovPTxcW";
+  const WMKey = "I8eqXJlEI9laBWJr8gRya9N4HVlAKNikLKwDLsfI";
     fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(movieName)}`)
       .then(function (response) {
         return response.json();
@@ -504,3 +504,6 @@ function setAccordionLogic() {
 $(".logoimage").on("click", function(){
   location.reload();
 })
+
+// Watch Later for Renjith //
+
