@@ -330,7 +330,6 @@ function watchLaterModalToggle(){
 
 var watchLater = JSON.parse(localStorage.getItem('watchLater'));
 
-
 //Add to Watch Later Functionality
 const watchLaterButtonEl = document.getElementById('watchLaterBtn');
 watchLaterButtonEl.addEventListener('click', saveWatchLater);
@@ -362,10 +361,17 @@ function removeWatchLaterEntry(){
 
 const WatchLaterListEl = document.getElementById("watchLaterListWrapper");
 //Set Watch Later to be generated upon page loading //
-window.onload = function(){
+
+$('#openWatchLaterBtn').on('click', function(){
+  generateWatchLaterButtons();
+})
+
+function generateWatchLaterButtons(){
+  console.log("at least this works");
   WatchLaterListEl.innerHTML='';
-  var watchLaterData = JSON.parse(localStorage.getItem('MyWatchLaterList')) || []; // use empty array as default value if search history not found in local storage
+  var watchLaterData = JSON.parse(localStorage.getItem('watchLater')) || []; // use empty array as default value if search history not found in local storage
   // Loop through the array
+  console.log(watchLaterData.length);
   for (var i = 0; i < watchLaterData.length; i++) {
       // Get the name of the current item
       console.log("i");
@@ -380,7 +386,7 @@ window.onload = function(){
       runFetch(itemName);
       runFetch2(itemName);
       modalToggle();
-      watchLaterModalToggle();
+      //watchLaterModalToggle();
     });
   
     // Set the content of the div to the item name
@@ -393,8 +399,9 @@ window.onload = function(){
 
 // Set watch later to be updated every time a new entry is added //
 function generateNewWatchLaterContent(){
+  console.log('recognized');
   WatchLaterListEl.innerHTML='';
-  var watchLaterData = JSON.parse(localStorage.getItem('MyWatchLaterList')) || []; // use empty array as default value if search history not found in local storage
+  var watchLaterData = JSON.parse(localStorage.getItem('watchLater')) || []; // use empty array as default value if search history not found in local storage
   // Loop through the array
   for (var i = 0; i < watchLaterData.length; i++) {
       // Get the name of the current item
@@ -408,7 +415,7 @@ function generateNewWatchLaterContent(){
       runFetch(itemName);
       runFetch2(itemName);
       modalToggle();
-      watchLaterModalToggle();
+      //watchLaterModalToggle();
     });
 
     // Set the content of the div to the item name
