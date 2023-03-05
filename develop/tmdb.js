@@ -330,11 +330,6 @@ function watchLaterModalToggle(){
 
 var watchLater = JSON.parse(localStorage.getItem('watchLater'));
 
-/*
-if(!watchLater) {
-  watchLater = [];
-}
-*/
 
 //Add to Watch Later Functionality
 const watchLaterButtonEl = document.getElementById('watchLaterBtn');
