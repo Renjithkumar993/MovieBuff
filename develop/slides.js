@@ -521,14 +521,6 @@ document.getElementById('watchLaterBtn').addEventListener('click', function() {
   saveWatchLater(modalTitleEl);
 });
 
-
-// Function to open and close modal
-function watchLaterModalToggle(){
-  $(document).ready(function() {
-    $('#watchLaterWrapper').toggle();
-  });
-}
-
 var watchLater = JSON.parse(localStorage.getItem('watchLater'));
 
 // Adds new entry to local storage when the watch later button is clicked
