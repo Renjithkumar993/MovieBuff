@@ -414,11 +414,11 @@ function generateWatchLaterButtons(){
     console.log(itemName);
 
     // Create a new div element to hold the item and remove button
-    var itemDiv = $('<div></div>').addClass('item');
+    var itemDiv = $('<div></div>').addClass('item mt-1');
+    itemDiv.data('id', i);
 
     // Create a new div element for the item button
     var itemButton = $('<div></div>').addClass('button is-normal is-responsive is-outlined is-dark has-text-primary mr-2').attr('role','button');
-
     itemButton.data('id', i); //new
 
     itemDiv.on('click', (function(itemName){
@@ -433,21 +433,20 @@ function generateWatchLaterButtons(){
 
     itemButton.text(itemName);
 
-    var removeButton = $('<button></button>').addClass('button is-small is-danger').text('Remove');
+    var removeButton = $('<button></button>').addClass('button mt-1 is-small is-danger').text('Remove').attr('id','removeBtn'+i);
     removeButton.on('click', (function(index){
-      return function(){
+      return function(event){
         event.stopPropagation(); // Stop the click event from bubbling up to the itemDiv element
         // remove the item from the watchLaterData array in local storage
         var updatedWatchLaterData = JSON.parse(localStorage.getItem('watchLater')) || [];
         updatedWatchLaterData.splice(index, 1);
         localStorage.setItem('watchLater', JSON.stringify(updatedWatchLaterData));
-
+    
         // remove the item div from the document
-        itemDiv.remove();
+        $(this).closest('.item').remove();
       }
     })(i));
-
-
+    
     // Add the item and remove buttons to the item div
     itemDiv.append(itemButton);
     itemDiv.append(removeButton);
