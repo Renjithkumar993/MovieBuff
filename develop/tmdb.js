@@ -436,6 +436,7 @@ function generateWatchLaterButtons(){
     var removeButton = $('<button></button>').addClass('button is-small is-danger').text('Remove');
     removeButton.on('click', (function(index){
       return function(){
+        event.stopPropagation(); // Stop the click event from bubbling up to the itemDiv element
         // remove the item from the watchLaterData array in local storage
         var updatedWatchLaterData = JSON.parse(localStorage.getItem('watchLater')) || [];
         updatedWatchLaterData.splice(index, 1);
