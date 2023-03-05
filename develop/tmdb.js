@@ -328,11 +328,13 @@ function watchLaterModalToggle(){
   });
 }
 
-var watchLater = JSON.parse(localStorage.getItem('MyWatchLaterList'));
+var watchLater = JSON.parse(localStorage.getItem('watchLater'));
 
+/*
 if(!watchLater) {
   watchLater = [];
 }
+*/
 
 //Add to Watch Later Functionality
 const watchLaterButtonEl = document.getElementById('watchLaterBtn');
@@ -341,13 +343,17 @@ const modalMovieTitleEl = document.getElementById("modalTitle");
 
 // Adds new entry to local storage when the watch later button is clicked
 function saveWatchLater() {
+  if (!localStorage.getItem('watchLater')){
+    localStorage.setItem('watchLater', JSON.stringify([]));
+  }
+
   //save to watch later after page load
-    if(!watchLater.includes(modalMovieTitleEl.textContent)) {
-      $(document).ready(function() {
-        watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
-        localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
-      });
-    }
+  if(!watchLater.includes(modalMovieTitleEl.textContent)) {
+    $(document).ready(function() {
+      watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
+      localStorage.setItem('watchLater', JSON.stringify(watchLater));
+    });
+  }
 }
 
 // Remove from Watch Later Functionality
