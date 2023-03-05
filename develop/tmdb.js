@@ -381,13 +381,15 @@ function generateWatchLaterButtons(){
     // Create a new div element
     var div = $('<div></div>').addClass('button is-normal is-responsive is-outlined is-dark has-text-primary mr-2').attr('role','button');
 
-    div.on('click', function(){
-      // functions to allow searches
-      runFetch(itemName);
-      runFetch2(itemName);
-      modalToggle();
-      //watchLaterModalToggle();
-    });
+    div.on('click', (function(itemName){
+      return function(){
+        // functions to allow searches
+        runFetch(itemName);
+        runFetch2(itemName);
+        modalToggle();
+        watchLaterModalToggle();
+      }
+    })(itemName));
   
     // Set the content of the div to the item name
     div.text(itemName);
