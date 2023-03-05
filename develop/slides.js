@@ -1,4 +1,4 @@
-const WMKey = 'FsLuIFnSyCV78DmZaaBgNkK3QZn1cprUHovPTxcW';
+const WMKey = 'I8eqXJlEI9laBWJr8gRya9N4HVlAKNikLKwDLsfI';
 const TMDBKey = '60284bb58aafe269068499987d0a2596';
 const newsKey = '74048026fce748b094d550cf6a962a0f';
 
@@ -48,7 +48,8 @@ fetch(nowPlayingUrl)
 
         // Added by Jared -allow modal //
           getWatchmodeID(movieNametrending);
-          modalToggle()
+          modalToggle();
+          setModalTitle(movieNametrending);
           return movieNametrending;
         })
    
@@ -100,10 +101,18 @@ fetch(nowPlayingUrl)
 
             // Added by Jared -allow modal //
             getWatchmodeID(movieNameonair);
-            modalToggle()
+            modalToggle();
+            setModalTitle(movieNameonair);
             return movieNameonair;
           })
-     
+
+          var modalTitleEl = document.getElementById('modalTitle');
+
+        function setModalTitle(movieTitle){
+          modalTitleEl.textContent = movieTitle;
+          console.log(modalMovieTitleEl.textContent)
+        }
+
         carousel.owlCarousel({
             rtl:true,
             items: 8, 
@@ -324,7 +333,7 @@ navbarBurger.addEventListener('click', toggleNavbarBurger);
 // Also added by Jared //
 function getWatchmodeID (movieName){
   //Watchmode API key
-  const WMKey = "FsLuIFnSyCV78DmZaaBgNkK3QZn1cprUHovPTxcW";
+  const WMKey = "I8eqXJlEI9laBWJr8gRya9N4HVlAKNikLKwDLsfI";
     fetch(`https://api.watchmode.com/v1/search/?apiKey=${WMKey}&type=movie&search_field=name&search_value=${encodeURIComponent(movieName)}`)
       .then(function (response) {
         return response.json();
@@ -433,7 +442,6 @@ function fetchStreamingServices(watchmodeId) {
     //Initialize streaming element as an empty string
     var streamingElmt = "";
     // Initializing other Elements
-    modalTitleEl.innerHTML = "";
 
     // Loop through streaming services
     for (let i = 0; i < newArray.length; i++) {
@@ -504,3 +512,97 @@ function setAccordionLogic() {
 $(".logoimage").on("click", function(){
   location.reload();
 })
+
+// Watch Later for Renjith //
+
+// Watch Later Section //
+openWatchLaterButtonEl.addEventListener('click', watchLaterModalToggle);
+document.getElementById('watchLaterBtn').addEventListener('click', function() {
+  saveWatchLater(modalTitleEl);
+});
+
+var watchLater = JSON.parse(localStorage.getItem('watchLater'));
+
+// Adds new entry to local storage when the watch later button is clicked
+function saveWatchLater(modalTitleEl) {
+  // Retrieve the "watchLater" array from local storage
+  let watchLater = JSON.parse(localStorage.getItem('watchLater'));
+
+  // If the "watchLater" array does not exist, create it
+  if (!watchLater) {
+    watchLater = [];
+    localStorage.setItem('watchLater', JSON.stringify(watchLater));
+  }
+
+  // Save to "watchLater" after page load
+  if (!watchLater.includes(modalTitleEl.textContent)) {
+    $(document).ready(function() {
+      watchLater.push(modalTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
+      localStorage.setItem('watchLater', JSON.stringify(watchLater));
+    });
+  }
+}
+
+// Remove from Watch Later Functionality
+function removeWatchLaterEntry(){
+}
+
+//Set Watch Later to be generated upon page loading //
+window.onload = function(){
+  WatchLaterListEl.innerHTML='';
+  var watchLaterData = JSON.parse(localStorage.getItem('MyWatchLaterList')) || []; // use empty array as default value if search history not found in local storage
+  // Loop through the array
+  for (var i = 0; i < watchLaterData.length; i++) {
+      // Get the name of the current item
+      console.log("i");
+      var itemName = watchLaterData[i]
+      console.log(itemName);
+
+    // Create a new div element
+    var div = $('<div></div>').addClass('button is-normal is-responsive is-outlined is-dark has-text-primary mr-2').attr('role','button');
+
+    div.on('click', function(){
+      // functions to allow searches
+      runFetch(itemName);
+      runFetch2(itemName);
+      modalToggle();
+      watchLaterModalToggle();
+    });
+  
+    // Set the content of the div to the item name
+    div.text(itemName);
+  
+    // Append the div to the document body or another parent element
+    $('#watchLaterListWrapper').append(div);
+  }
+}
+
+// Set watch later to be updated every time a new entry is added //
+function generateNewWatchLaterContent(){
+  WatchLaterListEl.innerHTML='';
+  var watchLaterData = JSON.parse(localStorage.getItem('MyWatchLaterList')) || []; // use empty array as default value if search history not found in local storage
+  // Loop through the array
+  for (var i = 0; i < watchLaterData.length; i++) {
+      // Get the name of the current item
+      var itemName = watchLaterData[i];
+
+      // Create a new div element
+      var div = $('<div></div>').addClass('button').addClass('is-warning').attr('role','button');
+
+    div.on('click', function(){
+      // functions to allow searches
+      runFetch(itemName);
+      runFetch2(itemName);
+      modalToggle();
+      watchLaterModalToggle();
+    });
+
+    // Set the content of the div to the item name
+    div.text(itemName);
+    
+    // Append the div to the document body or another parent element
+    $('#watchLaterListWrapper').append(div);
+  }
+}
+
+

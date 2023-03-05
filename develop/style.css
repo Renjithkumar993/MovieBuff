@@ -39,18 +39,24 @@
   margin-top: 5px;
 }
 
+#modalTitle{
+  display: none;
+}
+
 #streamPanels{
   border-radius: 0px;
 }
 
 /* Watch Later Modal */
+#watchLaterModal{
+  width: 90% !important;
+  }
+
 .modal-content {
   position:fixed;
   top: 40%;
-  left: 15%;
-  transform: translate(-50%,-50%);
   display:flex;
-  max-width: 60;
+  justify-content: center;
   max-height: fit-content;
   padding: 20px;
   box-shadow: 0, 5px, 30px rgba(0,0,0,.30);

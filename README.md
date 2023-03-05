@@ -11,6 +11,7 @@ The deployed application may be accessed [here]().
 ![Landing](./assets/appScreenshots/Screenshot_1.png)
 ![Trending](./assets/appScreenshots/Screenshot_2.png)
 ![SearchHistory](./assets/appScreenshots/Screenshot_3.png)
+![SearchResults](./assets/appScreenshots/Screenshot_6.png)
 ![UpcomingTrailers](./assets/appScreenshots/Screenshot_4.png)
 ![Modal](./assets/appScreenshots/Screenshot_5.png)
 

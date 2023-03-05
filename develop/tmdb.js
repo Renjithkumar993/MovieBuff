@@ -79,7 +79,7 @@ document
       runFetch(cardMovieTitle);
       runFetch2(cardMovieTitle);
       modalToggle()
-        //setModalTitle(cardMovieTitle)
+      setModalTitle(cardMovieTitle)
         .then(function () {
           //modalToggle();
           setModalTitle(cardMovieTitle);
@@ -99,7 +99,7 @@ function runFetch2(cardMovieTitle) {
   // Return a promise
   return new Promise(function (resolve, reject) {
     //Watchmode API key
-    const WMKey = "FsLuIFnSyCV78DmZaaBgNkK3QZn1cprUHovPTxcW";
+    const WMKey = "I8eqXJlEI9laBWJr8gRya9N4HVlAKNikLKwDLsfI";
 
     // Search for the movie using the Watchmode API's search functionality
     fetch(
@@ -189,7 +189,7 @@ function runFetch(cardMovieTitle) {
   // Return a promise
   return new Promise(function (resolve, reject) {
     //Watchmode API key
-    const WMKey = "FsLuIFnSyCV78DmZaaBgNkK3QZn1cprUHovPTxcW";
+    const WMKey = "I8eqXJlEI9laBWJr8gRya9N4HVlAKNikLKwDLsfI";
 
     // Search for the movie using the Watchmode API's search functionality
     fetch(
@@ -237,8 +237,7 @@ function runFetch(cardMovieTitle) {
         //Initialize streaming element as an empty string
         var streamingElmt = "";
         // Initializing other Elements
-        modalTitleEl.innerHTML = "";
-
+        
         // Loop through streaming services
         for (let i = 0; i < newArray.length; i++) {
           var streamingServiceName = newArray[i].name;
@@ -329,11 +328,7 @@ function watchLaterModalToggle(){
   });
 }
 
-var watchLater = JSON.parse(localStorage.getItem('MyWatchLaterList'));
-
-if(!watchLater) {
-  watchLater = [];
-}
+var watchLater = JSON.parse(localStorage.getItem('watchLater'));
 
 //Add to Watch Later Functionality
 const watchLaterButtonEl = document.getElementById('watchLaterBtn');
@@ -342,13 +337,22 @@ const modalMovieTitleEl = document.getElementById("modalTitle");
 
 // Adds new entry to local storage when the watch later button is clicked
 function saveWatchLater() {
-  //save to watch later after page load
-    if(!watchLater.includes(modalMovieTitleEl.textContent)) {
-      $(document).ready(function() {
-        watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
-        localStorage.setItem('MyWatchLaterList', JSON.stringify(watchLater));
-      });
-    }
+  // Retrieve the "watchLater" array from local storage
+  let watchLater = JSON.parse(localStorage.getItem('watchLater'));
+
+  // If the "watchLater" array does not exist, create it
+  if (!watchLater) {
+    watchLater = [];
+    localStorage.setItem('watchLater', JSON.stringify(watchLater));
+  }
+
+  // Save to "watchLater" after page load
+  if (!watchLater.includes(modalMovieTitleEl.textContent)) {
+    $(document).ready(function() {
+      watchLater.push(modalMovieTitleEl.textContent); // Fixed so that it now saves to local storage in an array!
+      localStorage.setItem('watchLater', JSON.stringify(watchLater));
+    });
+  }
 }
 
 // Remove from Watch Later Functionality
@@ -357,10 +361,18 @@ function removeWatchLaterEntry(){
 
 const WatchLaterListEl = document.getElementById("watchLaterListWrapper");
 //Set Watch Later to be generated upon page loading //
-window.onload = function(){
+
+$('#openWatchLaterBtn').on('click', function(){
+  generateWatchLaterButtons();
+})
+
+/*
+function generateWatchLaterButtons(){
+  console.log("at least this works");
   WatchLaterListEl.innerHTML='';
-  var watchLaterData = JSON.parse(localStorage.getItem('MyWatchLaterList')) || []; // use empty array as default value if search history not found in local storage
+  var watchLaterData = JSON.parse(localStorage.getItem('watchLater')) || []; // use empty array as default value if search history not found in local storage
   // Loop through the array
+  console.log(watchLaterData.length);
   for (var i = 0; i < watchLaterData.length; i++) {
       // Get the name of the current item
       console.log("i");
@@ -370,13 +382,15 @@ window.onload = function(){
     // Create a new div element
     var div = $('<div></div>').addClass('button is-normal is-responsive is-outlined is-dark has-text-primary mr-2').attr('role','button');
 
-    div.on('click', function(){
-      // functions to allow searches
-      runFetch(itemName);
-      runFetch2(itemName);
-      modalToggle();
-      watchLaterModalToggle();
-    });
+    div.on('click', (function(itemName){
+      return function(){
+        // functions to allow searches
+        runFetch(itemName);
+        runFetch2(itemName);
+        modalToggle();
+        watchLaterModalToggle();
+      }
+    })(itemName));
   
     // Set the content of the div to the item name
     div.text(itemName);
@@ -385,11 +399,69 @@ window.onload = function(){
     $('#watchLaterListWrapper').append(div);
   }
 }
+*/
+
+function generateWatchLaterButtons(){
+  console.log("at least this works");
+  WatchLaterListEl.innerHTML='';
+  var watchLaterData = JSON.parse(localStorage.getItem('watchLater')) || []; // use empty array as default value if search history not found in local storage
+  // Loop through the array
+  console.log(watchLaterData.length);
+  for (var i = 0; i < watchLaterData.length; i++) {
+    // Get the name of the current item
+    console.log("i");
+    var itemName = watchLaterData[i];
+    console.log(itemName);
+
+    // Create a new div element to hold the item and remove button
+    var itemDiv = $('<div></div>').addClass('item mt-1');
+    itemDiv.data('id', i);
+
+    // Create a new div element for the item button
+    var itemButton = $('<div></div>').addClass('button is-normal is-responsive is-outlined is-dark has-text-primary mr-2').attr('role','button');
+    itemButton.data('id', i); //new
+
+    itemDiv.on('click', (function(itemName){
+      return function(){
+        // functions to allow searches
+        runFetch(itemName);
+        runFetch2(itemName);
+        modalToggle();
+        watchLaterModalToggle();
+      }
+    })(itemName));
+
+    itemButton.text(itemName);
+
+    var removeButton = $('<button></button>').addClass('button mt-1 is-small is-danger').text('Remove').attr('id','removeBtn'+i);
+    removeButton.on('click', (function(index){
+      return function(event){
+        event.stopPropagation(); // Stop the click event from bubbling up to the itemDiv element
+        // remove the item from the watchLaterData array in local storage
+        var updatedWatchLaterData = JSON.parse(localStorage.getItem('watchLater')) || [];
+        updatedWatchLaterData.splice(index, 1);
+        localStorage.setItem('watchLater', JSON.stringify(updatedWatchLaterData));
+    
+        // remove the item div from the document
+        $(this).closest('.item').remove();
+      }
+    })(i));
+    
+    // Add the item and remove buttons to the item div
+    itemDiv.append(itemButton);
+    itemDiv.append(removeButton);
+
+    // Append the item div to the watchLaterListWrapper
+    $('#watchLaterListWrapper').append(itemDiv);
+  }
+}
+
 
 // Set watch later to be updated every time a new entry is added //
 function generateNewWatchLaterContent(){
+  console.log('recognized');
   WatchLaterListEl.innerHTML='';
-  var watchLaterData = JSON.parse(localStorage.getItem('MyWatchLaterList')) || []; // use empty array as default value if search history not found in local storage
+  var watchLaterData = JSON.parse(localStorage.getItem('watchLater')) || []; // use empty array as default value if search history not found in local storage
   // Loop through the array
   for (var i = 0; i < watchLaterData.length; i++) {
       // Get the name of the current item
@@ -403,7 +475,7 @@ function generateNewWatchLaterContent(){
       runFetch(itemName);
       runFetch2(itemName);
       modalToggle();
-      watchLaterModalToggle();
+      //watchLaterModalToggle();
     });
 
     // Set the content of the div to the item name
