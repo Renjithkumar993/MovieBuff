@@ -1,6 +1,6 @@
 const WMKey = 'I8eqXJlEI9laBWJr8gRya9N4HVlAKNikLKwDLsfI';
 const TMDBKey = '60284bb58aafe269068499987d0a2596';
-const newsKey = '74048026fce748b094d550cf6a962a0f';
+const newsKey = '7213f56a2100dc7de82a324aa2075bce';
 
 let nowPlayingUrl = `https://api.themoviedb.org/3/movie/now_playing?api_key=${TMDBKey}&language=en-US`;
 var onAirUrl = `https://api.themoviedb.org/3/tv/on_the_air?api_key=${TMDBKey}&language=en-US`;
@@ -244,33 +244,89 @@ fetch(nowPlayingUrl)
             });
         });
 
-        var newsURL = `https://newsapi.org/v2/everything?q=movie&sortBy=popularity&apiKey=${newsKey}`
-        var linkspagination = $(".pagination-link");
-        var fornumber = 0;
-        var newsPerpage = 10;
+        
 
-        linkspagination.on("click", function(){
-          var pageNumber = $(this).text();
-          
-          if (pageNumber === "1"){
-            fornumber = 0;
-            newsPerpage = 10;
-          } else if(pageNumber === "2"){
-            fornumber = 10;
-            newsPerpage = 20;
-          }else if(pageNumber === "3"){
-            fornumber = 20;
-            newsPerpage = 30;
-          }else if(pageNumber === "4"){
-            fornumber = 30;
-            newsPerpage = 40;
-          }else if(pageNumber === "5"){
-            fornumber = 40;
-            newsPerpage = 50;
-          }
-          newsRender();
-         })
+
   
+// // function newsRender(){
+//   fetch(newsURL)
+//     .then(function(response){
+//       return response.json();
+//   })
+//     .then(function(data){
+//       var modalForNews =' ';
+//       console.log(data)
+//         for(i=fornumber; i < newsPerpage; i++){
+//           var author = data.articles[i].author;
+//           var description = data.articles[i].description;
+//           var source = data.articles[i].source.name;
+//           var imageUrl = data.articles[i].urlToImage;
+//           var siteUrl = data.articles[i].url;
+//           var title = data.articles[i].title;
+
+//     modalForNews +=
+//     `<div class="box container newsboxes has-background-black has-text-primary ">
+//     <article class="media is-flex">
+//       <div class="media-left">
+//         <figure class="image is-128x128">
+//           <img class="news image is-flex" src="${imageUrl} " alt="Image">
+//         </figure>
+//       </div>
+//       <div class="media-content ">
+//         <div class="content">
+//           <p>
+//             <strong class="titlenews has-text-white">${title}</strong>
+//             <br>
+//             <strong class="newsauther has-text-warning">${author}</strong> <small class="newsauthersource has-text-danger"> ${source}</small>
+//             <br>
+//           <p class="newsdescription ">    ${description}   </p>
+//         <a class="newslinktoURL" href="${siteUrl}" target="_blank" >Click to read more</a>
+//           </p>
+//         </div>
+//     </article>
+//   </div>`
+// }
+
+//   $("#newsmodalwrapper").html(modalForNews);
+//   })
+// // }
+
+// newsRender();
+const newsURL = 'http://api.mediastack.com/v1/news?' + new URLSearchParams({
+  access_key: newsKey,
+  keywords: 'upcoming movies',
+  categories: 'entertainment',
+  languages: 'en',
+
+  limit: 50
+
+});
+const linkspagination = $(".pagination-link");
+let fornumber = 0;
+let newsPerpage = 10;
+var imageNoimage = "./assets/no-image-.jpg"
+
+linkspagination.on("click", function(){
+  var pageNumber = $(this).text();
+  
+  if (pageNumber === "1"){
+    fornumber = 0;
+    newsPerpage = 10;
+  } else if(pageNumber === "2"){
+    fornumber = 10;
+    newsPerpage = 20;
+  }else if(pageNumber === "3"){
+    fornumber = 20;
+    newsPerpage = 30;
+  }else if(pageNumber === "4"){
+    fornumber = 30;
+    newsPerpage = 40;
+  }else if(pageNumber === "5"){
+    fornumber = 40;
+    newsPerpage = 50;
+  }
+  newsRender();
+ })
 function newsRender(){
   fetch(newsURL)
     .then(function(response){
@@ -278,13 +334,19 @@ function newsRender(){
   })
     .then(function(data){
       var modalForNews =' ';
+      console.log(data)
         for(i=fornumber; i < newsPerpage; i++){
-          var author = data.articles[i].author;
-          var description = data.articles[i].description;
-          var source = data.articles[i].source.name;
-          var imageUrl = data.articles[i].urlToImage;
-          var siteUrl = data.articles[i].url;
-          var title = data.articles[i].title;
+
+          if(!data.data[i].image){
+            imageUrl = imageNoimage;
+          
+          }
+          var author = data.data[i].author;
+          var description = data.data[i].description;
+          var source = data.data[i].source;
+          var imageUrl = data.data[i].image || imageNoimage;
+          var siteUrl = data.data[i].url;
+          var title = data.data[i].title;
 
     modalForNews +=
     `<div class="box container newsboxes has-background-black has-text-primary ">
@@ -311,10 +373,15 @@ function newsRender(){
 
   $("#newsmodalwrapper").html(modalForNews);
   })
-}
 
-newsRender();
-  
+};
+
+
+ newsRender();
+
+
+
+
 $("#searchBtn").on("click", function(){
   $(".hidewhensearch").hide();
   $(".searchresultheading").show();
