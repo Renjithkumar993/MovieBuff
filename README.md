@@ -4,7 +4,7 @@
 
 This application is intended for lovers of film who want to learn more about their favourite movies and where they can watch them. Powered by the TMDB API, Watchmode API, News API, and featuring styling from the Bulma CSS framework, this app is designed as a one-stop-shop for all things movie and film-related media. 
 
-The deployed application may be accessed [here]().
+The deployed application may be accessed [here](https://renjithkumar993.github.io/MovieBuff/).
 
 ## Screenshots
 
@@ -26,6 +26,8 @@ This application is open-source and free for use. Those wishing to access the ap
 When new users arrive to the landing page they are met with carousels featuring movies that are 'Trending Today' and 'Currently on Air.' If users are interested, they can click on these film posters for more information. This can be a useful resource for those searching without any particular film in mind. The landing page also features buttons that will reveal upcoming movie trailers and movie news. 
 
 Alternatively, users who have a specific film in mind, may search by title using the main search bar, to then be returned a series of cards. These cards feature the posters, titles, and release date of movies that feature titles similar to those specified in the user's search terms. Users can select from amongst these cards and click on each to bring up a modal that provides further information, including the movie's runtime, plot summary, user and critic scores, and also a link to where they may view the trailer. Users can then switch tabs to explore where films are available for streaming as well as save movies that they are interested in to their watch later list. Users' searched movies are automatically saved to their search history, taking advantage of their browser's local storage, and may be viewed by clicking the 'View Search History' button. This button reveals a tab with buttons that users can click on to resume their previous searches.
+
+*Note: In its beta phase, the news API is only available when the user clones the Git repository and launches the application through their local environment. The News API does not allow requests from the browser on its developer plan and only accepts requests from the local host. Users can view this content by launching the application with their local server using "localhost" in the web address (URL) to indicate that the server is running on the same machine that they are using.
 
 ## Roadmap
 

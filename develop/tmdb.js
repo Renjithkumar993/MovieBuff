@@ -366,41 +366,6 @@ $('#openWatchLaterBtn').on('click', function(){
   generateWatchLaterButtons();
 })
 
-/*
-function generateWatchLaterButtons(){
-  console.log("at least this works");
-  WatchLaterListEl.innerHTML='';
-  var watchLaterData = JSON.parse(localStorage.getItem('watchLater')) || []; // use empty array as default value if search history not found in local storage
-  // Loop through the array
-  console.log(watchLaterData.length);
-  for (var i = 0; i < watchLaterData.length; i++) {
-      // Get the name of the current item
-      console.log("i");
-      var itemName = watchLaterData[i]
-      console.log(itemName);
-
-    // Create a new div element
-    var div = $('<div></div>').addClass('button is-normal is-responsive is-outlined is-dark has-text-primary mr-2').attr('role','button');
-
-    div.on('click', (function(itemName){
-      return function(){
-        // functions to allow searches
-        runFetch(itemName);
-        runFetch2(itemName);
-        modalToggle();
-        watchLaterModalToggle();
-      }
-    })(itemName));
-  
-    // Set the content of the div to the item name
-    div.text(itemName);
-  
-    // Append the div to the document body or another parent element
-    $('#watchLaterListWrapper').append(div);
-  }
-}
-*/
-
 function generateWatchLaterButtons(){
   console.log("at least this works");
   WatchLaterListEl.innerHTML='';
