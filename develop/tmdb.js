@@ -173,7 +173,7 @@ function runFetch2(cardMovieTitle) {
 
                   <div>
                     <br>
-                  <a href ="${trailerEl}" class="button is-primary">View the Trailer</a>
+                    <a href="${trailerEl}" class="button is-primary" target="_blank">View the Trailer</a>
                   </div>
                     <br>
                 </div>
