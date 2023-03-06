@@ -166,14 +166,14 @@ function runFetch2(cardMovieTitle) {
                   <div class="media-content">
                     <p id="titleColour" class="title is-4">Revew Scores:</p>
                     <ul id="noBullets" class="subtitle is-6 has-text-weight-semibold">
-                      <li>Viewer rating: <strong id="vwrRtng">${userRatingEl}</strong></li>
-                      <li>Critic Rating: <strong id="critRtng">${criticScoreEl}</strong></li>
+                      <li>Viewer Rating: <strong id="vwrRtng">${userRatingEl}</strong>/10</li>
+                      <li>Critic Rating: <strong id="critRtng">${criticScoreEl}</strong>/100</li>
                     </ul>
                   </div>
 
                   <div>
                     <br>
-                  <a href ="${trailerEl}" class="button is-primary">View the Trailer</a>
+                    <a href="${trailerEl}" class="button is-primary" target="_blank">View the Trailer</a>
                   </div>
                     <br>
                 </div>
@@ -252,9 +252,9 @@ function runFetch(cardMovieTitle) {
                 <div>
                   <ul>
                     <li>Accesible by ${accessType}</li>
-                    <li>Available in ${regionalAvailability}</li>
+                    <li>Streaming region ${regionalAvailability}</li>
                     <li><a href = "${webURL}" target="_blank">Watch Here!</a></li>
-                    <li>Service cost ${price}</li>
+                    <li>Service cost: ${price}</li>
                   </ul>
                 </div>
               </div>
