@@ -368,7 +368,7 @@ function newsRender(){
 };
 
 
-
+ newsRender();
 
 
 
